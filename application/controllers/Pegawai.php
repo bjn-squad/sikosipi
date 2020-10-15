@@ -11,7 +11,7 @@ class Pegawai extends CI_Controller
         }
         $this->load->model('pegawai_model');
     }
-
+    // Yuni Test Push
     public function index()
     {
         $data['title'] = 'Dashboard Pegawai';
