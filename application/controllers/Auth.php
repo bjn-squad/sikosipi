@@ -21,7 +21,7 @@ class Auth extends CI_Controller
         } elseif ($this->session->userdata('level') == "anggota") {
             redirect('anggota', 'refresh');
         }
-        $data['title'] = 'Login';
+        $data['title'] = 'Login Pegawai';
         $this->load->view('auth/pegawai/header', $data);
         $this->load->view('auth/pegawai/login');
     }
@@ -36,17 +36,17 @@ class Auth extends CI_Controller
         if ($cekLogin) {
             foreach ($cekLogin as $row);
             $this->session->set_userdata('id_pegawai', $row->id_pegawai);
+            $this->session->set_userdata('username', $row->username);
+            $this->session->set_userdata('nama_pegawai', $row->nama_pegawai);
             $this->session->set_userdata('email', $row->email);
-            $this->session->set_userdata('kategori', $row->level);
+            $this->session->set_userdata('kategori', $row->kategori);
             $this->session->set_userdata('level', "pegawai");
             redirect('pegawai');
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
             Wrong Username or Password!
           </div>');
-            $data['title'] = 'Login';
-            $this->load->view('auth/pegawai/header', $data);
-            $this->load->view('auth/pegawai/login');
+            redirect('auth/loginPegawai');
         }
     }
 
