@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2020 at 10:26 AM
+-- Generation Time: Oct 15, 2020 at 06:19 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -46,14 +46,24 @@ CREATE TABLE `anggota` (
   `id_anggota` int(11) NOT NULL,
   `nama_anggota` varchar(200) NOT NULL,
   `alamat_anggota` varchar(200) NOT NULL,
-  `no_telp_anggota` int(20) NOT NULL,
+  `no_telp_anggota` varchar(50) NOT NULL,
+  `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `status_anggota` varchar(50) NOT NULL DEFAULT 'Tidak Aktif',
-  `tanggal_keanggotaan` varchar(100) NOT NULL,
-  `foto_ktp_anggota` varchar(200) NOT NULL,
-  `foto_selfie_ktp_anggota` varchar(200) NOT NULL
+  `tanggal_keanggotaan` varchar(100) NOT NULL DEFAULT 'Belum Menjadi Anggota',
+  `foto_ktp_anggota` text NOT NULL DEFAULT 'Belum Diupload',
+  `foto_selfie_ktp_anggota` text NOT NULL DEFAULT 'Belum Diupload'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `anggota`
+--
+
+INSERT INTO `anggota` (`id_anggota`, `nama_anggota`, `alamat_anggota`, `no_telp_anggota`, `username`, `email`, `password`, `status_anggota`, `tanggal_keanggotaan`, `foto_ktp_anggota`, `foto_selfie_ktp_anggota`) VALUES
+(1, 'Budi Surya', 'Jl. Mawar Merah 21 Bojonegoro', '085687921256', 'budi', 'budianto@gmail.com', '9c5fa085ce256c7c598f6710584ab25d', 'Tidak Aktif', 'Belum Menjadi Anggota', 'Belum Diupload', 'Belum Diupload'),
+(2, 'Jasmin Putri', 'Jl. Melati 105 Kalitidu, Bojonegoro', '085125891250', 'jasmin', 'jasmin@gmail.com', 'c677901e8baa1f96025f0938a4cd0423', 'Aktif', '15-10-2020', 'assets/datakoperasi/imganggota/ktp/example-ktp-1.jpg', 'assets/datakoperasi/imganggota/kyc/example-with-ktp-1.jpg'),
+(3, 'Jito Hartati', 'Jl. Grogol 21 Bojonegoro', '0812385794223', 'jito', 'jito@gmail.com', '28d8024451d991a899aaf3a4875c8cfa', 'Tidak Aktif', 'Belum Menjadi Anggota', 'Belum Diupload', 'Belum Diupload');
 
 -- --------------------------------------------------------
 
@@ -68,6 +78,29 @@ CREATE TABLE `angsuran_detail` (
   `tanggal_angsuran` varchar(50) NOT NULL,
   `angsuran_pembayaran` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lupa_password`
+--
+
+CREATE TABLE `lupa_password` (
+  `id_lupa_password` int(11) NOT NULL,
+  `id_anggota` int(11) NOT NULL,
+  `pertanyaankeamanan1` text NOT NULL,
+  `pertanyaankeamanan2` text NOT NULL,
+  `jawabankeamanan1` text NOT NULL,
+  `jawabankeamanan2` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `lupa_password`
+--
+
+INSERT INTO `lupa_password` (`id_lupa_password`, `id_anggota`, `pertanyaankeamanan1`, `pertanyaankeamanan2`, `jawabankeamanan1`, `jawabankeamanan2`) VALUES
+(1, 1, 'Apa angka favorit anda? Ketik dalam angka (Contoh: 29), bebas berapa digit.', 'Siapakah teman masa kecil anda?', '77', 'Riza Zulfahnur'),
+(2, 2, 'Di kota manakah ayah dan ibu anda bertemu?', 'Apa hobby anda?', 'Paris', 'Berkuda');
 
 -- --------------------------------------------------------
 
@@ -214,6 +247,13 @@ ALTER TABLE `angsuran_detail`
   ADD KEY `id_pegawai` (`id_pegawai`);
 
 --
+-- Indexes for table `lupa_password`
+--
+ALTER TABLE `lupa_password`
+  ADD PRIMARY KEY (`id_lupa_password`),
+  ADD KEY `id_anggota` (`id_anggota`);
+
+--
 -- Indexes for table `pegawai`
 --
 ALTER TABLE `pegawai`
@@ -277,13 +317,19 @@ ALTER TABLE `aksi_hapus`
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `angsuran_detail`
 --
 ALTER TABLE `angsuran_detail`
   MODIFY `id_angsuran_detail` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `lupa_password`
+--
+ALTER TABLE `lupa_password`
+  MODIFY `id_lupa_password` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
@@ -343,6 +389,12 @@ ALTER TABLE `aksi_hapus`
 ALTER TABLE `angsuran_detail`
   ADD CONSTRAINT `angsuran_detail_ibfk_1` FOREIGN KEY (`id_pinjaman`) REFERENCES `pinjaman` (`id_pinjaman`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `angsuran_detail_ibfk_2` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `lupa_password`
+--
+ALTER TABLE `lupa_password`
+  ADD CONSTRAINT `lupa_password_ibfk_1` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id_anggota`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `penarikan_simpanan`
