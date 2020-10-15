@@ -22,3 +22,4 @@ class Pegawai extends CI_Controller
         $this->load->view('layout/pegawai/footer');
     }
 }
+    // Yuni Test 2
