@@ -15,10 +15,10 @@ class Pegawai extends CI_Controller
     public function index()
     {
         $data['title'] = 'Dashboard Pegawai';
-        $this->load->view('layout/header', $data);
-        $this->load->view('layout/sidebar');
-        $this->load->view('layout/top');
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
         $this->load->view('pegawai/index');
-        $this->load->view('layout/footer');
+        $this->load->view('layout/pegawai/footer');
     }
 }
