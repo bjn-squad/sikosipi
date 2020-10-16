@@ -7,6 +7,7 @@
                         <strong class="card-title">Data Diri Anggota</strong>
                     </div>
                     <div class="card-body">
+                        <?= $this->session->flashdata('message'); ?>
                         <?php foreach ($data as $data) {
                             if ($data['status_anggota'] == 'Tidak Aktif') { ?>
                                 <div class="alert alert-danger" role="alert">

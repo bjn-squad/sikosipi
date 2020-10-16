@@ -9,6 +9,12 @@ class Anggota extends CI_Controller
         if ($this->session->userdata('level') != "anggota") {
             redirect('auth/loginAnggota', 'refresh');
         }
+        $this->load->model('Lupapassword_model');
+        $cekSetPertanyaan = $this->Lupapassword_model->getStatus($this->session->userdata('id_anggota'));
+
+        if (empty($cekSetPertanyaan)) {
+            redirect('lupapassword/tambahPertanyaanKeamanan');
+        }
         $this->load->model('anggota_model');
     }
 

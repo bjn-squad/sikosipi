@@ -23,7 +23,7 @@
                             <input type="checkbox" onclick="passwordShowUnshow()"> <i class="fa fa-eye"></i> Show/Unshow Password
                         </label>
                         <label class="pull-right">
-                            <a href="#">Lupa Password?</a>
+                            <a href="<?= base_url() ?>lupapassword/reset">Lupa Password?</a>
                         </label>
                     </div>
                     <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Login <i class="fa fa-sign-in"></i></button>
