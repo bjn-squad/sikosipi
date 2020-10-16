@@ -42,4 +42,20 @@ class Lupapassword_model extends CI_Model
         $query = $this->db->query("SELECT * FROM lupa_password WHERE id_anggota = $id");
         return $query->result_array();
     }
+
+    public function cekJawaban($id, $j1, $j2)
+    {
+        $this->db->select('*');
+        $this->db->from('lupa_password');
+        $this->db->where('id_anggota', $id);
+        $this->db->where("(jawabankeamanan1='$j1' AND jawabankeamanan2='$j2')");
+        $this->db->limit(1);
+
+        $query = $this->db->get();
+        if ($query->num_rows() == 1) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
 }

@@ -95,6 +95,36 @@ class Lupapassword extends CI_Controller
 
     public function cekJawaban()
     {
-        # code...
+        $this->form_validation->set_rules('id_anggota', 'id_anggota', 'trim|required');
+        $this->form_validation->set_rules('jawabankeamanan1', 'jawabankeamanan1', 'trim|required');
+        $this->form_validation->set_rules('jawabankeamanan2', 'jawabankeamanan2', 'trim|required');
+
+        if ($this->form_validation->run() == FALSE) {
+            redirect('lupapassword/reset');
+        } else {
+            $cekJawaban = $this->lupapassword_model->cekJawaban($this->input->post('id_anggota'), $this->input->post('jawabankeamanan1'), $this->input->post('jawabankeamanan2'));
+            if ($cekJawaban) {
+                foreach ($cekJawaban as $row);
+                $idAnggota = $row->id_anggota;
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                Jawaban anda salah!<br>Silahkan ulangi lagi atau urus ganti password ke koperasi.
+              </div>');
+                redirect('lupapassword/reset');
+            }
+            $data['id'] = $this->anggota_model->getAnggotaById($idAnggota);
+            $data['title'] = 'Ubah Password';
+            $this->load->view('auth/anggota/header', $data);
+            $this->load->view('lupapassword/gantipasswordlama', $data);
+        }
+    }
+
+    public function prosesUbahPassword()
+    {
+        $this->anggota_model->ubahPasswordById($this->input->post('id_anggota'));
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                Password anda telah diganti, silahkan login.
+              </div>');
+        redirect('auth/loginAnggota');
     }
 }

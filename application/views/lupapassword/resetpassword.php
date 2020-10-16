@@ -5,7 +5,7 @@
                 <form action="<?= base_url() ?>lupapassword/reset" method="POST">
                     <div class="form-group">
                         <center><label style="font-weight: bold;">Reset Password Anggota</label></center>
-                        <?= $this->session->flashdata('message'); ?><br>
+                        <?= $this->session->flashdata('message'); ?>
                         <label>Email / Username Anggota</label>
                         <input type="text" name="emailorusername" class="form-control" placeholder="Email or Username" autofocus required>
                     </div>

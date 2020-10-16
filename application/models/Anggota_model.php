@@ -9,4 +9,13 @@ class Anggota_model extends CI_Model
         $query = $this->db->query("SELECT * FROM anggota WHERE id_anggota = $id");
         return $query->result_array();
     }
+
+    public function ubahPasswordById($id)
+    {
+        $data = [
+            "password" => htmlspecialchars(MD5($this->input->post('password')))
+        ];
+        $this->db->where('id_anggota', $id);
+        $this->db->update('anggota', $data);
+    }
 }
