@@ -12,11 +12,11 @@
                         </div>
                         <?= $this->session->flashdata('message'); ?><br>
                         <label>Email / Username Anggota</label>
-                        <input type="text" name="email" class="form-control" placeholder="Email or Username" autofocus>
+                        <input type="text" name="email" class="form-control" placeholder="Email or Username" autofocus required>
                     </div>
                     <div class="form-group">
                         <label>Password Anggota</label>
-                        <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
                     </div>
                     <div class="checkbox">
                         <label>

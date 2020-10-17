@@ -10,7 +10,7 @@
                         <?php if (!empty($this->session->flashdata('error'))) {
                         ?>
                             <div class="alert alert-danger" role="alert">
-                                <?= $this->session->flashdata('error') ?>
+                                <b><i class="fa fa-warning"></i> Warning <label class="font-weight-bold"><?= $this->session->flashdata('error') ?></label></b>
                             </div>
                         <?php
                         }

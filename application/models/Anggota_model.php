@@ -77,6 +77,9 @@ class Anggota_model extends CI_Model
                 $error = array('error' => $this->upload->display_errors());
                 return $this->session->set_flashdata('error', $error['error']);
             }
+        } else {
+            $error = array('error' => $this->upload->display_errors());
+            return $this->session->set_flashdata('error', $error['error']);
         }
     }
 }
