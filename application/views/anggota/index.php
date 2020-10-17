@@ -11,7 +11,7 @@
                         <?php foreach ($data as $data) {
                             if ($data['status_anggota'] == 'Tidak Aktif') { ?>
                                 <div class="alert alert-danger" role="alert">
-                                    Status keanggotaan anda masih tidak aktif, silahkan lakukan verifikasi! <a href="" class="font-weight-bold">Klik Disini Untuk Verifikasi!</a>
+                                    Status keanggotaan anda masih tidak aktif, silahkan lakukan verifikasi! <a href="<?= base_url() ?>anggota/verifikasi" class="font-weight-bold">Klik Disini Untuk Verifikasi!</a>
                                 </div>
                             <?php } else if ($data['status_anggota'] == 'Aktif') {
                             ?>
@@ -45,7 +45,7 @@
                                 echo $data['foto_ktp_anggota'];
                             } else {
                             ?>
-                                <img src="<?= base_url() ?><?= $data['foto_ktp_anggota'] ?>" class="img-fluid" alt="Responsive image">
+                                <img src="<?= base_url('assets/datakoperasi/imganggota/ktp/') ?><?= $data['foto_ktp_anggota'] ?>" class="img-fluid" alt="Responsive image" width="500px">
                             <?php
                             }
                             ?>
@@ -56,7 +56,7 @@
                                 echo $data['foto_ktp_anggota'];
                             } else {
                             ?>
-                                <img src="<?= base_url() ?><?= $data['foto_selfie_ktp_anggota'] ?>" class="img-fluid" alt="Responsive image">
+                                <img src="<?= base_url('assets/datakoperasi/imganggota/kyc/') ?><?= $data['foto_selfie_ktp_anggota'] ?>" class="img-fluid" alt="Responsive image" width="500px">
                             <?php
                             }
                             ?>
