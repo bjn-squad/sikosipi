@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2020 at 12:35 PM
+-- Generation Time: Oct 18, 2020 at 01:42 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -52,8 +52,8 @@ CREATE TABLE `anggota` (
   `password` varchar(100) NOT NULL,
   `status_anggota` varchar(50) NOT NULL DEFAULT 'Tidak Aktif',
   `tanggal_keanggotaan` varchar(100) NOT NULL DEFAULT 'Belum Menjadi Anggota',
-  `foto_ktp_anggota` text NOT NULL DEFAULT 'Belum Diupload',
-  `foto_selfie_ktp_anggota` text NOT NULL DEFAULT 'Belum Diupload'
+  `foto_ktp_anggota` varchar(500) NOT NULL DEFAULT '''Belum Diupload''',
+  `foto_selfie_ktp_anggota` varchar(500) NOT NULL DEFAULT '''Belum Diupload'''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -61,9 +61,9 @@ CREATE TABLE `anggota` (
 --
 
 INSERT INTO `anggota` (`id_anggota`, `nama_anggota`, `alamat_anggota`, `no_telp_anggota`, `username`, `email`, `password`, `status_anggota`, `tanggal_keanggotaan`, `foto_ktp_anggota`, `foto_selfie_ktp_anggota`) VALUES
-(1, 'Budi Surya', 'Jl. Mawar Merah 21 Bojonegoro', '085687921256', 'budi', 'budianto@gmail.com', '9c5fa085ce256c7c598f6710584ab25d', 'Tidak Aktif', 'Belum Menjadi Anggota', 'Belum Diupload', 'Belum Diupload'),
-(2, 'Jasmin Putri', 'Jl. Melati 105 Kalitidu, Bojonegoro', '085125891250', 'jasmin', 'jasmin@gmail.com', 'c677901e8baa1f96025f0938a4cd0423', 'Aktif', '15-10-2020', 'assets/datakoperasi/imganggota/ktp/example-ktp-1.jpg', 'assets/datakoperasi/imganggota/kyc/example-with-ktp-1.jpg'),
-(3, 'Jito Hartati', 'Jl. Grogol 21 Bojonegoro', '0812385794223', 'jito', 'jito@gmail.com', '3fc0a7acf087f549ac2b266baf94b8b1', 'Tidak Aktif', 'Belum Menjadi Anggota', 'Belum Diupload', 'Belum Diupload');
+(1, 'Budi Surya', 'Jl. Mawar Merah 21 Bojonegoro', '085687921256', 'budi', 'budianto@gmail.com', '9c5fa085ce256c7c598f6710584ab25d', 'Sedang Diverifikasi', 'Belum Menjadi Anggota', '17102020163046example-ktp-1.jpg', '17102020163046img-kyc-sample-2.png'),
+(2, 'Jasmin Putri', 'Jl. Melati 105 Kalitidu, Bojonegoro', '085125891250', 'jasmin', 'jasmin@gmail.com', 'c677901e8baa1f96025f0938a4cd0423', 'Aktif', '15-10-2020', 'example-ktp-1.jpg', 'example-with-ktp-1.jpg'),
+(3, 'Jito Hartati', 'Jl. Grogol 21 Bojonegoro', '0812385794223', 'jito', 'jito@gmail.com', '28d8024451d991a899aaf3a4875c8cfa', 'Sedang Diverifikasi', 'Belum Menjadi Anggota', '17102020132043example-ktp-1.jpg', '17102020132043img-kyc-sample-2.png');
 
 -- --------------------------------------------------------
 
