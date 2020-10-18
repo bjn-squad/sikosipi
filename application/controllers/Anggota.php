@@ -31,7 +31,7 @@ class Anggota extends CI_Controller
 
     public function verifikasi()
     {
-        if ($this->session->userdata('status') == "Aktif") {
+        if ($this->session->userdata('status') == "Aktif" and $this->session->userdata('status') == "Dinonaktifkan") {
             redirect('anggota');
         } else {
             $this->form_validation->set_rules('id_anggota', 'id_anggota', 'trim|required');

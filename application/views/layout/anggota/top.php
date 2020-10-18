@@ -14,11 +14,11 @@
             <div class="col-sm-5">
                 <div class="user-area dropdown float-right">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <h6><i class="fa fa-user"></i> <?= $this->session->userdata('email') ?></h6>
+                        <h6><i class="fa fa-user"></i> <?= $this->session->userdata('email') ?> <i class="fa fa-sort-down"></i></h6>
                     </a>
 
                     <div class="user-menu dropdown-menu">
-                        <a class="nav-link">Welcome <?= $this->session->userdata('username') ?></a>
+                        <a class="nav-link">Welcome Anggota <?= $this->session->userdata('username') ?></a>
                         <a class="nav-link" href="#"><i class="fa fa-cog"></i> Pengaturan Profil</a>
                         <a class="nav-link" href="<?= base_url() ?>auth/logout"><i class="fa fa-power-off"></i> Logout</a>
                     </div>

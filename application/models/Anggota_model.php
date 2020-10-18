@@ -10,6 +10,12 @@ class Anggota_model extends CI_Model
         return $query->result_array();
     }
 
+    public function getAllAnggota()
+    {
+        $query = $this->db->query("SELECT * FROM anggota");
+        return $query->result_array();
+    }
+
     public function ubahPasswordById($id)
     {
         $data = [
