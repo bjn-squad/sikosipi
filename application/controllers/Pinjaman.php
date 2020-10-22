@@ -23,6 +23,9 @@ class Pinjaman extends CI_Controller
 
     public function riwayatPengajuan()
     {
+        if ($this->session->userdata('level') != "anggota") {
+            redirect('auth/loginAnggota', 'refresh');
+        }
         $data['title'] = 'Pinjaman';
         $data['pinjaman'] = $this->pinjaman_model->getAllRiwayatPinjamanById($this->session->userdata('id_anggota'));
         $this->load->view('layout/anggota/header', $data);
@@ -46,16 +49,17 @@ class Pinjaman extends CI_Controller
 
         $status_pengajuan = $dataStatus->status_pengajuan;
 
-        if ($status_pengajuan == "Sedang Diverifikasi") {
+        if ($status_pengajuan != "Sedang Diverifikasi" || !empty($dataStatus)) {
+            $data['title'] = 'Ayo Ajukan Pinjaman';
+
+            $this->load->view('layout/anggota/header', $data);
+            $this->load->view('layout/anggota/sidebar');
+            $this->load->view('layout/anggota/top');
+            $this->load->view('pinjaman/ajukan_pinjaman');
+            $this->load->view('layout/anggota/footer');
+        } else {
             redirect('anggota');
         }
-        $data['title'] = 'Ayo Ajukan Pinjaman';
-
-        $this->load->view('layout/anggota/header', $data);
-        $this->load->view('layout/anggota/sidebar');
-        $this->load->view('layout/anggota/top');
-        $this->load->view('pinjaman/ajukan_pinjaman');
-        $this->load->view('layout/anggota/footer');
     }
 
     public function prosesAjukanPinjaman()
@@ -72,24 +76,25 @@ class Pinjaman extends CI_Controller
 
         $status_pengajuan = $dataStatus->status_pengajuan;
 
-        if ($status_pengajuan == "Sedang Diverifikasi") {
-            redirect('anggota');
-        }
-        $this->form_validation->set_rules('total_pengajuan_pinjaman', 'total_pengajuan_pinjaman', 'trim|required|numeric');
-        $this->form_validation->set_rules('alasan_pinjaman', 'alasan_pinjaman', 'trim|required');
+        if ($status_pengajuan != "Sedang Diverifikasi" || !empty($dataStatus)) {
+            $this->form_validation->set_rules('total_pengajuan_pinjaman', 'total_pengajuan_pinjaman', 'trim|required|numeric');
+            $this->form_validation->set_rules('alasan_pinjaman', 'alasan_pinjaman', 'trim|required');
 
-        if ($this->form_validation->run() == FALSE) {
-            $data['title'] = 'Ajukan Pinjaman';
-            $this->load->view('layout/anggota/header', $data);
-            $this->load->view('layout/anggota/sidebar');
-            $this->load->view('layout/anggota/top');
-            $this->load->view('pinjaman/ajukan_pinjaman');
-            $this->load->view('layout/anggota/footer');
-        } else {
-            $this->pinjaman_model->insertPengajuan();
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            if ($this->form_validation->run() == FALSE) {
+                $data['title'] = 'Ayo Ajukan Pinjaman';
+                $this->load->view('layout/anggota/header', $data);
+                $this->load->view('layout/anggota/sidebar');
+                $this->load->view('layout/anggota/top');
+                $this->load->view('pinjaman/ajukan_pinjaman');
+                $this->load->view('layout/anggota/footer');
+            } else {
+                $this->pinjaman_model->insertPengajuan();
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Pengajuan Pinjaman telah berhasil disubmit !
           </div>');
+                redirect('anggota');
+            }
+        } else {
             redirect('anggota');
         }
     }
