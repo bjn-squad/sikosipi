@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2020 at 01:42 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.6
+-- Generation Time: Oct 22, 2020 at 08:05 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -117,7 +118,7 @@ CREATE TABLE `pegawai` (
   `username` varchar(60) NOT NULL,
   `email` varchar(200) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `kategori` int(1) NOT NULL DEFAULT 2
+  `kategori` int(1) NOT NULL DEFAULT '2'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -164,6 +165,14 @@ CREATE TABLE `pengajuan_pinjaman` (
   `verifikasi_admin` varchar(100) NOT NULL DEFAULT 'Belum Terverifikasi',
   `pesan` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pengajuan_pinjaman`
+--
+
+INSERT INTO `pengajuan_pinjaman` (`id_pengajuan`, `id_anggota`, `total_pengajuan_pinjaman`, `alasan_pinjaman`, `lampiran_pendukung`, `tanggal_pengajuan`, `status_pengajuan`, `verifikasi_pegawai`, `verifikasi_admin`, `pesan`) VALUES
+(1, 2, 5000000, 'Butuh keperluan', '21102020181119Kel PPL.docx', '21-10-20', 'Verifikasi Ditolak', 'Verifikasi Ditolak', 'Verifikasi Ditolak', 'Alasan lo gajelas'),
+(2, 2, 5000000, 'Butuh keperluan', '2110202018431518_Moh Riza Zulfahnur_TI-2E.pdf', '21-10-20', 'Sedang Diverifikasi', 'Sedang Diverifikasi', 'Sedang Diverifikasi', 'Belum terdapat pesan');
 
 -- --------------------------------------------------------
 
@@ -348,7 +357,7 @@ ALTER TABLE `penarikan_simpanan`
 -- AUTO_INCREMENT for table `pengajuan_pinjaman`
 --
 ALTER TABLE `pengajuan_pinjaman`
-  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pengumuman`
