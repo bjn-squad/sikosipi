@@ -1,5 +1,4 @@
 </div><!-- /#right-panel -->
-
 <!-- Right Panel -->
 <script src="<?= base_url() ?>assets/dashboard/vendors/jquery/dist/jquery.min.js"></script>
 <script src="<?= base_url() ?>assets/dashboard/vendors/popper.js/dist/umd/popper.min.js"></script>

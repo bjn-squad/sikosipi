@@ -7,7 +7,7 @@
     <title><?= $title ?></title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="icon" href="<?= base_url() ?>assets/datakoperasi/logo_koperasi.png">
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="favicon.ico">
 

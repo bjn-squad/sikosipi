@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">Dashboard</strong>
+                        <strong class="card-title">Dashboard Pegawai</strong>
                     </div>
                     <div class="card-body">
                         Selamat Datang di Aplikasi SIKOSIPI

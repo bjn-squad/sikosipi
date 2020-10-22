@@ -10,9 +10,9 @@ class Pegawai extends CI_Controller
             redirect('auth/loginPegawai', 'refresh');
         }
         $this->load->model('pegawai_model');
+        $this->load->model('anggota_model');
     }
-    // Yuni Test Push
-    // Ardan Test Push
+
     public function index()
     {
         $data['title'] = 'Dashboard Pegawai';
@@ -20,6 +20,17 @@ class Pegawai extends CI_Controller
         $this->load->view('layout/pegawai/sidebar');
         $this->load->view('layout/pegawai/top');
         $this->load->view('pegawai/index');
+        $this->load->view('layout/pegawai/footer');
+    }
+
+    public function daftarAnggota()
+    {
+        $data['title'] = 'Daftar Anggota';
+        $data['anggota'] = $this->anggota_model->getAllAnggota();
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('pegawai/daftaranggota');
         $this->load->view('layout/pegawai/footer');
     }
 }

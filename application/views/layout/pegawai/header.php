@@ -9,7 +9,7 @@
 
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="favicon.ico">
-
+    <link rel="icon" href="<?= base_url() ?>assets/datakoperasi/logo_koperasi.png">
 
     <link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/vendors/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/dashboard/vendors/font-awesome/css/font-awesome.min.css">
