@@ -6,7 +6,7 @@
                     <div class="form-group">
                         <center><label style="font-weight: bold;">Login Anggota</label></center>
                         <div class="login-logo">
-                            <a href="<?= base_url() ?>auth">
+                            <a href="<?= base_url() ?>">
                                 <img class="align-content" src="<?= base_url() ?>assets/datakoperasi/logo_koperasi.png" width="20%" alt="">
                             </a>
                         </div>
