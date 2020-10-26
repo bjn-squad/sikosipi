@@ -5,6 +5,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Pinjaman_model extends CI_Model
 {
 
+    public function getAllPengajuan()
+    {
+        $query = $this->db->query("SELECT * 
+        FROM pengajuan_pinjaman as p
+        JOIN anggota as a ON a.id_anggota = p.id_anggota");
+        return $query->result_array();
+    }
+    public function getAllPengajuanById($id)
+    {
+        $query = $this->db->query("SELECT * 
+        FROM pengajuan_pinjaman as p
+        JOIN anggota as a ON a.id_anggota = p.id_anggota
+        WHERE p.id_pengajuan = $id");
+        return $query->result_array();
+    }
+
     public function insertPengajuan()
     {
         $pathDoc = "assets/datakoperasi/dokumen/";
@@ -41,5 +57,26 @@ class Pinjaman_model extends CI_Model
     {
         $query = $this->db->query("SELECT * FROM pengajuan_pinjaman WHERE id_anggota = $id");
         return $query->result_array();
+    }
+
+    public function verifikasiPengajuan()
+    {
+        $status = $this->input->post('verifikasi_pegawai');
+        if ($status == "Verifikasi Diterima") {
+            $data = [
+                "verifikasi_pegawai" => $status,
+                "pesan" => 'Verifikasi Diterima Pegawai, Menunggu Verifikasi Admin'
+            ];
+        } else if ($status == "Verifikasi Ditolak") {
+            $data = [
+                "verifikasi_pegawai" => $status,
+                "verifikasi_admin" => "Verifikasi Ditolak",
+                "status_pengajuan" => "Verifikasi Ditolak",
+                "pesan" => $this->input->post('pesan')
+            ];
+        }
+
+        $this->db->where('id_pengajuan', $this->input->post('id_pengajuan'));
+        $this->db->update('pengajuan_pinjaman', $data);
     }
 }
