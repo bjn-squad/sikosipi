@@ -30,7 +30,7 @@
                             ?>
                                 <div class="alert alert-info" role="alert">
                                     <b></b><br>
-                                    <><i>Mohon perhatikan aturan dibawah agar verifikasi dapat berjalan dengan lancar.</i></>
+                                    <b><i>Mohon perhatikan aturan dibawah agar verifikasi dapat berjalan dengan lancar.</i></b>
                                     <b><i class="fa fa-info-circle"></i> Aturan Gambar/Foto :</b><br>
                                     1. Data Identitas Yang Dapat Diterima : KTP<br>
                                     2. Data Identitas Wajib Jelas (<b>Tidak Blur, Terpotong Dsb</b>)<br>
@@ -41,7 +41,7 @@
                             } else {
                             ?>
                                 <div class="alert alert-warning" role="alert">
-                                    <?= $data['status_anggota'] ?>
+                                    Status Keanggotaan Anda <?= $data['status_anggota'] ?>. Jika merasa ada kesalahan terhadap status keanggotaan anda silahkan datang ke koperasi untuk mengurus.
                                 </div>
                             <?php
                             } ?>
