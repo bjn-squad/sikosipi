@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2020 at 08:05 AM
+-- Generation Time: Oct 26, 2020 at 06:30 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -62,9 +62,9 @@ CREATE TABLE `anggota` (
 --
 
 INSERT INTO `anggota` (`id_anggota`, `nama_anggota`, `alamat_anggota`, `no_telp_anggota`, `username`, `email`, `password`, `status_anggota`, `tanggal_keanggotaan`, `foto_ktp_anggota`, `foto_selfie_ktp_anggota`) VALUES
-(1, 'Budi Surya', 'Jl. Mawar Merah 21 Bojonegoro', '085687921256', 'budi', 'budianto@gmail.com', '9c5fa085ce256c7c598f6710584ab25d', 'Sedang Diverifikasi', 'Belum Menjadi Anggota', '17102020163046example-ktp-1.jpg', '17102020163046img-kyc-sample-2.png'),
+(1, 'Budi Surya', 'Jl. Mawar Merah 21 Bojonegoro', '085687921256', 'budi', 'budianto@gmail.com', '9c5fa085ce256c7c598f6710584ab25d', 'Aktif', 'Belum Menjadi Anggota', '17102020163046example-ktp-1.jpg', '17102020163046img-kyc-sample-2.png'),
 (2, 'Jasmin Putri', 'Jl. Melati 105 Kalitidu, Bojonegoro', '085125891250', 'jasmin', 'jasmin@gmail.com', 'c677901e8baa1f96025f0938a4cd0423', 'Aktif', '15-10-2020', 'example-ktp-1.jpg', 'example-with-ktp-1.jpg'),
-(3, 'Jito Hartati', 'Jl. Grogol 21 Bojonegoro', '0812385794223', 'jito', 'jito@gmail.com', '28d8024451d991a899aaf3a4875c8cfa', 'Sedang Diverifikasi', 'Belum Menjadi Anggota', '17102020132043example-ktp-1.jpg', '17102020132043img-kyc-sample-2.png');
+(3, 'Jito Hartati', 'Jl. Grogol 21 Bojonegoro', '0812385794223', 'jito', 'jito@gmail.com', '28d8024451d991a899aaf3a4875c8cfa', 'Aktif', 'Belum Menjadi Anggota', '17102020132043example-ktp-1.jpg', '17102020132043img-kyc-sample-2.png');
 
 -- --------------------------------------------------------
 
@@ -171,8 +171,9 @@ CREATE TABLE `pengajuan_pinjaman` (
 --
 
 INSERT INTO `pengajuan_pinjaman` (`id_pengajuan`, `id_anggota`, `total_pengajuan_pinjaman`, `alasan_pinjaman`, `lampiran_pendukung`, `tanggal_pengajuan`, `status_pengajuan`, `verifikasi_pegawai`, `verifikasi_admin`, `pesan`) VALUES
-(1, 2, 5000000, 'Butuh keperluan', '21102020181119Kel PPL.docx', '21-10-20', 'Verifikasi Ditolak', 'Verifikasi Ditolak', 'Verifikasi Ditolak', 'Alasan lo gajelas'),
-(2, 2, 5000000, 'Butuh keperluan', '2110202018431518_Moh Riza Zulfahnur_TI-2E.pdf', '21-10-20', 'Sedang Diverifikasi', 'Sedang Diverifikasi', 'Sedang Diverifikasi', 'Belum terdapat pesan');
+(1, 2, 5000000, 'Butuh keperluan', '21102020181119Kel PPL.docx', '21-10-20', 'Verifikasi Ditolak', 'Verifikasi Ditolak', 'Verifikasi Ditolak', 'Alasan lo gajelas\r\ndan tidak jelas berkasnya\r\n1. blur'),
+(2, 2, 5000000, 'Butuh keperluan', '2110202018431518_Moh Riza Zulfahnur_TI-2E.pdf', '21-10-20', 'Verifikasi Ditolak', 'Verifikasi Ditolak', 'Verifikasi Ditolak', 'Lampiran kurang jelas'),
+(3, 3, 5000000, 'Butuh dana mendesak', '22102020122609PAMFLET.jpg', '22-10-20', 'Sedang Diverifikasi', 'Verifikasi Diterima', 'Sedang Diverifikasi', 'Verifikasi Diterima Pegawai, Menunggu Verifikasi Admin');
 
 -- --------------------------------------------------------
 
@@ -201,7 +202,8 @@ CREATE TABLE `pinjaman` (
   `status_pinjaman` varchar(50) NOT NULL DEFAULT 'Belum Lunas',
   `tanggal_pelunasan` varchar(50) NOT NULL DEFAULT 'Belum Lunas',
   `tanggal_meminjam` varchar(50) NOT NULL,
-  `total_pinjaman` int(20) NOT NULL
+  `total_pinjaman` int(20) NOT NULL,
+  `angsuran_bulanan` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -357,7 +359,7 @@ ALTER TABLE `penarikan_simpanan`
 -- AUTO_INCREMENT for table `pengajuan_pinjaman`
 --
 ALTER TABLE `pengajuan_pinjaman`
-  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pengumuman`
