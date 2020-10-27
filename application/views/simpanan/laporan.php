@@ -4,13 +4,13 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Laporan Simpanan</strong> 
+                        <strong>Laporan Simpanan</strong>
                     </div>
                     <div class="card-body card-block">
                         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                             <div class="row" style="margin-bottom: 10px">
                                 <div class="col-md-4 text-right">
-                                  <h4>Tanggal</h4>
+                                    <h4>Tanggal</h4>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="input-group-prepend">
@@ -22,12 +22,12 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                    <div class="input-group">
-                                        <button type="button" class="btn btn-success" id="cetak"><i class="fa fa-file-pdf-o"></i> Cetak Laporan</button>
+                                        <div class="input-group">
+                                            <button type="button" class="btn btn-success" id="cetak"><i class="fa fa-file-pdf-o"></i> Cetak Laporan</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div> 
-                        </form>  
+                        </form>
                         <div class="card-body card-block">
                             <table class="table table-bordered" id="table-order" style="margin-bottom: 10px">
                                 <thead>
@@ -47,4 +47,3 @@
         </div>
     </div>
 </div>
-                      

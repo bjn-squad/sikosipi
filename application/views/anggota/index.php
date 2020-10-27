@@ -26,6 +26,18 @@
                                     Status keanggotaan anda sedang dalam proses verifikasi, silahkan menunggu 1-2 hari kerja.
                                 </div>
                             <?php
+                            } else if ($data['status_anggota'] == "Verifikasi Ulang") {
+                            ?>
+                                <div class="alert alert-info" role="alert">
+                                    <b></b><br>
+                                    <><i>Mohon perhatikan aturan dibawah agar verifikasi dapat berjalan dengan lancar.</i></>
+                                    <b><i class="fa fa-info-circle"></i> Aturan Gambar/Foto :</b><br>
+                                    1. Data Identitas Yang Dapat Diterima : KTP<br>
+                                    2. Data Identitas Wajib Jelas (<b>Tidak Blur, Terpotong Dsb</b>)<br>
+                                    3. Ukuran Maksimal 3 Mb<br>
+                                    4. Format JPG / PNG<br>
+                                </div>
+                            <?php
                             } else {
                             ?>
                                 <div class="alert alert-warning" role="alert">
