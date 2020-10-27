@@ -122,4 +122,15 @@ class Pegawai extends CI_Controller
         $this->load->view('pegawai/detailPengajuanPinjaman');
         $this->load->view('layout/pegawai/footer');
     }
+
+    public function detailAnggota($id)
+    {
+        $data['title'] = 'Detail Anggota';
+        $data['anggota'] = $this->anggota_model->getAnggotaById($id);
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('pegawai/detailAnggota');
+        $this->load->view('layout/pegawai/footer');
+    }
 }
