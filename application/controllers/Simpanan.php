@@ -13,32 +13,51 @@ class Simpanan extends CI_Controller
         $this->load->model('anggota_model');
     }
 
-    public function simpanan()
+    public function dataSimpanan()
     {
+        if ($this->session->userdata('level') != "pegawai") {
+            redirect('auth/loginPegawai', 'refresh');
+        }
         $data['title'] = 'Simpanan';
         $data['simpanan'] = $this->simpanan_model->getAllSimpanan();
         $this->load->view('layout/pegawai/header', $data);
         $this->load->view('layout/pegawai/sidebar');
         $this->load->view('layout/pegawai/top');
-        $this->load->view('simpanan/simpanan');
+        $this->load->view('simpanan/dataSimpanan');
         $this->load->view('layout/pegawai/footer');
     }
 
     public function tambah_simpanan()
     {
-        $data['title'] = 'Simpanan';
-        $data['anggota'] = $this->anggota_model->getAllAnggota();
-        $this->load->view('layout/pegawai/header', $data);
-        $this->load->view('layout/pegawai/sidebar');
-        $this->load->view('layout/pegawai/top');
-        $this->load->view('simpanan/tambah_simpanan');
-        $this->load->view('layout/pegawai/footer');
+        if ($this->session->userdata('level') != "pegawai") {
+            redirect('auth/loginPegawai', 'refresh');
+        }
+        $this->form_validation->set_rules('id_anggota', 'id_anggota', 'trim|required');
+        $this->form_validation->set_rules('jumlah_simpanan_pokok', 'jumlah_simpanan_pokok', 'required|numeric');
+        if ($this->form_validation->run() == FALSE) {
+            $data['title'] = 'Simpanan';
+            $data['anggota'] = $this->anggota_model->getFilterAnggota();
+            $this->load->view('layout/pegawai/header', $data);
+            $this->load->view('layout/pegawai/sidebar');
+            $this->load->view('layout/pegawai/top');
+            $this->load->view('simpanan/tambah_simpanan');
+            $this->load->view('layout/pegawai/footer');
+        } else {
+            $data = $this->simpanan_model->tambahSimpananPokok();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Simpanan Pokok Telah Ditambah
+          </div>');
+            redirect('simpanan/dataSimpanan');
+        }
     }
 
-    public function dataSetoran()
+    public function dataSetoran($id)
     {
-        $data['title'] = 'Simpanan';
-        $data['data_setoran'] = $this->simpanan_model->getAllSetoran();
+        if ($this->session->userdata('level') != "pegawai") {
+            redirect('auth/loginPegawai', 'refresh');
+        }
+        $data['title'] = 'Data Setoran';
+        $data['data_setoran'] = $this->simpanan_model->getSetoranById($id);
         $this->load->view('layout/pegawai/header', $data);
         $this->load->view('layout/pegawai/sidebar');
         $this->load->view('layout/pegawai/top');
@@ -46,15 +65,36 @@ class Simpanan extends CI_Controller
         $this->load->view('layout/pegawai/footer');
     }
 
-    public function tambah_setoran()
+    public function tambah_setoran($id)
     {
-        $data['title'] = 'Simpanan';
-
+        if ($this->session->userdata('level') != "pegawai") {
+            redirect('auth/loginPegawai', 'refresh');
+        }
+        $data['title'] = 'Tambah Setoran';
+        $data['data_setoran'] = $this->simpanan_model->getSimpananById($id);
         $this->load->view('layout/pegawai/header', $data);
         $this->load->view('layout/pegawai/sidebar');
         $this->load->view('layout/pegawai/top');
         $this->load->view('simpanan/tambah_setoran');
         $this->load->view('layout/pegawai/footer');
+    }
+
+    public function proses_tambah_setoran()
+    {
+        if ($this->session->userdata('level') != "pegawai") {
+            redirect('auth/loginPegawai', 'refresh');
+        }
+        $this->form_validation->set_rules('id_simpanan', 'id_simpanan', 'trim|required');
+        $this->form_validation->set_rules('jumlah_setor_tunai', 'jumlah_setor_tunai', 'required|numeric');
+        if ($this->form_validation->run() == FALSE) {
+            redirect('simpanan/dataSimpanan');
+        } else {
+            $data = $this->simpanan_model->tambahSetoranSimpananWajib();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Setoran Telah Ditambah
+          </div>');
+            redirect('simpanan/dataSetoran/' . $this->input->post("id_simpanan"));
+        }
     }
 
     public function laporan()

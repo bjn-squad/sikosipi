@@ -11,11 +11,12 @@
                                     <strong>Transaksi Tambah Simpanan</strong>
                                 </div>
                                 <div class="card-body card-block">
-                                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                    <form action="<?= base_url() ?>simpanan/tambah_simpanan" method="post" enctype="multipart/form-data" class="form-horizontal">
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="select" class=" form-control-label">Nama</label></div>
                                             <div class="col-12 col-md-9">
-                                                <select name="id_anggota" id="select" class="form-control">
+                                                <select name="id_anggota" id="select" class="form-control" required>
+                                                    <option value="">Pilih Anggota</option>
                                                     <?php foreach ($anggota as $item) {
                                                     ?>
                                                         <option value="<?= $item['id_anggota'] ?>"><?= $item['nama_anggota'] ?></option>
@@ -25,18 +26,23 @@
                                         </div>
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Simpanan Pokok </label></div>
-                                            <div class="col-12 col-md-9"><input type="number" id="text-input" name="jumlah_simpanan_pokok" placeholder="Number" class="form-control"><small class="form-text text-muted" required></small></div>
-                                        </div>
-                                        <div class="row form-group">
-                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Simpanan Wajib</label></div>
-                                            <div class="col-12 col-md-9"><input type="number" id="text-input" name="jumlah_simpan_wajib" placeholder="Number" class="form-control"><small class="form-text text-muted" required></small></div>
+                                            <div class="col-12 col-md-9"><input type="number" required id="text-input" name="jumlah_simpanan_pokok" placeholder="Number" class="form-control"><small class="form-text text-muted"></small></div>
                                         </div>
                                         <div class="card-footer">
-                                            <button type="submit" class="btn btn-primary btn-sm">
+                                            <button type="submit" name="submit" class="btn btn-primary btn-sm">
                                                 <i class="fa fa-dot-circle-o"></i> Submit
                                             </button>
-                                            <button type="reset" class="btn btn-danger btn-sm">
-                                                <i class="fa fa-ban"></i> Reset
-                                            </button>
+                                            <a href="<?= base_url() ?>simpanan/dataSimpanan" class="btn btn-secondary btn-sm">
+                                                <i class="fa fa-arrow-left"></i> Back
+                                            </a>
                                         </div>
+                                    </form>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
