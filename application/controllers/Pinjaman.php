@@ -48,7 +48,7 @@ class Pinjaman extends CI_Controller
         $dataStatus = $this->db->select('status_pengajuan')->order_by('id_pengajuan', "desc")->limit(1)->get('pengajuan_pinjaman')->row();
 
         if (!empty($dataStatus->status_pengajuan)) {
-            if (($status_pengajuan != "Sedang Diverifikasi" || !empty($dataStatus)) && $status == "Aktif") {
+            if (($dataStatus->status_pengajuan != "Sedang Diverifikasi" || !empty($dataStatus)) && $status == "Aktif") {
                 $data['title'] = 'Ayo Ajukan Pinjaman';
                 $this->load->view('layout/anggota/header', $data);
                 $this->load->view('layout/anggota/sidebar');
@@ -87,10 +87,8 @@ class Pinjaman extends CI_Controller
         }
         $dataStatus = $this->db->select('status_pengajuan')->order_by('id_pengajuan', "desc")->limit(1)->get('pengajuan_pinjaman')->row();
 
-        $status_pengajuan = $dataStatus->status_pengajuan;
-
         if (!empty($dataStatus->status_pengajuan)) {
-            if (($status_pengajuan != "Sedang Diverifikasi" || !empty($dataStatus)) && $status == "Aktif") {
+            if (($dataStatus->status_pengajuan != "Sedang Diverifikasi" || !empty($dataStatus)) && $status == "Aktif") {
                 $this->form_validation->set_rules('total_pengajuan_pinjaman', 'total_pengajuan_pinjaman', 'trim|required|numeric');
                 $this->form_validation->set_rules('alasan_pinjaman', 'alasan_pinjaman', 'trim|required');
 
