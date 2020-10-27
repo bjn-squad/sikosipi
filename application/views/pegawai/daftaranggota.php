@@ -31,13 +31,13 @@
                                         <td>
                                             <!-- TODO : Lanjut ini -->
                                             <?php
-                                            if ($item['status_anggota'] == "Sedang Diverifikasi") {
+                                            if ($item['status_anggota'] == "Sedang Diverifikasi" || $item['status_anggota'] == "Sedang Diverifikasi (Menunggu Pembayaran Simpanan Pokok)") {
                                             ?>
-                                                <a href="<?= base_url() ?>pegawai/verifikasiAnggota/<?= $item['id_anggota'] ?>" class="badge badge-success"><i class="fa fa-check"></i> Verifikasi Anggota</a>
+                                                <a href="<?= base_url() ?>pegawai/verifikasiAnggota/<?= $item['id_anggota'] ?>" class="badge badge-success"><i class="fa fa-check"></i> Verifikasi Status</a>
                                             <?php
                                             }
                                             ?>
-                                            <a href="" class="badge badge-info"><i class="fa fa-eye"></i> Detail</a>
+                                            <a href="<?= base_url() ?>pegawai/detailAnggota/<?= $item['id_anggota'] ?>" class="badge badge-info"><i class="fa fa-eye"></i> Detail</a>
                                             <a href="" class="badge badge-warning"><i class="fa fa-unlock-alt"></i> Ubah Password</a>
                                             <?php
                                             if ($item['status_anggota'] == "Dinonaktifkan") {

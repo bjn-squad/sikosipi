@@ -36,7 +36,7 @@
                             </div>
                         <?php } ?>
                         <div class="row form-group">
-                            <div class="col col-md-3"><label class=" form-control-label">Verifikasi Anggota</label></div>
+                            <div class="col col-md-3"><label class=" form-control-label">Verifikasi Status</label></div>
                             <div class="col-12 col-md-9">
                                 <form method="POST" action="<?= base_url() ?>pegawai/prosesVerifikasiAnggota">
                                     <?php
@@ -46,8 +46,9 @@
                                             <option value="<?= $i['status_anggota'] ?>" disabled selected><?= $i['status_anggota'] ?></option>
                                         <?php }
                                         ?>
-                                        <option value="Aktif">Aktifkan</option>
+                                        <option value="Sedang Diverifikasi (Menunggu Pembayaran Simpanan Pokok)">Verifikasi Data Diterima (Data Valid)</option>
                                         <option value="Verifikasi Ulang">Request Verifikasi Ulang</option>
+                                        <option value="Aktif">Aktifkan Member</option>
                                         </select>
                                         <br>
                                         <button class="btn btn-primary btn-sm" onclick="return confirm('Apakah anda yakin ingin Verifikasi Anggota?')"><i class="fa fa-check-circle-o"></i> Verifikasi Anggota</button>

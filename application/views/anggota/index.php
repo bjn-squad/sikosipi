@@ -51,6 +51,7 @@
                             <label class="font-weight-bold">Username :</label> <?= $data['username'] ?><br>
                             <label class="font-weight-bold">Email :</label> <?= $data['email'] ?><br>
                             <label class="font-weight-bold">Tanggal Keanggotaan :</label> <?= $data['tanggal_keanggotaan'] ?><br>
+                            <label class="font-weight-bold">Status Keanggotaan :</label> <?= $data['status_anggota'] ?><br>
                             <label class="font-weight-bold">Foto KTP :</label><br>
                             <?php
                             if ($data['foto_ktp_anggota'] == 'Belum Diupload') {
