@@ -7,6 +7,10 @@
                         <strong class="card-title">Daftar Anggota</strong>
                     </div>
                     <div class="card-body">
+                        <?php
+                        if ($this->session->flashdata('message')) {
+                            echo $this->session->flashdata('message');
+                        } ?>
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered table-responsive-lg">
                             <thead>
                                 <tr>
@@ -26,6 +30,13 @@
                                         <td><?= $item['no_telp_anggota'] ?></td>
                                         <td>
                                             <!-- TODO : Lanjut ini -->
+                                            <?php
+                                            if ($item['status_anggota'] == "Sedang Diverifikasi") {
+                                            ?>
+                                                <a href="<?= base_url() ?>pegawai/verifikasiAnggota/<?= $item['id_anggota'] ?>" class="badge badge-success"><i class="fa fa-check"></i> Verifikasi Anggota</a>
+                                            <?php
+                                            }
+                                            ?>
                                             <a href="" class="badge badge-info"><i class="fa fa-eye"></i> Detail</a>
                                             <a href="" class="badge badge-warning"><i class="fa fa-unlock-alt"></i> Ubah Password</a>
                                             <?php
