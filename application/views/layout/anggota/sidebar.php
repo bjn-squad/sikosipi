@@ -12,7 +12,7 @@
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                    <a href="<?= base_url() ?>anggota"> <i class="menu-icon fa fa-dashboard"></i>Dashboard Anggota</a>
                 </li>
                 <h3 class="menu-title">Icons</h3><!-- /.menu-title -->
 
