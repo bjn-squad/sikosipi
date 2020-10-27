@@ -10,6 +10,12 @@ class Anggota_model extends CI_Model
         return $query->result_array();
     }
 
+    public function getFilterAnggota()
+    {
+        $query = $this->db->query("SELECT * FROM anggota WHERE status_anggota LIKE 'Sedang Diverifikasi (Menunggu Pembayaran Simpanan Pokok)'");
+        return $query->result_array();
+    }
+
     public function getAllAnggota()
     {
         $query = $this->db->query("SELECT * FROM anggota");
