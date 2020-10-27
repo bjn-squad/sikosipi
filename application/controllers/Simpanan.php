@@ -13,8 +13,11 @@ class Simpanan extends CI_Controller
         $this->load->model('anggota_model');
     }
 
-    public function simpanan()
+    public function daftarSimpanan()
     {
+        if ($this->session->userdata('level') != "pegawai") {
+            redirect('auth/loginPegawai', 'refresh');
+        }
         $data['title'] = 'Simpanan';
         $data['simpanan'] = $this->simpanan_model->getAllSimpanan();
         $this->load->view('layout/pegawai/header', $data);
@@ -26,6 +29,9 @@ class Simpanan extends CI_Controller
 
     public function tambah_simpanan()
     {
+        if ($this->session->userdata('level') != "pegawai") {
+            redirect('auth/loginPegawai', 'refresh');
+        }
         $data['title'] = 'Simpanan';
         $data['anggota'] = $this->anggota_model->getAllAnggota();
         $this->load->view('layout/pegawai/header', $data);
@@ -37,6 +43,9 @@ class Simpanan extends CI_Controller
 
     public function dataSetoran()
     {
+        if ($this->session->userdata('level') != "pegawai") {
+            redirect('auth/loginPegawai', 'refresh');
+        }
         $data['title'] = 'Simpanan';
         $data['data_setoran'] = $this->simpanan_model->getAllSetoran();
         $this->load->view('layout/pegawai/header', $data);
@@ -48,8 +57,11 @@ class Simpanan extends CI_Controller
 
     public function tambah_setoran()
     {
+        if ($this->session->userdata('level') != "pegawai") {
+            redirect('auth/loginPegawai', 'refresh');
+        }
         $data['title'] = 'Simpanan';
-
+        $data['tambah_setoran'] = $this->simpanan_model->getAllSetoran();
         $this->load->view('layout/pegawai/header', $data);
         $this->load->view('layout/pegawai/sidebar');
         $this->load->view('layout/pegawai/top');

@@ -7,6 +7,7 @@
                         <strong class="card-title">Simpanan</strong>
                     </div>
                     <div class="card-body">
+                        <a href="<?= base_url() ?>simpanan/tambah_simpanan" class="btn btn-success btn-sm">Tambah Transaksi Simpanan</a><br><br>
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered table-responsive-lg">
                             <thead>
                                 <tr>

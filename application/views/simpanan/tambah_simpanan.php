@@ -16,6 +16,7 @@
                                             <div class="col col-md-3"><label for="select" class=" form-control-label">Nama</label></div>
                                             <div class="col-12 col-md-9">
                                                 <select name="id_anggota" id="select" class="form-control">
+                                                    <option value="">Pilih Anggota</option>
                                                     <?php foreach ($anggota as $item) {
                                                     ?>
                                                         <option value="<?= $item['id_anggota'] ?>"><?= $item['nama_anggota'] ?></option>
