@@ -12,6 +12,7 @@ class Pegawai extends CI_Controller
         $this->load->model('pegawai_model');
         $this->load->model('anggota_model');
         $this->load->model('pinjaman_model');
+        $this->load->model('aksi_model');
     }
 
     public function index()
@@ -49,7 +50,7 @@ class Pegawai extends CI_Controller
             $this->load->view('layout/pegawai/header', $data);
             $this->load->view('layout/pegawai/sidebar');
             $this->load->view('layout/pegawai/top');
-            $this->load->view('pegawai/verifikasi_anggota');
+            $this->load->view('pegawai/verifikasianggota');
             $this->load->view('layout/pegawai/footer');
         }
     }
@@ -132,5 +133,92 @@ class Pegawai extends CI_Controller
         $this->load->view('layout/pegawai/top');
         $this->load->view('pegawai/detailAnggota');
         $this->load->view('layout/pegawai/footer');
+    }
+
+    public function ubahPasswordAnggota($id)
+    {
+        $data['title'] = 'Ubah Password Anggota';
+        $data['anggota'] = $this->anggota_model->getAnggotaById($id);
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('pegawai/ubahpassword');
+        $this->load->view('layout/pegawai/footer');
+    }
+
+    public function prosesGantiPasswordAnggota()
+    {
+        $this->form_validation->set_rules('id_anggota', 'id_anggota', 'trim|required');
+        $this->form_validation->set_rules('password', 'password', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            redirect('pegawai/daftarAnggota');
+        } else {
+            $data = $this->pegawai_model->gantiPasswordAnggota();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Sukses Ganti Password Anggota!
+          </div>');
+            redirect('pegawai/daftarAnggota');
+        }
+    }
+
+    public function daftarAksi()
+    {
+        $data['title'] = 'Daftar Aksi';
+        $data['aksi'] = $this->aksi_model->getAllAksi();
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('pegawai/daftaraksi');
+        $this->load->view('layout/pegawai/footer');
+    }
+
+    public function nonaktifkanAnggota($id)
+    {
+        $data['title'] = 'Nonaktifkan Akun';
+        $data['anggota'] = $this->anggota_model->getAnggotaById($id);
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('pegawai/nonaktifkanakun');
+        $this->load->view('layout/pegawai/footer');
+    }
+    public function prosesNonaktifkanAnggota()
+    {
+        $kategori = 'Nonaktifkan Anggota';
+        $id_data_kategori = $this->input->post('id_anggota');
+        $data = $this->db->query("SELECT * FROM aksi WHERE id_data_kategori = $id_data_kategori AND kategori LIKE '$kategori'");
+        foreach ($data->result_array() as $result) {
+            $status = $result['status_aksi'];
+        }
+        if (!empty($status)) {
+            if ($status != "Diterima Admin") {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+           Aksi nonaktif masih ada yang pending. Harap bersabar menunggu verifikasi admin.
+          </div>');
+                redirect('pegawai/daftarAnggota');
+            } else {
+                $this->form_validation->set_rules('id_anggota', 'id_anggota', 'trim|required');
+                if ($this->form_validation->run() == FALSE) {
+                    redirect('pegawai/daftarAnggota');
+                } else {
+                    $data = $this->pegawai_model->nonaktifkanAnggota();
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Anggota berhasil dinonaktifkan
+          </div>');
+                    redirect('pegawai/daftarAnggota');
+                }
+            }
+        } else {
+            $this->form_validation->set_rules('id_anggota', 'id_anggota', 'trim|required');
+            if ($this->form_validation->run() == FALSE) {
+                redirect('pegawai/daftarAnggota');
+            } else {
+                $data = $this->pegawai_model->nonaktifkanAnggota();
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Anggota berhasil dinonaktifkan
+          </div>');
+                redirect('pegawai/daftarAnggota');
+            }
+        }
     }
 }

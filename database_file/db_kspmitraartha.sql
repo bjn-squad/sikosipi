@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2020 at 05:16 AM
+-- Generation Time: Oct 27, 2020 at 03:00 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -24,16 +24,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aksi_hapus`
+-- Table structure for table `aksi`
 --
 
-CREATE TABLE `aksi_hapus` (
-  `id_aksi_hapus` int(11) NOT NULL,
+CREATE TABLE `aksi` (
+  `id_aksi` int(11) NOT NULL,
   `id_pegawai` int(11) NOT NULL,
-  `id_kategori` int(11) NOT NULL,
+  `id_data_kategori` int(11) NOT NULL,
   `kategori` varchar(100) NOT NULL,
-  `nama_admin` varchar(100) NOT NULL,
-  `status_verifikasi` varchar(100) NOT NULL DEFAULT 'Belum Diverifikasi'
+  `pesan_aksi` text NOT NULL,
+  `nama_admin` varchar(100) NOT NULL DEFAULT 'Belum Diverifikasi',
+  `status_verifikasi` varchar(100) NOT NULL DEFAULT 'Belum Diverifikasi',
+  `status_aksi` varchar(100) NOT NULL DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -62,9 +64,9 @@ CREATE TABLE `anggota` (
 
 INSERT INTO `anggota` (`id_anggota`, `nama_anggota`, `alamat_anggota`, `no_telp_anggota`, `username`, `email`, `password`, `status_anggota`, `tanggal_keanggotaan`, `foto_ktp_anggota`, `foto_selfie_ktp_anggota`) VALUES
 (1, 'Budi Surya', 'Jl. Mawar Merah 21 Bojonegoro', '085687921256', 'budi', 'budianto@gmail.com', '9c5fa085ce256c7c598f6710584ab25d', 'Sedang Diverifikasi (Menunggu Pembayaran Simpanan Pokok)', 'Belum Menjadi Anggota', '17102020163046example-ktp-1.jpg', '17102020163046img-kyc-sample-2.png'),
-(2, 'Jasmin Putri', 'Jl. Melati 105 Kalitidu, Bojonegoro', '085125891250', 'jasmin', 'jasmin@gmail.com', 'c677901e8baa1f96025f0938a4cd0423', 'Sedang Diverifikasi', 'Belum Menjadi Anggota', 'example-ktp-1.jpg', 'example-with-ktp-1.jpg'),
+(2, 'Jasmin Putri', 'Jl. Melati 105 Kalitidu, Bojonegoro', '085125891250', 'jasmin', 'jasmin@gmail.com', 'c677901e8baa1f96025f0938a4cd0423', 'Sedang Diverifikasi (Menunggu Pembayaran Simpanan Pokok)', 'Belum Menjadi Anggota', 'example-ktp-1.jpg', 'example-with-ktp-1.jpg'),
 (3, 'Jito Hartati', 'Jl. Grogol 21 Bojonegoro', '0812385794223', 'jito', 'jito@gmail.com', '28d8024451d991a899aaf3a4875c8cfa', 'Sedang Diverifikasi', 'Belum Menjadi Anggota', '17102020132043example-ktp-1.jpg', '17102020132043img-kyc-sample-2.png'),
-(4, 'Siti Aisyah', 'Jl. Mawar 15 Malang', '081254219520', 'siti', 'siti@gmail.com', '5c2e4a2563f9f4427955422fe1402762', 'Sedang Diverifikasi', 'Belum Menjadi Anggota', '27102020014042struk.jpg', '27102020014042ads.jpg'),
+(4, 'Siti Aisyah', 'Jl. Mawar 15 Malang', '081254219520', 'siti', 'siti@gmail.com', '8230f9cb6dd627a92fdd0c6f282affd2', 'Sedang Diverifikasi', 'Belum Menjadi Anggota', '27102020014042struk.jpg', '27102020014042ads.jpg'),
 (5, 'Andi Muhibin', 'Jl. Anggrek 12 Kapas, Bojonegoro', '081289742951', 'andi', 'andi@gmail.com', '03339dc0dff443f15c254baccde9bece', 'Tidak Aktif', 'Belum Menjadi Anggota', 'Belum Diupload', 'Belum Diupload');
 
 -- --------------------------------------------------------
@@ -104,8 +106,8 @@ INSERT INTO `lupa_password` (`id_lupa_password`, `id_anggota`, `pertanyaankeaman
 (1, 1, 'Apa angka favorit anda?(Contoh: 29)', 'Siapakah teman masa kecil anda?', '89', 'Riza Zulfahnur'),
 (2, 2, 'Di kota manakah ayah dan ibu anda bertemu?', 'Apa hobby anda?', 'Paris', 'Berkuda'),
 (4, 3, 'Apa angka favorit anda?(Contoh: 29)', 'Apa hobby anda?', '12', 'Mancing'),
-(5, 4, 'Siapakah teman masa kecil anda?', 'Apa hobby anda?', 'Pipit Lestari', 'Membaca'),
-(6, 5, 'Siapakah teman masa kecil anda?', 'Apa hobby anda?', 'Handrik', 'Bermain Gitar');
+(6, 5, 'Siapakah teman masa kecil anda?', 'Apa hobby anda?', 'Handrik', 'Bermain Gitar'),
+(7, 4, 'Apa nama belakang ibu anda?', 'Apa hobby anda?', 'Aisyah', 'Membaca');
 
 -- --------------------------------------------------------
 
@@ -210,7 +212,8 @@ CREATE TABLE `simpanan` (
   `id_simpanan` int(11) NOT NULL,
   `id_anggota` int(11) NOT NULL,
   `jumlah_simpanan_pokok` int(20) NOT NULL,
-  `jumlah_simpanan_wajib` int(20) NOT NULL
+  `jumlah_simpanan_wajib` int(20) NOT NULL,
+  `status_simpanan` varchar(200) NOT NULL DEFAULT 'Belum Ditarik'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -232,10 +235,10 @@ CREATE TABLE `simpanan_detail` (
 --
 
 --
--- Indexes for table `aksi_hapus`
+-- Indexes for table `aksi`
 --
-ALTER TABLE `aksi_hapus`
-  ADD PRIMARY KEY (`id_aksi_hapus`),
+ALTER TABLE `aksi`
+  ADD PRIMARY KEY (`id_aksi`),
   ADD KEY `id_pegawai` (`id_pegawai`);
 
 --
@@ -314,10 +317,10 @@ ALTER TABLE `simpanan_detail`
 --
 
 --
--- AUTO_INCREMENT for table `aksi_hapus`
+-- AUTO_INCREMENT for table `aksi`
 --
-ALTER TABLE `aksi_hapus`
-  MODIFY `id_aksi_hapus` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `aksi`
+  MODIFY `id_aksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `anggota`
@@ -335,7 +338,7 @@ ALTER TABLE `angsuran_detail`
 -- AUTO_INCREMENT for table `lupa_password`
 --
 ALTER TABLE `lupa_password`
-  MODIFY `id_lupa_password` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_lupa_password` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
@@ -384,10 +387,10 @@ ALTER TABLE `simpanan_detail`
 --
 
 --
--- Constraints for table `aksi_hapus`
+-- Constraints for table `aksi`
 --
-ALTER TABLE `aksi_hapus`
-  ADD CONSTRAINT `aksi_hapus_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `aksi`
+  ADD CONSTRAINT `aksi_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `angsuran_detail`

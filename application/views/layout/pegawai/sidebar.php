@@ -42,6 +42,9 @@
                         <li><i class="menu-icon fa fa-list"></i><a href="<?= base_url() ?>pegawai/daftarAnggota">Daftar Anggota</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="<?= base_url() ?>pegawai/daftarAksi"> <i class="menu-icon ti-announcement"></i> Aksi</a>
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>

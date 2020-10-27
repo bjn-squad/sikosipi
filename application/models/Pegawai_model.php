@@ -22,4 +22,26 @@ class Pegawai_model extends CI_Model
         $this->db->where('id_anggota', $this->input->post('id_anggota'));
         $this->db->update('anggota', $data);
     }
+
+    public function gantiPasswordAnggota()
+    {
+        $data = [
+            'password' => htmlspecialchars(MD5($this->input->post('password')))
+        ];
+        $this->db->where('id_anggota', $this->input->post('id_anggota'));
+        $this->db->update('anggota', $data);
+
+        $this->db->where('id_anggota', $this->input->post('id_anggota'));
+        $this->db->delete('lupa_password');
+    }
+
+    public function nonaktifkanAnggota()
+    {
+        $data = [
+            'id_pegawai' => $this->session->userdata('id_pegawai'),
+            'id_data_kategori' => $this->input->post('id_anggota'),
+            'kategori' => 'Nonaktifkan Anggota'
+        ];
+        $this->db->insert('aksi', $data);
+    }
 }

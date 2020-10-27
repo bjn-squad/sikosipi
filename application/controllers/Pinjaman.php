@@ -6,7 +6,16 @@ class Pinjaman extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
+        if (!empty($this->session->userdata('id_anggota'))) {
+            $id = $this->session->userdata('id_anggota');
+            $data = $this->db->query("SELECT * FROM anggota WHERE id_anggota = $id");
+            foreach ($data->result_array() as $result) {
+                $status = $result['status_anggota'];
+            }
+            if ($status == "Dinonaktifkan") {
+                redirect('anggota');
+            }
+        }
         $this->load->model('pinjaman_model');
     }
 
