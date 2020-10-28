@@ -53,4 +53,25 @@ class Anggota extends CI_Controller
             }
         }
     }
+
+    public function ubahPassword()
+    {
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[5]', [
+            'min_length' => 'Password minimum 5 character'
+        ]);
+        if ($this->form_validation->run() == FALSE) {
+            $data['title'] = 'Ubah Password';
+            $this->load->view('layout/anggota/header', $data);
+            $this->load->view('layout/anggota/sidebar');
+            $this->load->view('layout/anggota/top');
+            $this->load->view('anggota/ubahPassword');
+            $this->load->view('layout/anggota/footer');
+        } else {
+            $data = $this->anggota_model->ubahPassword();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Password Berhasil Diganti!
+           </div>');
+            redirect('anggota');
+        }
+    }
 }
