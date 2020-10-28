@@ -19,7 +19,7 @@
 
                     <div class="user-menu dropdown-menu">
                         <a class="nav-link">Welcome Anggota <?= $this->session->userdata('username') ?></a>
-                        <a class="nav-link" href="#"><i class="fa fa-cog"></i> Pengaturan Profil</a>
+                        <a class="nav-link" href="<?= base_url() ?>anggota/ubahPassword"><i class="fa fa-cog"></i> Ubah Password</a>
                         <a class="nav-link" href="<?= base_url() ?>auth/logout"><i class="fa fa-power-off"></i> Logout</a>
                     </div>
                 </div>

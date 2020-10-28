@@ -24,10 +24,21 @@ class Anggota_model extends CI_Model
 
     public function ubahPasswordById($id)
     {
+        // Fitur Milik Pegawai
         $data = [
             "password" => htmlspecialchars(MD5($this->input->post('password')))
         ];
         $this->db->where('id_anggota', $id);
+        $this->db->update('anggota', $data);
+    }
+
+    public function ubahPassword()
+    {
+        // Fitur ubah password anggota
+        $data = [
+            "password" => htmlspecialchars(MD5($this->input->post('password')))
+        ];
+        $this->db->where('id_anggota', $this->session->userdata('id_anggota'));
         $this->db->update('anggota', $data);
     }
 
