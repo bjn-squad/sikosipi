@@ -42,8 +42,8 @@
                                 <div class="main-menu  d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="Loan.html">Pengumuman & Informasi</a></li>
+                                            <li><a href="<?= base_url() ?>">Home</a></li>
+                                            <li><a href="<?= base_url() ?>home/pengumuman">Pengumuman & Informasi</a></li>
                                             <li><a href="Loan.html">Tentang Kami</a></li>
                                             <li><a href="#">Anggota <i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
@@ -73,18 +73,3 @@
         </div>
     </header>
     <!-- header-end -->
-
-    <!-- bradcam_area  -->
-    <div class="bradcam_area bradcam_bg_2">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="bradcam_text">
-                        <h3>KSP Mitra Artha</h3>
-                        <h5 style="color: white;">Cepat, Mudah, Transparan</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--/ bradcam_area  -->
