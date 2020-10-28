@@ -9,8 +9,15 @@
                     <div class="card-body card-block">
                         <form action="<?php base_url("pengumuman/add") ?>" method="post" enctype="multipart/form-data">
                             <div class="row form-group">
+                                <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Judul</label></div>
+                                <div class="col-12 col-md-9"><input type="text" required class="form-control <?php echo form_error('judul') ? 'is-invalid' : '' ?>" name="judul" placeholder="Judul Pengumuman"></div>
+                                <div class="invalid-feedback">
+                                    <?php echo form_error('judul') ?>
+                                </div>
+                            </div>
+                            <div class="row form-group">
                                 <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Deskripsi</label></div>
-                                <div class="col-12 col-md-9"><textarea class="form-control <?php echo form_error('isi') ? 'is-invalid' : '' ?>" name="isi" placeholder="Deskripsi Pengumuman"></textarea></div>
+                                <div class="col-12 col-md-9"><textarea class="form-control <?php echo form_error('isi') ? 'is-invalid' : '' ?>" required name="isi" placeholder="Deskripsi Pengumuman"></textarea></div>
                                 <div class="invalid-feedback">
                                     <?php echo form_error('isi') ?>
                                 </div>
@@ -22,15 +29,8 @@
                                     <?php echo form_error('header_gambar') ?>
                                 </div>
                             </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label class=" form-control-label">Tanggal Posting</label></div>
-                                <div class="col-12 col-md-9"><input class="form-control <?php echo form_error('tanggal_post') ? 'is-invalid' : '' ?>" type="text" name="tanggal_post" placeholder="Tanggal Posting" /></div>
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('tanggal_post') ?>
-                                </div>
-                            </div>
                             <div class="text-center">
-                                <input class="btn btn-success" type="submit" name="btn" value="Save" />
+                                <button type="submit" name="submit" class="btn btn-success btn-sm">Submit Pengumuman</button>
                             </div>
                     </div>
                     </form>

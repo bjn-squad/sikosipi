@@ -7,6 +7,7 @@
                         <strong class="card-title">Data Pengumuman</strong>
                     </div>
                     <div class="card-body card-block">
+                        <?= $this->session->flashdata('message'); ?>
                         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                             <div class="input-group">
                                 <?php echo anchor('pengumuman/add', 'Tambah', array('class' => 'btn btn-info btn-sm')) ?>
@@ -18,31 +19,31 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Gambar</th>
-                                    <th>Deskripsi</th>
+                                    <th>Judul</th>
+                                    <th>Penulis</th>
                                     <th>Tanggal Post</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
-                            <?php
-                            $no = 1;
-                            foreach ($pengumuman as $pengumuman) : ?>
-                                <tbody>
+                            <tbody>
+                                <?php
+                                $no = 1;
+                                foreach ($pengumuman as $pengumuman) : ?>
                                     <tr>
-                                        <td><?= $no++ ?></td>
+                                        <td><?= $no; ?></td>
+
+                                        <td><?php echo $pengumuman['judul'] ?></td>
+                                        <td><?php echo $pengumuman['nama_pegawai'] ?></td>
+                                        <td><?php echo $pengumuman['tanggal_post'] ?></td>
                                         <td>
-                                            <img src="<?php echo base_url('assets/datakoperasi/pengumuman/' . $pengumuman->header_gambar) ?>" width="64" />
-                                        </td>
-                                        <td><?php echo substr($pengumuman->isi, 0, 120) ?>...</td>
-                                        <td><?php echo $pengumuman->tanggal_post ?></td>
-                                        <td>
-                                            <!-- TODO : Lanjut ini -->
-                                            <a href="<?php echo site_url('pengumuman/edit/' . $pengumuman->id_pengumuman) ?>" class="btn btn-small"><i class="fas fa-edit"></i> Edit</a>
-                                            <a onclick="deleteConfirm('<?php echo site_url('pengumuman/delete/' . $pengumuman->id_pengumuman) ?>')" href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                            <a href="<?php base_url() ?>pengumuman/detail/<?= $pengumuman['id_pengumuman'] ?>" class="badge badge-info btn-small"><i class="fa fa-eye"></i> Detail</a>
+                                            <a href="<?php base_url() ?>pengumuman/edit/<?= $pengumuman['id_pengumuman'] ?>" class="badge badge-primary btn-small"><i class="fa fa-edit"></i> Edit</a>
+                                            <a href="<?php base_url() ?>pengumuman/delete/<?= $pengumuman['id_pengumuman'] ?>" onclick="return confirm('Apakah anda yakin ingin menghapus pengumuman ini?')" class="badge badge-danger btn-small"><i class="fa fa-trash"></i> Hapus</a>
                                         </td>
                                     </tr>
-                                </tbody>
-                            <?php endforeach; ?>
+                                <?php $no++;
+                                endforeach; ?>
+                            </tbody>
                         </table>
                     </div>
                 </div>
