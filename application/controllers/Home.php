@@ -16,4 +16,11 @@ class Home extends CI_Controller
         $this->load->view('home/index');
         $this->load->view('home/layout/footer');
     }
+    public function pengumuman()
+    {
+        $data['title'] = 'KSP Mitra Artha';
+        $this->load->view('home/layout/header', $data);
+        $this->load->view('home/pengumuman');
+        $this->load->view('home/layout/footer');
+    }
 }
