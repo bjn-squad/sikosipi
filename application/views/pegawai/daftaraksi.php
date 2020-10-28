@@ -15,12 +15,13 @@
                             <thead>
                                 <tr>
                                     <th>Nomer Transaksi</th>
-                                    <th>ID Kategori</th>
-                                    <th>Nama Kategori</th>
-                                    <th>Nama Pegawai</th>
+                                    <th>ID Data Kategori</th>
+                                    <th>Kategori Aksi</th>
+                                    <th>Pegawai Yang Request</th>
+                                    <th>Alasan Penonaktifan</th>
                                     <th>Nama Admin Verifikasi</th>
-                                    <th>Status Verifikasi Admin</th>
                                     <th>Status Aksi</th>
+                                    <th>Status Verifikasi</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -31,19 +32,29 @@
                                     <tr>
                                         <td><?= $no ?></td>
                                         <td><?= $item['id_data_kategori'] ?></td>
-                                        <td><?= $item['kategori'] ?></td>
+                                        <td><?= $item['kategori_aksi'] ?></td>
                                         <td><?= $item['nama_pegawai'] ?></td>
+                                        <td>
+                                            <span style="white-space: pre-line;">
+                                                <?= $item['pesan_aksi'] ?>
+                                            </span>
+                                        </td>
                                         <td><?= $item['nama_admin'] ?></td>
-                                        <td><?= $item['status_verifikasi'] ?></td>
                                         <td><?= $item['status_aksi'] ?></td>
+                                        <td><?= $item['status_verifikasi'] ?></td>
                                         <td>
                                             <?php
-                                            if ($this->session->userdata('kategori') == "1") {
+                                            if ($item['status_verifikasi'] == "Pending") {
+
+                                                if ($this->session->userdata('kategori') == "1") {
                                             ?>
-                                                <a href="" class="badge badge-success"><i class="fa fa-check"></i> Verifikasi Status</a>
+                                                    <a href="<?= base_url() ?>pegawai/reviewPenonaktifanAnggota/<?= $item['id_aksi'] ?>" class="badge badge-info"><i class="fa fa-eye"></i> Review Aksi</a>
                                             <?php
+                                                } else {
+                                                    echo "Anda Bukan Admin";
+                                                }
                                             } else {
-                                                echo "There's nothing you can do. Just wait.";
+                                                echo 'Aksi Telah Ditanggapi Admin';
                                             }
                                             ?>
                                         </td>

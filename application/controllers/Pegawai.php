@@ -186,14 +186,14 @@ class Pegawai extends CI_Controller
     {
         $kategori = 'Nonaktifkan Anggota';
         $id_data_kategori = $this->input->post('id_anggota');
-        $data = $this->db->query("SELECT * FROM aksi WHERE id_data_kategori = $id_data_kategori AND kategori LIKE '$kategori'");
+        $data = $this->db->query("SELECT * FROM aksi WHERE id_data_kategori = $id_data_kategori AND kategori_aksi LIKE '$kategori'");
         foreach ($data->result_array() as $result) {
-            $status = $result['status_aksi'];
+            $status = $result['status_verifikasi'];
         }
         if (!empty($status)) {
             if ($status != "Diterima Admin") {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-           Aksi nonaktif masih ada yang pending. Harap bersabar menunggu verifikasi admin.
+           Aksi nonaktif pada user yang anda pilih masih pending. Harap bersabar menunggu verifikasi admin.
           </div>');
                 redirect('pegawai/daftarAnggota');
             } else {
@@ -203,13 +203,14 @@ class Pegawai extends CI_Controller
                 } else {
                     $data = $this->pegawai_model->nonaktifkanAnggota();
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-           Anggota berhasil dinonaktifkan
+                    Request nonaktifkan anggota sukses, tunggu admin review aksi anda.
           </div>');
                     redirect('pegawai/daftarAnggota');
                 }
             }
         } else {
             $this->form_validation->set_rules('id_anggota', 'id_anggota', 'trim|required');
+            $this->form_validation->set_rules('pesan_aksi', 'pesan_aksi', 'required');
             if ($this->form_validation->run() == FALSE) {
                 redirect('pegawai/daftarAnggota');
             } else {
@@ -219,6 +220,77 @@ class Pegawai extends CI_Controller
           </div>');
                 redirect('pegawai/daftarAnggota');
             }
+        }
+    }
+
+    public function reviewPenonaktifanAnggota($id)
+    {
+        if ($this->session->userdata('kategori') != "1") {
+            redirect('pegawai', 'refresh');
+        }
+        $getStatus = $this->db->query("SELECT * FROM aksi where id_aksi = $id");
+        foreach ($getStatus->result_array() as $result) {
+            $status_verifikasi = $result['status_verifikasi'];
+        }
+        if ($status_verifikasi == "Pending") {
+            $data['title'] = 'Review Penonaktifkan Akun';
+            $data['aksi'] = $this->aksi_model->getAksiNonaktif($id);
+            $this->load->view('layout/pegawai/header', $data);
+            $this->load->view('layout/pegawai/sidebar');
+            $this->load->view('layout/pegawai/top');
+            $this->load->view('pegawai/reviewPenonaktifanAnggota');
+            $this->load->view('layout/pegawai/footer');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+           Aksi yang telah direview tidak dapat diubah kembali.
+          </div>');
+            redirect('pegawai/daftarAksi');
+        }
+    }
+
+    public function terimaAksiPenonaktifan($id)
+    {
+        if ($this->session->userdata('kategori') != "1") {
+            redirect('pegawai', 'refresh');
+        }
+        $getStatus = $this->db->query("SELECT * FROM aksi where id_aksi = $id");
+        foreach ($getStatus->result_array() as $result) {
+            $status_verifikasi = $result['status_verifikasi'];
+        }
+        if ($status_verifikasi == "Pending") {
+            $this->pegawai_model->terimaAksiPenonaktifan($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Request Penonaktifan Diterima
+            </div>');
+            redirect('pegawai/daftarAksi');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+           Aksi yang telah direview tidak dapat diubah kembali.
+          </div>');
+            redirect('pegawai/daftarAksi');
+        }
+    }
+
+    public function tolakAksiPenonaktifan($id)
+    {
+        if ($this->session->userdata('kategori') != "1") {
+            redirect('pegawai', 'refresh');
+        }
+        $getStatus = $this->db->query("SELECT * FROM aksi where id_aksi = $id");
+        foreach ($getStatus->result_array() as $result) {
+            $status_verifikasi = $result['status_verifikasi'];
+        }
+        if ($status_verifikasi == "Pending") {
+            $this->pegawai_model->tolakAksiPenonaktifan($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Request Penonaktifan Ditolak
+          </div>');
+            redirect('pegawai/daftarAksi');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+       Aksi yang telah direview tidak dapat diubah kembali.
+      </div>');
+            redirect('pegawai/daftarAksi');
         }
     }
 }

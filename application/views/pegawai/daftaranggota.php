@@ -40,15 +40,11 @@
                                             <a href="<?= base_url() ?>pegawai/detailAnggota/<?= $item['id_anggota'] ?>" class="badge badge-info"><i class="fa fa-eye"></i> Detail</a>
                                             <a href="<?= base_url() ?>pegawai/ubahPasswordAnggota/<?= $item['id_anggota'] ?>" class="badge badge-warning"><i class="fa fa-unlock-alt"></i> Ubah Password</a>
                                             <?php
-                                            if ($item['status_anggota'] == "Dinonaktifkan") {
-                                            ?>
-                                                <a href="" class="badge badge-success"><i class="fa fa-minus"></i> Aktifkan Akun</a>
-                                            <?php
-                                            } else {
+                                            if ($item['status_anggota'] != "Dinonaktifkan") {
                                             ?>
                                                 <a href="<?= base_url() ?>pegawai/nonaktifkanAnggota/<?= $item['id_anggota'] ?>" class="badge badge-danger"><i class="fa fa-minus-circle"></i> Nonaktifkan Anggota</a>
-                                            <?php }
-                                            ?>
+                                            <?php
+                                            } ?>
                                         </td>
                                     </tr>
                                 <?php } ?>

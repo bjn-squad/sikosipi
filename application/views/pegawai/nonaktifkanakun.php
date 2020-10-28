@@ -51,7 +51,7 @@
                                 <input type="hidden" name="id_anggota" value="<?= $item['id_anggota'] ?>">
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Pesan Aksi</label></div>
-                                    <div class="col-12 col-md-9"><textarea name="pesan" id="textarea-input" rows="5" placeholder="Anda wajib menuliskan alasan kenapa menonaktifkan akun ini" required class="form-control"></textarea></div>
+                                    <div class="col-12 col-md-9"><textarea name="pesan_aksi" id="textarea-input" rows="5" placeholder="Anda wajib menuliskan alasan kenapa menonaktifkan akun ini" required class="form-control"></textarea></div>
                                 </div>
                                 <a href="<?= base_url() ?>pegawai/daftarAnggota" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
                                 <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin Menonaktifkan Akun Ini?')"><i class="fa fa-check-circle-o"></i> Nonaktifkan Akun <?= $item['nama_anggota'] ?></button>

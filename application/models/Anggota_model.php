@@ -55,7 +55,7 @@ class Anggota_model extends CI_Model
                 unlink($pathKTP . $ktp);
             }
             $this->upload->data('file_name');
-            if ($status_anggota == "Verifikasi Ditolak" or $status_anggota == "Tidak Aktif") {
+            if ($status_anggota == "Verifikasi Ulang" or $status_anggota == "Tidak Aktif") {
                 $data = [
                     "foto_ktp_anggota" => $newName
                 ];
@@ -76,7 +76,7 @@ class Anggota_model extends CI_Model
                     unlink($pathKYC . $kyc);
                 }
                 $this->upload->data('file_name');
-                if ($status_anggota == "Verifikasi Ditolak" or $status_anggota == "Tidak Aktif") {
+                if ($status_anggota == "Verifikasi Ulang" or $status_anggota == "Tidak Aktif") {
                     $data = [
                         "foto_selfie_ktp_anggota" => $newName2,
                         "status_anggota" => "Sedang Diverifikasi"
