@@ -294,4 +294,3 @@ class Pegawai extends CI_Controller
         }
     }
 }
-    // Yuni Test 2
