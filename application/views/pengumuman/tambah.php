@@ -17,7 +17,7 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Deskripsi</label></div>
-                                <div class="col-12 col-md-9"><textarea class="form-control <?php echo form_error('isi') ? 'is-invalid' : '' ?>" required name="isi" placeholder="Deskripsi Pengumuman"></textarea></div>
+                                <div class="col-12 col-md-9"><textarea rows="9" class="form-control <?php echo form_error('isi') ? 'is-invalid' : '' ?>" required name="isi" placeholder="Deskripsi Pengumuman"></textarea></div>
                                 <div class="invalid-feedback">
                                     <?php echo form_error('isi') ?>
                                 </div>
@@ -30,6 +30,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
+                                <a href="<?= base_url() ?>pengumuman" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
                                 <button type="submit" name="submit" class="btn btn-success btn-sm">Submit Pengumuman</button>
                             </div>
                     </div>

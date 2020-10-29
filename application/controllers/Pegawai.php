@@ -293,4 +293,18 @@ class Pegawai extends CI_Controller
             redirect('pegawai/daftarAksi');
         }
     }
+
+    public function daftarPegawai()
+    {
+        if ($this->session->userdata('kategori') != "1") {
+            redirect('pegawai');
+        }
+        $data['title'] = 'Daftar Pegawai';
+        $data['pegawai'] = $this->pegawai_model->getAllPegawai();
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('pegawai/daftarpegawai');
+        $this->load->view('layout/pegawai/footer');
+    }
 }

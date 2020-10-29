@@ -18,6 +18,8 @@ class Home extends CI_Controller
     }
     public function pengumuman()
     {
+        $this->load->model('pengumuman_model');
+        $data['pengumuman'] = $this->pengumuman_model->getAllPengumuman();
         $data['title'] = 'KSP Mitra Artha';
         $this->load->view('home/layout/header', $data);
         $this->load->view('home/pengumuman');
