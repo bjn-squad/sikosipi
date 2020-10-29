@@ -21,8 +21,18 @@ class Home extends CI_Controller
         $this->load->model('pengumuman_model');
         $data['pengumuman'] = $this->pengumuman_model->getAllPengumuman();
         $data['title'] = 'KSP Mitra Artha';
+        $data['pengumuman'] = $this->home_model->getAllPengumuman();
         $this->load->view('home/layout/header', $data);
         $this->load->view('home/pengumuman');
+        $this->load->view('home/layout/footer');
+    }
+    public function detail($id)
+    {
+
+        $data['title'] = 'KSP Mitra Artha';
+        $data['pengumuman'] = $this->home_model->getPengumumanById($id);
+        $this->load->view('home/layout/header', $data);
+        $this->load->view('home/detail');
         $this->load->view('home/layout/footer');
     }
 }

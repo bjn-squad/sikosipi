@@ -12,43 +12,55 @@
     </div>
 </div>
 <!--/ bradcam_area  -->
-<section class="blog_area section-padding">
+<!-- about_area_end  -->
+<div class="works_area">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 mb-5 mb-lg-0">
-                <div class="blog_left_sidebar">
-                    <?php foreach ($pengumuman as $i) {
-                    ?>
-                        <article class="blog_item">
-                            <div class="blog_item_img">
-                                <?php
-                                if ($i['header_gambar'] == 'Tidak Ada Gambar') {
-                                ?>
-                                    <img style="object-fit: cover;" class="card-img rounded-0" src="<?= base_url() ?>assets/datakoperasi/pengumuman/tidakadagambar.jpg" alt="Gambar">
-                                <?php
-                                } else {
-                                ?>
-                                    <img style="object-fit: cover;" class="card-img rounded-0" src="<?= base_url() ?>assets/datakoperasi/pengumuman/<?= $i['header_gambar'] ?>" alt="">
-                                <?php
-                                }
-                                ?>
-                            </div>
-
-                            <div class="blog_details">
-                                <a class="d-inline-block" href="single-blog.html">
-                                    <h2><?= $i['judul'] ?></h2>
-                                </a>
-                                <p><?= substr($i['isi'], 0, 120) ?> <a href="">... Read More</a></p>
-                                <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i> <?= $i['nama_pegawai'] ?></a></li>
-                                    <li><a href="#"><i class="fa fa-calendar"></i><?= $i['tanggal_post'] ?></a></li>
-                                </ul>
-                            </div>
-                        </article>
-                    <?php
-                    } ?>
+            <div class="col-lg-12">
+                <div class="section_title text-center mb-90">
+                    <span class="wow lightSpeedIn" data-wow-duration="1s" data-wow-delay=".1s"></span>
+                    <h3 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">Pengumuman</h3>
+                    <p class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">Koperasi Simpan Pinjam Mitra Artha</p>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <?php
+            foreach ($pengumuman as $pg) {
+            ?>
+                <div class="col-md-6 col-lg-4">
+
+                    <article class="blog_item">
+                        <div class="blog_item_img">
+
+                            <?php
+                            if ($pg['header_gambar'] != 'Tidak Ada Gambar') { ?>
+                                <img style="width: 100%;height:20vw;object-fit: cover;" src="<?php echo base_url('assets/datakoperasi/pengumuman/' . $pg['header_gambar']) ?>" />
+                            <?php
+                            } else {
+                            ?>
+                                <img style="width: 100%;height:20vw;object-fit: cover" src="<?php echo base_url('assets/datakoperasi/pengumuman/imgnotav.png') ?>" />
+                            <?php
+                            }
+                            ?>
+
+                        </div>
+
+                        <div class="blog_details">
+                            <a class="d-inline-block" href="single-blog.html">
+                                <h3><?= $pg['judul'] ?></h3>
+                            </a>
+                            <p style="white-space: pre-line; width: 100%;height:12vw;object-fit: cover; text-align: justify;">
+                                <?php echo substr($pg['isi'], 0, 120) ?>... <a href="<?php base_url() ?>detail/<?= $pg['id_pengumuman'] ?>" class="badge btn-small"> Read More</a></td>
+                            </p>
+                            <ul class="blog-info-link">
+                                <li><i class="fa fa-calendar"></i><?= $pg['tanggal_post'] ?></a>
+                            </ul>
+                        </div>
+                    </article>
+
+                </div>
+            <?php } ?>
+        </div>
     </div>
-</section>
+</div>
