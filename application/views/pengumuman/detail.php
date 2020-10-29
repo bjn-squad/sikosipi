@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Detail Anggota</strong>
+                        <strong>Detail Pengumuman</strong>
                     </div>
                     <?php
                     foreach ($pengumuman as $i) {
@@ -12,10 +12,8 @@
                         <div class="card-body card-block">
                             <a href="<?= base_url() ?>pengumuman" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
                             <center>
-                                <h3><?= $i['judul'] ?></h3>
-                                <h6>
-                                    <?= $i['nama_pegawai'] ?>, <?= $i['tanggal_post'] ?>
-                                </h6>
+                                <h1><?= $i['judul'] ?></h1>
+
                                 <?php
                                 if ($i['header_gambar'] != 'Tidak Ada Gambar') {
                                 ?>
@@ -25,9 +23,14 @@
                                 <?php
                                 } ?>
                             </center>
-                            <p style="white-space: pre-line;color:black">
+                            <p style="white-space: pre-line;color:black; text-align: justify;">
                                 <?= $i['isi'] ?>
                             </p>
+                            <hr>
+                            <ul class="blog-info-link">
+                                <li><i class="fa fa-calendar"></i><?= $i['tanggal_post'] ?></a>
+                                <li><i class="fa fa-user"></i><?= $i['nama_pegawai'] ?></a>
+                            </ul>
                         </div>
                     <?php } ?>
                 </div>
