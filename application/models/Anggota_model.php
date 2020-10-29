@@ -53,10 +53,11 @@ class Anggota_model extends CI_Model
             $status_anggota = $gambar['status_anggota'];
         }
         // Upload KTP
+        $file_name1 = $_FILES['gambarKTP']['name'];
+        $newfile_name1 = str_replace(' ', '', $file_name1);
         $config['upload_path']          = './assets/datakoperasi/imganggota/ktp';
         $config['allowed_types']        = 'jpg|png';
-        $config['remove_spaces'] = TRUE;
-        $newName = date('dmYHis') . $_FILES['gambarKTP']['name'];
+        $newName = date('dmYHis') .  $newfile_name1;
         $config['file_name']         = $newName;
         $config['max_size']             = 3100;
         $this->load->library('upload', $config);
@@ -74,10 +75,11 @@ class Anggota_model extends CI_Model
             $this->db->where('id_anggota', $id);
             $this->db->update('anggota', $data);
             // Upload KYC
+            $file_name2 = $_FILES['gambarKYC']['name'];
+            $newfile_name2 = str_replace(' ', '', $file_name2);
             $config2['upload_path']          = './assets/datakoperasi/imganggota/kyc';
             $config2['allowed_types']        = 'jpg|png';
-            $config2['remove_spaces'] = TRUE;
-            $newName2 = date('dmYHis') . $_FILES['gambarKYC']['name'];
+            $newName2 = date('dmYHis') . $newfile_name2;
             $config2['file_name']         = $newName2;
             $config2['max_size']             = 3100;
             $this->load->library('upload', $config2);

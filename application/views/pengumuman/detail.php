@@ -13,12 +13,15 @@
                             <a href="<?= base_url() ?>pengumuman" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
                             <center>
                                 <h1><?= $i['judul'] ?></h1>
+                                <br>
                                 <?php
                                 if ($i['header_gambar'] != 'Tidak Ada Gambar') {
                                 ?>
-                                    <br>
                                     <img src="<?php echo base_url('assets/datakoperasi/pengumuman/' . $i['header_gambar']) ?>" width="40%" />
-
+                                <?php
+                                } else {
+                                ?>
+                                    <img src="<?php echo base_url('assets/datakoperasi/pengumuman/imgnotav.png') ?>" width="20%" />
                                 <?php
                                 } ?>
                             </center>
@@ -26,10 +29,8 @@
                                 <?= $i['isi'] ?>
                             </p>
                             <hr>
-                            <ul class="blog-info-link">
-                                <li><i class="fa fa-calendar"></i><?= $i['tanggal_post'] ?></a>
-                                <li><i class="fa fa-user"></i><?= $i['nama_pegawai'] ?></a>
-                            </ul>
+                            <i class="fa fa-user"></i> <?= $i['nama_pegawai'] ?></a><br>
+                            <i class="fa fa-calendar"></i> <?= $i['tanggal_post'] ?></a>
                         </div>
                     <?php } ?>
                 </div>

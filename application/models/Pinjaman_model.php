@@ -25,11 +25,12 @@ class Pinjaman_model extends CI_Model
     {
         $pathDoc = "assets/datakoperasi/dokumen/";
         $id = $this->session->userdata('id_anggota');
+        $file_name = $_FILES['lampiran_pendukung']['name'];
+        $newfile_name = str_replace(' ', '', $file_name);
         // Upload KYC
         $config2['upload_path']          = './assets/datakoperasi/dokumen';
         $config2['allowed_types']        = 'jpg|png|pdf|doc|docx';
-        $config2['remove_spaces'] = TRUE;
-        $newName2 = date('dmYHis') . $_FILES['lampiran_pendukung']['name'];
+        $newName2 = date('dmYHis') . $newfile_name;
         $config2['file_name']         = $newName2;
         $config2['max_size']             = 3100;
         $this->load->library('upload', $config2);

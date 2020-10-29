@@ -47,7 +47,7 @@
                         </div>
 
                         <div class="blog_details">
-                            <a class="d-inline-block" href="single-blog.html">
+                            <a class="d-inline-block" href="<?php base_url() ?>detail/<?= $pg['id_pengumuman'] ?>">
                                 <h3><?= $pg['judul'] ?></h3>
                             </a>
                             <p style="white-space: pre-line; width: 100%;height:12vw;object-fit: cover; text-align: justify;">
