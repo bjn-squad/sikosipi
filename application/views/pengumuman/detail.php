@@ -13,7 +13,6 @@
                             <a href="<?= base_url() ?>pengumuman" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
                             <center>
                                 <h1><?= $i['judul'] ?></h1>
-
                                 <?php
                                 if ($i['header_gambar'] != 'Tidak Ada Gambar') {
                                 ?>

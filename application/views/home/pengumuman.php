@@ -12,7 +12,6 @@
     </div>
 </div>
 <!--/ bradcam_area  -->
-
 <!-- about_area_end  -->
 <div class="works_area">
     <div class="container">
