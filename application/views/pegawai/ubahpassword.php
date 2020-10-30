@@ -1,48 +1,48 @@
+<!-- Function Show Unshow Password -->
+<script>
+    function passwordShowUnshow() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
 <div class="content mt-3">
     <div class="animated fadeIn">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Verifikasi Anggota</strong>
+                        <strong class="card-title">Ubah Password</strong>
                     </div>
-                    <?php
-                    foreach ($anggota as $item) {
-                    ?>
-                        <div class="card-body card-block">
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Nama : </label></div>
-                                <div class="col-12 col-md-9"><label><?= $item['nama_anggota'] ?></label></div>
+                    <div class="card-body">
+                        <?php if (validation_errors()) {
+                        ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?= validation_errors() ?>
                             </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="file-input" class=" form-control-label">Username : </label></div>
-                                <div class="col-12 col-md-9"><label><?= $item['username'] ?></label></div>
+                        <?php
+                        } ?>
+                        <form action="<?= base_url() ?>pegawai/ubahPassword" enctype="multipart/form-data" method="POST">
+                            <div class="form-group">
+                                <label class=" form-control-label">Masukan Password Baru</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                    <input class="form-control" type="password" name="password" id="password" required autofocus>
+                                </div>
+                                <small class="form-text text-muted">Minimal memiliki 5 karakter, contoh : andi1</small>
+                                <span onclick="passwordShowUnshow()" style="cursor: pointer;">
+                                    <i class="fa fa-eye"></i> Tampilkan/Sembunyikan Password
+                                </span>
                             </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="file-input" class=" form-control-label">Email : </label></div>
-                                <div class="col-12 col-md-9"><label><?= $item['email'] ?></label></div>
-                            </div>
-                        <?php } ?>
-                        <div class="row form-group">
-                            <div class="col col-md-3"><label class=" form-control-label">Ubah Password</label></div>
-                            <div class="col-12 col-md-9">
-                                <form method="POST" action="<?= base_url() ?>pegawai/prosesGantiPasswordAnggota">
-                                    <?php
-                                    foreach ($anggota as $i) { ?>
-                                        <input type="hidden" name="id_anggota" value="<?= $i['id_anggota'] ?>">
-                                        <input type="text" placeholder="Masukan Password Baru" name="password" class="form-control">
-                                        <br>
-                                        <button class="btn btn-warning btn-sm" onclick="return confirm('Apakah anda yakin ingin mengganti Password Anggota?')"><i class="fa fa-unlock-alt"></i> Ganti Password </button>
-                                    <?php } ?>
-                                </form>
-                                <br>
-                                <a href="<?= base_url() ?>pegawai/daftarAnggota" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
-                            </div>
-                        </div>
-                        </div>
+                            <a href="<?= base_url() ?>anggota" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
+                            <button type="submit" class="btn btn-primary btn-sm" onclick="return confirm('Apakah anda yakin ingin mengganti password?')"><i class="fa fa-lock"></i> Ganti Password</button>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>

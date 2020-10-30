@@ -18,6 +18,7 @@ class Pegawai extends CI_Controller
     public function index()
     {
         $data['title'] = 'Dashboard Pegawai';
+        $data['pegawai'] = $this->pegawai_model->getPegawaiById($this->session->userdata('id_pegawai'));
         $this->load->view('layout/pegawai/header', $data);
         $this->load->view('layout/pegawai/sidebar');
         $this->load->view('layout/pegawai/top');
@@ -306,5 +307,108 @@ class Pegawai extends CI_Controller
         $this->load->view('layout/pegawai/top');
         $this->load->view('pegawai/daftarpegawai');
         $this->load->view('layout/pegawai/footer');
+    }
+
+    public function ubahPassword()
+    {
+        if ($this->session->userdata('kategori') != "1") {
+            redirect('pegawai');
+        }
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[5]', [
+            'min_length' => 'Password minimum 5 character'
+        ]);
+        if ($this->form_validation->run() == FALSE) {
+            $data['title'] = 'Ubah Password';
+            $this->load->view('layout/pegawai/header', $data);
+            $this->load->view('layout/pegawai/sidebar');
+            $this->load->view('layout/pegawai/top');
+            $this->load->view('pegawai/ubahPassword');
+            $this->load->view('layout/pegawai/footer');
+        } else {
+            $data = $this->pegawai_model->ubahPassword();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Password Berhasil Diganti!
+           </div>');
+            redirect('pegawai');
+        }
+    }
+
+    public function detailPegawai($id)
+    {
+        if ($this->session->userdata('kategori') != "1") {
+            redirect('pegawai');
+        }
+        $data['title'] = 'Detail Pegawai';
+        $data['pegawai'] = $this->pegawai_model->getPegawaiById($id);
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('pegawai/detailpegawai');
+        $this->load->view('layout/pegawai/footer');
+    }
+
+    public function ubahPasswordPegawai($id)
+    {
+        if ($this->session->userdata('kategori') != "1") {
+            redirect('pegawai');
+        }
+        $data['title'] = 'Ubah Password Pegawai';
+        $data['pegawai'] = $this->pegawai_model->getPegawaiById($id);
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('pegawai/ubahpasswordpegawai');
+        $this->load->view('layout/pegawai/footer');
+    }
+
+    public function prosesGantiPasswordPegawai()
+    {
+        if ($this->session->userdata('kategori') != "1") {
+            redirect('pegawai');
+        }
+        $this->form_validation->set_rules('id_pegawai', 'id_pegawai', 'trim|required');
+        $this->form_validation->set_rules('password', 'password', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            redirect('pegawai/daftarPegawai');
+        } else {
+            $data = $this->pegawai_model->gantiPasswordPegawai();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Sukses Ganti Password Pegawai!
+          </div>');
+            redirect('pegawai/daftarPegawai');
+        }
+    }
+
+    public function tambahPegawaiBaru()
+    {
+        if ($this->session->userdata('kategori') != "1") {
+            redirect('pegawai');
+        }
+        $this->form_validation->set_rules('nama_pegawai', 'nama_pegawai', 'trim|required');
+        $this->form_validation->set_rules('alamat_pegawai', 'alamat_pegawai', 'required');
+        $this->form_validation->set_rules('no_telp_pegawai', 'no_telp_pegawai', 'required|numeric');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[pegawai.email]', [
+            'is_unique' => 'This email already taken'
+        ]);
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[pegawai.username]', [
+            'is_unique' => 'This username already taken'
+        ]);
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[5]', [
+            'min_length' => 'Password minimum 5 character'
+        ]);
+        if ($this->form_validation->run() == FALSE) {
+            $data['title'] = 'Tambah Pegawai Baru';
+            $this->load->view('layout/pegawai/header', $data);
+            $this->load->view('layout/pegawai/sidebar');
+            $this->load->view('layout/pegawai/top');
+            $this->load->view('pegawai/tambahPegawaiBaru');
+            $this->load->view('layout/pegawai/footer');
+        } else {
+            $data = $this->pegawai_model->tambahPegawaiBaru();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Sukses Menambah Pegawai Baru!
+          </div>');
+            redirect('pegawai/daftarPegawai');
+        }
     }
 }

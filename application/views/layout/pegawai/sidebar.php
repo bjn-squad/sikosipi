@@ -54,8 +54,8 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon ti-user"></i>Pegawai</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon ti-layout-list-thumb-alt"></i><a href="<?= base_url() ?>pegawai/daftarAnggota">Daftar Pegawai</a></li>
-                            <li><i class="menu-icon ti-plus"></i><a href="<?= base_url() ?>pegawai/daftarAnggota">Tambah Pegawai Baru</a></li>
+                            <li><i class="menu-icon ti-layout-list-thumb-alt"></i><a href="<?= base_url() ?>pegawai/daftarPegawai">Daftar Pegawai</a></li>
+                            <li><i class="menu-icon ti-plus"></i><a href="<?= base_url() ?>pegawai/tambahPegawaiBaru">Tambah Pegawai Baru</a></li>
                         </ul>
                     </li>
                 <?php
