@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2020 at 04:40 PM
+-- Generation Time: Oct 30, 2020 at 04:42 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -141,7 +141,7 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `alamat_pegawai`, `no_telp_pegawai`, `username`, `email`, `password`, `kategori`) VALUES
-(1, 'Ardan Anjung Kusuma', 'Banjarejo', '085212342321', 'ardan', 'ardan@gmail.com', 'd2219d75098abd01493908d2f7f4d13d', 1),
+(1, 'Ardan Anjung Kusuma', 'Banjarejo', '085212342321', 'ardan', 'ardan@gmail.com', '8ef98f4c28f8d8577e14860e56fde5ab', 1),
 (2, 'Dina Lisuardi', 'Banjarejo', '081235896824', 'dina', 'dina@gmail.com', 'f093c0fed979519fbc43d772b76f5c86', 2),
 (3, 'Muh Riza Zulfahnur', 'Kalitidu', '085212396501', 'riza', 'riza@gmail.com', '41a44352a6f3cd3b45282acbce50927c', 2),
 (4, 'Yuni Kurnia Taramita', 'Sugihwaras', '085729801234', 'yuni', 'yuni@gmail.com', 'b7dfe9096cebb53152aa5ce78a1a61c9', 1);
@@ -209,8 +209,7 @@ CREATE TABLE `pengumuman` (
 
 INSERT INTO `pengumuman` (`id_pengumuman`, `id_pegawai`, `judul`, `header_gambar`, `isi`, `tanggal_post`) VALUES
 (7, 4, 'Aturan dan Kebijakan KSP Mitra Artha', '28102020160637aturan-kebijakan-1024x397.jpg', 'Berikut adalah aturan dan kebijakan KSP Mitra Artha : \r\n\r\n1. Pinjaman Maksimal Angsur 10 Bulan.\r\n2. Bunga Pinjaman Perbulan 5%, dibayar 10x tiap bulannya\r\n3. Simpanan Pokok nominal bebas sesuai kesepakatan di awal dan dibayarkan di awal transaksi Pinjaman.\r\n4. Simpanan Pokok dapat ditarik jika sudah keluar dari keanggotaan koperasi.\r\n5. Simpanan Pokok tidak mendapatkan bunga.\r\n6. Simpanan Wajib nominal bebas sesuai kesepakatan di awal.\r\n7. Simpanan Wajib, wajib dibayarkan 1 bulan sekali dengan nominal bebas minimal 5 ribu rupiah. \r\n8. Simpanan Wajib akan mendapatkan bunga sebanyak 2% per tahun.\r\n9. Simpanan Wajib dapat ditarik jika sudah keluar dari keanggotaan koperasi.\r\n10. Jika anggota sewaktu waktu keluar dalam jangka kurang dari 1 tahun maka tidak mendapat bunga simpanan wajib.\r\n', '28-10-2020'),
-(8, 1, 'Kategori Member KSP Mitra Artha', '28102020161609categori.jpg', 'Berikut merupakan penjelasan status member :\r\n\r\n1. Aktif  : Member aktif yang bisa mengakses semua fitur website member\r\n2. Tidak Aktif : Member yang belum verifikasi data diri, harus melakukan upload file KTP dan Foto Diri Bersama KTP.\r\n3. Dinonaktifkan : Member tidak valid (Ditolak menjadi anggota koperasi)\r\n4. Sedang Diverifikasi : Member sudah mengupload data diri dan tinggal menunggu verifikasi dari pegawai.\r\n5. Verifikasi Ulang : Member diminta untuk memverifikasi ulang data diri yang telah diajukan sebelumnya. (Kemungkinan file ada yang blur dll sehingga pegawai kesusahan untuk melakukan verifikasi)', '28-10-2020'),
-(10, 4, 'Tes', 'Tidak Ada Gambar', 'TES LOR', '29-10-2020');
+(8, 1, 'Kategori Member KSP Mitra Artha', '28102020161609categori.jpg', 'Berikut merupakan penjelasan status member :\r\n\r\n1. Aktif  : Member aktif yang bisa mengakses semua fitur website member\r\n2. Tidak Aktif : Member yang belum verifikasi data diri, harus melakukan upload file KTP dan Foto Diri Bersama KTP.\r\n3. Dinonaktifkan : Member tidak valid (Ditolak menjadi anggota koperasi)\r\n4. Sedang Diverifikasi : Member sudah mengupload data diri dan tinggal menunggu verifikasi dari pegawai.\r\n5. Verifikasi Ulang : Member diminta untuk memverifikasi ulang data diri yang telah diajukan sebelumnya. (Kemungkinan file ada yang blur dll sehingga pegawai kesusahan untuk melakukan verifikasi)', '28-10-2020');
 
 -- --------------------------------------------------------
 
@@ -385,7 +384,7 @@ ALTER TABLE `lupa_password`
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `penarikan_simpanan`
@@ -403,7 +402,7 @@ ALTER TABLE `pengajuan_pinjaman`
 -- AUTO_INCREMENT for table `pengumuman`
 --
 ALTER TABLE `pengumuman`
-  MODIFY `id_pengumuman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_pengumuman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `pinjaman`
