@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Simpanan_model extends CI_Model
 {
-	public function getAllSimpanan()
+    public function getAllSimpanan()
     {
         $query = $this->db->query("SELECT * FROM simpanan");
         return $query->result_array();
