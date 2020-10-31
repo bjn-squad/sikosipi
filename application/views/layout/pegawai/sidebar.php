@@ -12,15 +12,18 @@
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="<?= base_url() ?>pegawai"> <i class="menu-icon fa fa-dashboard"></i>Dashboard Pegawai </a>
+                    <a href="<?= base_url() ?>pegawai"> <i class="menu-icon fa fa-dashboard"></i>Dashboard <?php if ($this->session->userdata('kategori') == 1) {
+                                                                                                                echo 'Admin';
+                                                                                                            } else {
+                                                                                                                echo 'Pegawai';
+                                                                                                            } ?> </a>
                 </li>
                 <h3 class="menu-title">Menu SIKOSIPI</h3><!-- /.menu-title -->
 
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Simpanan</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Font Awesome</a></li>
-                        <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Themefy Icons</a></li>
+                        <li><i class="menu-icon fa fa-list"></i><a href="<?= base_url() ?>simpanan/dataSimpanan">Data Simpanan</a></li>
                         <li><i class="menu-icon fa fa-file-text-o"></i><a href="font-themify.html">Laporan</a></li>
                     </ul>
                 </li>
@@ -33,12 +36,20 @@
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Pengumuman</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-map-o"></i><a href="<?= base_url() ?>pengumuman">Daftar Pengumuman</a></li>
+                        <li><i class="menu-icon fa fa-list"></i><a href="<?= base_url() ?>pengumuman/add">Tambah Pengumuman</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Keanggotaan</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="menu-icon fa fa-list"></i><a href="<?= base_url() ?>pegawai/daftarAnggota">Daftar Anggota</a></li>
-                        <li><i class="menu-icon fa fa-check-circle-o"></i><a href="<?= base_url() ?>pegawai/verifikasiAnggota">Verifikasi Anggota</a></li>
-                        <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Peity Chart</a></li>
                     </ul>
+                </li>
+                <li>
+                    <a href="<?= base_url() ?>pegawai/daftarAksi"> <i class="menu-icon ti-announcement"></i> Aksi</a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->

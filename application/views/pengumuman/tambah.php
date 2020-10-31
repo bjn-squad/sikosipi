@@ -7,30 +7,36 @@
                         <strong>Tambah Pengumuman</strong>
                     </div>
                     <div class="card-body card-block">
-                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <form action="<?php base_url("pengumuman/add") ?>" method="post" enctype="multipart/form-data">
+                            <div class="row form-group">
+                                <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Judul</label></div>
+                                <div class="col-12 col-md-9"><input type="text" required class="form-control <?php echo form_error('judul') ? 'is-invalid' : '' ?>" name="judul" placeholder="Judul Pengumuman"></div>
+                                <div class="invalid-feedback">
+                                    <?php echo form_error('judul') ?>
+                                </div>
+                            </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Deskripsi</label></div>
-                                <div class="col-12 col-md-9"><textarea name="textarea-input" id="textarea-input" rows="9" placeholder="Deskripsi Pengumuman" class="form-control"></textarea></div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="file-input" class=" form-control-label">Gambar</label></div>
-                                <div class="col-12 col-md-9"><input type="file" id="file-input" name="file-input" class="form-control-file"></div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label class=" form-control-label">Tanggal Posting</label></div>
-                                <div class="col-12 col-md-9"><input  placeholder="Tanggal Posting" class="form-control"></div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col-3"></div>
-                                    <button type="submit" class="btn btn-primary btn-sm">
-                                        <i class="fa fa-plus-square-o"></i> Tambah
-                                    </button>
+                                <div class="col-12 col-md-9"><textarea class="form-control <?php echo form_error('isi') ? 'is-invalid' : '' ?>" required name="isi" placeholder="Deskripsi Pengumuman"></textarea></div>
+                                <div class="invalid-feedback">
+                                    <?php echo form_error('isi') ?>
                                 </div>
-                            </div> 
-                        </form>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col  col-md-3"><label for="file-input" class=" form-control-label">Gambar</label></div>
+                                <div class="col-12 col-md-9"><input class="form-control-file <?php echo form_error('header_gambar') ? 'is-invalid' : '' ?>" type="file" name="header_gambar" /></div>
+                                <div class="invalid-feedback">
+                                    <?php echo form_error('header_gambar') ?>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" name="submit" class="btn btn-success btn-sm">Submit Pengumuman</button>
+                            </div>
                     </div>
-                </div>   
+                    </form>
+                </div>
             </div>
-        </div> 
+        </div>
     </div>
+</div>
 </div>

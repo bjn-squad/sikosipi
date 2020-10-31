@@ -10,6 +10,12 @@ class Anggota_model extends CI_Model
         return $query->result_array();
     }
 
+    public function getFilterAnggota()
+    {
+        $query = $this->db->query("SELECT * FROM anggota WHERE status_anggota LIKE 'Sedang Diverifikasi (Menunggu Pembayaran Simpanan Pokok)'");
+        return $query->result_array();
+    }
+
     public function getAllAnggota()
     {
         $query = $this->db->query("SELECT * FROM anggota");
@@ -18,10 +24,21 @@ class Anggota_model extends CI_Model
 
     public function ubahPasswordById($id)
     {
+        // Fitur Milik Pegawai
         $data = [
             "password" => htmlspecialchars(MD5($this->input->post('password')))
         ];
         $this->db->where('id_anggota', $id);
+        $this->db->update('anggota', $data);
+    }
+
+    public function ubahPassword()
+    {
+        // Fitur ubah password anggota
+        $data = [
+            "password" => htmlspecialchars(MD5($this->input->post('password')))
+        ];
+        $this->db->where('id_anggota', $this->session->userdata('id_anggota'));
         $this->db->update('anggota', $data);
     }
 
@@ -49,7 +66,7 @@ class Anggota_model extends CI_Model
                 unlink($pathKTP . $ktp);
             }
             $this->upload->data('file_name');
-            if ($status_anggota == "Verifikasi Ditolak" or $status_anggota == "Tidak Aktif") {
+            if ($status_anggota == "Verifikasi Ulang" or $status_anggota == "Tidak Aktif") {
                 $data = [
                     "foto_ktp_anggota" => $newName
                 ];
@@ -70,7 +87,7 @@ class Anggota_model extends CI_Model
                     unlink($pathKYC . $kyc);
                 }
                 $this->upload->data('file_name');
-                if ($status_anggota == "Verifikasi Ditolak" or $status_anggota == "Tidak Aktif") {
+                if ($status_anggota == "Verifikasi Ulang" or $status_anggota == "Tidak Aktif") {
                     $data = [
                         "foto_selfie_ktp_anggota" => $newName2,
                         "status_anggota" => "Sedang Diverifikasi"
