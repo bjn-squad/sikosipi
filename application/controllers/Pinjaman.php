@@ -58,8 +58,8 @@ class Pinjaman extends CI_Controller
 
         if (!empty($dataStatus->status_pengajuan)) {
             if (($dataStatus->status_pengajuan != "Sedang Diverifikasi" || !empty($dataStatus)) && $status == "Aktif") {
-                $data['title'] = 'Ayo Ajukan Pinjaman';
-                $this->load->view('layout/anggota/header', $data);
+                $data1['title'] = 'Ayo Ajukan Pinjaman';
+                $this->load->view('layout/anggota/header', $data1);
                 $this->load->view('layout/anggota/sidebar');
                 $this->load->view('layout/anggota/top');
                 $this->load->view('pinjaman/ajukan_pinjaman');
@@ -69,8 +69,8 @@ class Pinjaman extends CI_Controller
             }
         } else {
             if ($status == "Aktif") {
-                $data['title'] = 'Ayo Ajukan Pinjaman';
-                $this->load->view('layout/anggota/header', $data);
+                $data2['title'] = 'Ayo Ajukan Pinjaman';
+                $this->load->view('layout/anggota/header', $data2);
                 $this->load->view('layout/anggota/sidebar');
                 $this->load->view('layout/anggota/top');
                 $this->load->view('pinjaman/ajukan_pinjaman');
@@ -145,11 +145,17 @@ class Pinjaman extends CI_Controller
             }
         }
     }
-    public function tambahAngsuran()
+    public function pinjamanSaya()
     {
-    }
-
-    public function prosesTambahAngsuran()
-    {
+        if ($this->session->userdata('level') != "anggota") {
+            redirect('auth/loginAnggota', 'refresh');
+        }
+        $data['title'] = 'Pinjaman';
+        $data['pinjaman'] = $this->pinjaman_model->getPinjamanById($this->session->userdata('id_anggota'));
+        $this->load->view('layout/anggota/header', $data);
+        $this->load->view('layout/anggota/sidebar');
+        $this->load->view('layout/anggota/top');
+        $this->load->view('pinjaman/pinjamanSaya');
+        $this->load->view('layout/anggota/footer');
     }
 }

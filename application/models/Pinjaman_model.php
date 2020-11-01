@@ -79,4 +79,32 @@ class Pinjaman_model extends CI_Model
         $this->db->where('id_pengajuan', $this->input->post('id_pengajuan'));
         $this->db->update('pengajuan_pinjaman', $data);
     }
+    public function getAllPinjaman()
+    {
+        $query = $this->db->query("SELECT * FROM pinjaman as pin 
+                                    JOIN pengajuan_pinjaman as pen ON pin.id_pengajuan = pen.id_pengajuan
+                                    JOIN anggota as a ON pen.id_anggota = a.id_anggota");
+        return $query->result_array();
+    }
+    public function getPinjamanById($id)
+    {
+        $query = $this->db->query("SELECT * FROM pinjaman WHERE id_anggota = $id");
+        return $query->result_array();
+    }
+    public function getAllAngsuran()
+    {
+        $query = $this->db->query("SELECT * FROM angsuran_detail");
+        return $query->result_array();
+    }
+    public function insertPinjaman()
+    {
+        $data = [
+            "id_pengajuan" => $this->input->post('id_pengajuan', true),
+            "id_anggota" => $this->input->post('id_anggota', true),
+            'tanggal_meminjam' => $this->input->post('tanggal_meminjam', true),
+            'total_pinjaman' => $this->input->post('total_pinjaman', true),
+            'angsuran_bulanan' => $this->input->post('angsuran_bulanan', true)
+        ];
+        $this->db->insert('pinjaman', $data);
+    }
 }
