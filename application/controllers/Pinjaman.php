@@ -69,8 +69,8 @@ class Pinjaman extends CI_Controller
             }
         } else {
             if ($status == "Aktif") {
-                $data['title'] = 'Ayo Ajukan Pinjaman';
-                $this->load->view('layout/anggota/header', $data);
+                $dat['title'] = 'Ayo Ajukan Pinjaman';
+                $this->load->view('layout/anggota/header', $dat);
                 $this->load->view('layout/anggota/sidebar');
                 $this->load->view('layout/anggota/top');
                 $this->load->view('pinjaman/ajukan_pinjaman');

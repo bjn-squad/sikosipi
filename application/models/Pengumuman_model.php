@@ -32,7 +32,6 @@ class Pengumuman_model extends CI_Model
             $newfile_name = str_replace(' ', '', $file_name);
             $config['upload_path']          = './assets/datakoperasi/pengumuman/';
             $config['allowed_types']        = 'jpg|png';
-            // $config['remove_spaces'] = TRUE;
             $newName = date('dmYHis') . $newfile_name;
             $config['file_name']         = $newName;
             $config['max_size']             = 5100;
@@ -75,7 +74,6 @@ class Pengumuman_model extends CI_Model
             $config['upload_path']          = './assets/datakoperasi/pengumuman';
             $config['allowed_types']        = 'jpg|png';
             $newName = date('dmYHis') . $newfile_name;
-            // $config['remove_space'] = TRUE;
             $config['file_name']         = $newName;
             $config['max_size']             = 5100;
             $this->load->library('upload', $config);

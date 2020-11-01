@@ -81,7 +81,7 @@ class Pengumuman extends CI_Controller
     {
         $this->pengumuman_model->delete($id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-           Sukses Mengedit Pengumuman
+           Sukses Menghapus Pengumuman.
           </div>');
         redirect('pengumuman');
     }

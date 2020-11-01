@@ -1,5 +1,9 @@
 <!-- bradcam_area  -->
+<<<<<<< HEAD
 <div class="bradcam_area bradcam_bg_2">
+=======
+<div class="bradcam_area bradcam_bg_4">
+>>>>>>> master
     <div class="container">
         <div class="row">
             <div class="col-xl-12">
@@ -12,7 +16,10 @@
     </div>
 </div>
 <!--/ bradcam_area  -->
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 <!-- about_area_end  -->
 <div class="works_area">
     <div class="container">
@@ -48,7 +55,11 @@
                         </div>
 
                         <div class="blog_details">
+<<<<<<< HEAD
                             <a class="d-inline-block" href="single-blog.html">
+=======
+                            <a class="d-inline-block" href="<?php base_url() ?>detail/<?= $pg['id_pengumuman'] ?>">
+>>>>>>> master
                                 <h3><?= $pg['judul'] ?></h3>
                             </a>
                             <p style="white-space: pre-line; width: 100%;height:12vw;object-fit: cover; text-align: justify;">
