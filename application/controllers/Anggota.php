@@ -20,8 +20,8 @@ class Anggota extends CI_Controller
 
     public function index()
     {
-        $data['data'] = $this->anggota_model->getAnggotaById($this->session->userdata('id_anggota'));
         $data['title'] = 'Dashboard Anggota';
+        $data['data'] = $this->anggota_model->getAnggotaById($this->session->userdata('id_anggota'));
         $this->load->view('layout/anggota/header', $data);
         $this->load->view('layout/anggota/sidebar');
         $this->load->view('layout/anggota/top');
