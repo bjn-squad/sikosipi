@@ -54,17 +54,20 @@ class Pinjaman extends CI_Controller
         foreach ($data->result_array() as $result) {
             $status = $result['status_anggota'];
         }
-        $dataStatus = $this->db->select('status_pengajuan')->order_by('id_pengajuan', "desc")->limit(1)->get('pengajuan_pinjaman')->row();
+        $dataStatus = $this->db->select('*')->order_by('id_pengajuan', "desc")->where('id_anggota', $idAnggota)->limit(1)->get('pengajuan_pinjaman')->row();
 
         if (!empty($dataStatus->status_pengajuan)) {
-            if (($dataStatus->status_pengajuan != "Sedang Diverifikasi" || !empty($dataStatus)) && $status == "Aktif") {
-                $data['title'] = 'Ayo Ajukan Pinjaman';
-                $this->load->view('layout/anggota/header', $data);
+            if ($dataStatus->status_pengajuan != "Sedang Diverifikasi" && $status == "Aktif") {
+                $data1['title'] = 'Ayo Ajukan Pinjaman';
+                $this->load->view('layout/anggota/header', $data1);
                 $this->load->view('layout/anggota/sidebar');
                 $this->load->view('layout/anggota/top');
                 $this->load->view('pinjaman/ajukan_pinjaman');
                 $this->load->view('layout/anggota/footer');
             } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">
+            <i class="fa fa-warning"></i> Maaf anda belum bisa mengajukan pinjaman karena status pengajuan sebelumya masih dalam tahap verifikasi.
+          </div>');
                 redirect('anggota');
             }
         } else {
@@ -97,17 +100,12 @@ class Pinjaman extends CI_Controller
         $dataStatus = $this->db->select('status_pengajuan')->order_by('id_pengajuan', "desc")->limit(1)->get('pengajuan_pinjaman')->row();
 
         if (!empty($dataStatus->status_pengajuan)) {
-            if (($dataStatus->status_pengajuan != "Sedang Diverifikasi" || !empty($dataStatus)) && $status == "Aktif") {
+            if ($dataStatus->status_pengajuan != "Sedang Diverifikasi" && $status == "Aktif") {
                 $this->form_validation->set_rules('total_pengajuan_pinjaman', 'total_pengajuan_pinjaman', 'trim|required|numeric');
                 $this->form_validation->set_rules('alasan_pinjaman', 'alasan_pinjaman', 'trim|required');
 
                 if ($this->form_validation->run() == FALSE) {
-                    $data['title'] = 'Ayo Ajukan Pinjaman';
-                    $this->load->view('layout/anggota/header', $data);
-                    $this->load->view('layout/anggota/sidebar');
-                    $this->load->view('layout/anggota/top');
-                    $this->load->view('pinjaman/ajukan_pinjaman');
-                    $this->load->view('layout/anggota/footer');
+                    redirect('pinjaman/ajukanPinjaman');
                 } else {
                     $this->pinjaman_model->insertPengajuan();
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
@@ -124,12 +122,7 @@ class Pinjaman extends CI_Controller
                 $this->form_validation->set_rules('alasan_pinjaman', 'alasan_pinjaman', 'trim|required');
 
                 if ($this->form_validation->run() == FALSE) {
-                    $data['title'] = 'Ayo Ajukan Pinjaman';
-                    $this->load->view('layout/anggota/header', $data);
-                    $this->load->view('layout/anggota/sidebar');
-                    $this->load->view('layout/anggota/top');
-                    $this->load->view('pinjaman/ajukan_pinjaman');
-                    $this->load->view('layout/anggota/footer');
+                    redirect('pinjaman/ajukanPinjaman');
                 } else {
                     $this->pinjaman_model->insertPengajuan();
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">

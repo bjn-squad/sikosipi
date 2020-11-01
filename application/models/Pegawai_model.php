@@ -70,9 +70,10 @@ class Pegawai_model extends CI_Model
     public function nonaktifkanAnggota()
     {
         $data = [
-            'id_pegawai' => $this->session->userdata('id_pegawai'),
             'id_data_kategori' => $this->input->post('id_anggota'),
+            'tanggal_aksi' => date('d-m-Y'),
             'pesan_aksi' => $this->input->post('pesan_aksi'),
+            'nama_pegawai' => $this->session->userdata('nama_pegawai'),
             'kategori_aksi' => 'Nonaktifkan Anggota'
         ];
         $this->db->insert('aksi', $data);
