@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2020 at 04:42 AM
+-- Generation Time: Nov 01, 2020 at 05:08 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -29,10 +29,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `aksi` (
   `id_aksi` int(11) NOT NULL,
-  `id_pegawai` int(11) NOT NULL,
   `id_data_kategori` int(11) NOT NULL,
   `kategori_aksi` varchar(100) NOT NULL,
+  `tanggal_aksi` varchar(100) NOT NULL,
   `pesan_aksi` text NOT NULL,
+  `nama_pegawai` varchar(100) NOT NULL,
   `nama_admin` varchar(100) NOT NULL DEFAULT 'Belum Diverifikasi',
   `status_aksi` varchar(100) NOT NULL DEFAULT 'Belum Diverifikasi',
   `status_verifikasi` varchar(100) NOT NULL DEFAULT 'Pending'
@@ -42,9 +43,9 @@ CREATE TABLE `aksi` (
 -- Dumping data for table `aksi`
 --
 
-INSERT INTO `aksi` (`id_aksi`, `id_pegawai`, `id_data_kategori`, `kategori_aksi`, `pesan_aksi`, `nama_admin`, `status_aksi`, `status_verifikasi`) VALUES
-(3, 3, 3, 'Nonaktifkan Anggota', 'Jito pernah bermasalah di berbagai koperasi soal hutangnya yang tidak lunas. Berikut koperasi yang pernah jadi korban jito\r\n\r\n1. Koperasi Karep\r\n2. Koperasi Bahagia\r\n\r\nTolong blacklist saja untuk nama jito hartati', 'Ardan Anjung Kusuma', 'Penonaktifan Ditolak', 'Diterima Admin'),
-(4, 2, 3, 'Nonaktifkan Anggota', 'Tolong review lagi pak, jito orangnya tidak bertanggung jawab dalam melunasi hutangnya. Biar lebih enak silahkan kontak CP dibawah ini, humas koperasi yang pernah menjadi korban jito : \r\n\r\n1. Koperasi Karep (0812496023954)\r\n2. Koperasi Bahagia (085823232445)\r\n\r\nDia sudah diblacklist di berbagai koperasi bojonegoro', 'Ardan Anjung Kusuma', 'Penonaktifan Diterima', 'Diterima Admin');
+INSERT INTO `aksi` (`id_aksi`, `id_data_kategori`, `kategori_aksi`, `tanggal_aksi`, `pesan_aksi`, `nama_pegawai`, `nama_admin`, `status_aksi`, `status_verifikasi`) VALUES
+(3, 3, 'Nonaktifkan Anggota', '25-10-2020', 'Jito pernah bermasalah di berbagai koperasi soal hutangnya yang tidak lunas. Berikut koperasi yang pernah jadi korban jito\r\n\r\n1. Koperasi Karep\r\n2. Koperasi Bahagia\r\n\r\nTolong blacklist saja untuk nama jito hartati', 'Muh Riza Zulfahnur', 'Ardan Anjung Kusuma', 'Penonaktifan Ditolak', 'Diterima Admin'),
+(4, 3, 'Nonaktifkan Anggota', '27-10-2020', 'Tolong review lagi pak, jito orangnya tidak bertanggung jawab dalam melunasi hutangnya. Biar lebih enak silahkan kontak CP dibawah ini, humas koperasi yang pernah menjadi korban jito : \r\n\r\n1. Koperasi Karep (0812496023954)\r\n2. Koperasi Bahagia (085823232445)\r\n\r\nDia sudah diblacklist di berbagai koperasi bojonegoro', 'Dina Lisuardi', 'Ardan Anjung Kusuma', 'Penonaktifan Diterima', 'Diterima Admin');
 
 -- --------------------------------------------------------
 
@@ -74,7 +75,7 @@ INSERT INTO `anggota` (`id_anggota`, `nama_anggota`, `alamat_anggota`, `no_telp_
 (1, 'Budi Surya', 'Jl. Mawar Merah 21 Bojonegoro', '085687921256', 'budi', 'budianto@gmail.com', '9c5fa085ce256c7c598f6710584ab25d', 'Aktif', '27-10-2020', '17102020163046example-ktp-1.jpg', '17102020163046img-kyc-sample-2.png'),
 (2, 'Jasmin Putri', 'Jl. Melati 105 Kalitidu, Bojonegoro', '085125891250', 'jasmin', 'jasmin@gmail.com', 'c677901e8baa1f96025f0938a4cd0423', 'Sedang Diverifikasi (Menunggu Pembayaran Simpanan Pokok)', 'Belum Menjadi Anggota', 'example-ktp-1.jpg', 'example-with-ktp-1.jpg'),
 (3, 'Jito Hartati', 'Jl. Grogol 21 Bojonegoro', '0812385794223', 'jito', 'jito@gmail.com', '28d8024451d991a899aaf3a4875c8cfa', 'Dinonaktifkan', 'Belum Menjadi Anggota', '17102020132043example-ktp-1.jpg', '17102020132043img-kyc-sample-2.png'),
-(4, 'Siti Aisyah', 'Jl. Mawar 15 Malang', '081254219520', 'siti', 'siti@gmail.com', '8230f9cb6dd627a92fdd0c6f282affd2', 'Sedang Diverifikasi', 'Belum Menjadi Anggota', '28102020035911example-ktp-1.jpg', '28102020035911example-with-ktp-1.jpg'),
+(4, 'Siti Aisyah', 'Jl. Mawar 15 Malang', '081254219520', 'siti', 'siti@gmail.com', '8230f9cb6dd627a92fdd0c6f282affd2', 'Sedang Diverifikasi', 'Belum Menjadi Anggota', '01112020165639example-ktp-1.jpg', '01112020165639example-with-ktp-1.jpg'),
 (5, 'Andi Muhibin', 'Jl. Anggrek 12 Kapas, Bojonegoro', '081289742951', 'andi', 'andi@gmail.com', '03339dc0dff443f15c254baccde9bece', 'Tidak Aktif', 'Belum Menjadi Anggota', 'Belum Diupload', 'Belum Diupload'),
 (6, 'Ahmad Kholil', 'Jl. Bambu Hijau 65 Bojonegoro', '085212345681', 'kholil', 'kholil@gmail.com', '9b5c59c7139392bdd6134e0d063df564', 'Sedang Diverifikasi', 'Belum Menjadi Anggota', '29102020163957ktp_examplektp-00.jpg', '29102020163957imgkyc_sample-kyc21.png');
 
@@ -155,8 +156,6 @@ INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `alamat_pegawai`, `no_telp_
 CREATE TABLE `penarikan_simpanan` (
   `id_penarikan` int(11) NOT NULL,
   `id_simpanan` int(11) NOT NULL,
-  `verifikasi_pegawai` varchar(80) NOT NULL DEFAULT 'Belum Diverifikasi',
-  `verifikasi_admin` varchar(80) NOT NULL DEFAULT 'Belum Diverifikasi',
   `status_penarikan` varchar(20) NOT NULL,
   `nominal_total_penarikan` int(25) NOT NULL,
   `tanggal_permintaan_penarikan` varchar(50) NOT NULL
@@ -278,8 +277,7 @@ INSERT INTO `simpanan_detail` (`id_simpanan_detail`, `id_simpanan`, `id_pegawai`
 -- Indexes for table `aksi`
 --
 ALTER TABLE `aksi`
-  ADD PRIMARY KEY (`id_aksi`),
-  ADD KEY `id_pegawai` (`id_pegawai`);
+  ADD PRIMARY KEY (`id_aksi`);
 
 --
 -- Indexes for table `anggota`
@@ -360,7 +358,7 @@ ALTER TABLE `simpanan_detail`
 -- AUTO_INCREMENT for table `aksi`
 --
 ALTER TABLE `aksi`
-  MODIFY `id_aksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_aksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `anggota`
@@ -425,12 +423,6 @@ ALTER TABLE `simpanan_detail`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `aksi`
---
-ALTER TABLE `aksi`
-  ADD CONSTRAINT `aksi_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `angsuran_detail`
