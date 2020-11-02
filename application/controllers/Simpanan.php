@@ -107,4 +107,14 @@ class Simpanan extends CI_Controller
         $this->load->view('simpanan/laporan');
         $this->load->view('layout/pegawai/footer');
     }
+
+    public function laporan_pdf($id)
+    {
+        $this->load->library('pdf');
+        $data['simpanan_detail'] = $this->simpanan_model->cetakPdf($id);
+        $this->load->library('pdf');
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "laporan-transaksi.pdf";
+        $this->pdf->load_view('simpanan/laporan_cetak', $data);
+    }
 }
