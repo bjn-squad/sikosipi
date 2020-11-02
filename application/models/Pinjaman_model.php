@@ -133,4 +133,13 @@ class Pinjaman_model extends CI_Model
         ];
         $this->db->insert('angsuran_detail', $data);
     }
+    public function ubahPinjaman()
+    {
+        $data = [
+            "status_pinjaman" => $this->input->post('status_pinjaman', true),
+            "tanggal_pelunasan" => date('d-m-Y')
+        ];
+        $this->db->where('id_pinjaman', $this->input->post('id_pinjaman'));
+        $this->db->update('pinjaman', $data);
+    }
 }

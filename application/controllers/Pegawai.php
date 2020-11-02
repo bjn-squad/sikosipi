@@ -117,6 +117,30 @@ class Pegawai extends CI_Controller
             redirect('pegawai/daftarPinjaman');
         }
     }
+    public function ubahPinjaman($id)
+    {
+        $data['title'] = 'Verifikasi Pengajuan Pinjaman';
+        $data['pinjaman'] = $this->pinjaman_model->getPinjamanById($id);
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('pegawai/ubahPinjaman');
+        $this->load->view('layout/pegawai/footer');
+    }
+    public function prosesUbahPinjaman()
+    {
+        $this->form_validation->set_rules('status_pinjaman', 'status_pinjaman', 'trim|required');
+        if ($this->form_validation->run() == FALSE) {
+            redirect('pegawai/ubahPinjaman');
+        } else {
+            $data = $this->pinjaman_model->ubahPinjaman();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Sukses Ubah Status Pinjaman
+          </div>');
+            redirect('pegawai/daftarPinjaman');
+        }
+    }
+
     public function tambahAngsuran($id)
     {
         $data['title'] = 'Tambah Pinjaman';

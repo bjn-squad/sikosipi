@@ -33,7 +33,13 @@
                                                 <a href="<?= base_url() ?>pegawai/verifikasiPengajuanPinjaman/<?= $item['id_pengajuan'] ?>" class="badge badge-success"><i class="fa fa-check"></i> Verifikasi Pengajuan Pinjaman</a>
                                             <?php
                                             }
+                                            if ($item['status_pengajuan'] == "Diterima") {
                                             ?>
+                                                <a href="<?= base_url() ?>pegawai/tambahPinjaman/<?= $item['id_pengajuan'] ?>" class="badge badge-success"><i class="fa fa-plus"></i> Tambahkan ke daftar pinjaman</a>
+                                            <?php
+                                            }
+                                            ?>
+
                                             <a href="<?= base_url() ?>pegawai/detailPengajuanPinjaman/<?= $item['id_pengajuan'] ?>" class="badge badge-info"><i class="fa fa-eye"></i> Detail</a>
                                         </td>
                                     </tr>
