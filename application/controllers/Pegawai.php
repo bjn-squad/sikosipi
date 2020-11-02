@@ -162,14 +162,14 @@ class Pegawai extends CI_Controller
         }
     }
 
-    public function daftarAksi()
+    public function daftarAksiPenonaktifanAnggota()
     {
         $data['title'] = 'Daftar Aksi';
-        $data['aksi'] = $this->aksi_model->getAllAksi();
+        $data['aksi'] = $this->aksi_model->getAllAksiPenonaktifan();
         $this->load->view('layout/pegawai/header', $data);
         $this->load->view('layout/pegawai/sidebar');
         $this->load->view('layout/pegawai/top');
-        $this->load->view('pegawai/daftaraksi');
+        $this->load->view('pegawai/daftaraksipenonaktifananggota');
         $this->load->view('layout/pegawai/footer');
     }
 
@@ -217,7 +217,7 @@ class Pegawai extends CI_Controller
             } else {
                 $data = $this->pegawai_model->nonaktifkanAnggota();
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-           Anggota berhasil dinonaktifkan
+           Permintaan penonaktifan anggota telah sukses ditambahkan, silahkan menunggu review admin.
           </div>');
                 redirect('pegawai/daftarAnggota');
             }
@@ -245,7 +245,7 @@ class Pegawai extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
            Aksi yang telah direview tidak dapat diubah kembali.
           </div>');
-            redirect('pegawai/daftarAksi');
+            redirect('pegawai/daftarAksiPenonaktifanAnggota');
         }
     }
 
@@ -263,12 +263,12 @@ class Pegawai extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Request Penonaktifan Diterima
             </div>');
-            redirect('pegawai/daftarAksi');
+            redirect('pegawai/daftarAksiPenonaktifanAnggota');
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
            Aksi yang telah direview tidak dapat diubah kembali.
           </div>');
-            redirect('pegawai/daftarAksi');
+            redirect('pegawai/daftarAksiPenonaktifanAnggota');
         }
     }
 
@@ -286,12 +286,12 @@ class Pegawai extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
            Request Penonaktifan Ditolak
           </div>');
-            redirect('pegawai/daftarAksi');
+            redirect('pegawai/daftarAksiPenonaktifanAnggota');
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
        Aksi yang telah direview tidak dapat diubah kembali.
       </div>');
-            redirect('pegawai/daftarAksi');
+            redirect('pegawai/daftarAksiPenonaktifanAnggota');
         }
     }
 

@@ -14,10 +14,9 @@
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered table-responsive-lg">
                             <thead>
                                 <tr>
-                                    <th>Nomer Transaksi</th>
-                                    <th>ID Data Kategori</th>
-                                    <th>Kategori Aksi</th>
+                                    <th>Tanggal Aksi</th>
                                     <th>Pegawai Yang Request</th>
+                                    <th>Anggota Yang Ingin Dinonaktifkan</th>
                                     <th>Alasan Penonaktifan</th>
                                     <th>Nama Admin Verifikasi</th>
                                     <th>Status Aksi</th>
@@ -27,17 +26,13 @@
                             </thead>
                             <tbody>
                                 <?php
-                                $no = 1;
                                 foreach ($aksi as $item) { ?>
                                     <tr>
-                                        <td><?= $no ?></td>
-                                        <td><?= $item['id_data_kategori'] ?></td>
-                                        <td><?= $item['kategori_aksi'] ?></td>
+                                        <td><?= $item['tanggal_aksi'] ?></td>
                                         <td><?= $item['nama_pegawai'] ?></td>
-                                        <td>
-                                            <span style="white-space: pre-line;">
-                                                <?= $item['pesan_aksi'] ?>
-                                            </span>
+                                        <td><?= $item['nama_anggota'] ?></td>
+                                        <td style="white-space: pre-line;">
+                                            <?= $item['pesan_aksi'] ?>
                                         </td>
                                         <td><?= $item['nama_admin'] ?></td>
                                         <td><?= $item['status_aksi'] ?></td>
@@ -60,7 +55,6 @@
                                         </td>
                                     </tr>
                                 <?php
-                                    $no++;
                                 } ?>
                             </tbody>
                         </table>
