@@ -77,6 +77,7 @@ $config['url_suffix'] = '';
 |
 */
 $config['language']    = 'english';
+$config['composer_autoload'] = "vendor/autoload.php";
 
 /*
 |--------------------------------------------------------------------------

@@ -9,6 +9,7 @@ class Simpanan extends CI_Controller
         if ($this->session->userdata('level') != "pegawai") {
             redirect('auth/loginPegawai', 'refresh');
         }
+        $this->load->library('Pdf');
         $this->load->model('simpanan_model');
         $this->load->model('anggota_model');
     }
@@ -106,5 +107,13 @@ class Simpanan extends CI_Controller
         $this->load->view('layout/pegawai/top');
         $this->load->view('simpanan/laporan');
         $this->load->view('layout/pegawai/footer');
+    }
+
+    public function laporan_pdf($id)
+    {
+        $data['simpanan_detail'] = $this->simpanan_model->cetakPdf($id);
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "nota-setoran-" . date('d-m-y') . ".pdf";
+        $this->pdf->load_view('simpanan/laporan_cetak', $data);
     }
 }

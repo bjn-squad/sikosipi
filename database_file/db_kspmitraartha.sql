@@ -1,5 +1,5 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
@@ -8,6 +8,7 @@
 -- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aksi`
+-- Struktur dari tabel `aksi`
 --
 
 CREATE TABLE `aksi` (
@@ -40,7 +41,7 @@ CREATE TABLE `aksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `aksi`
+-- Dumping data untuk tabel `aksi`
 --
 
 INSERT INTO `aksi` (`id_aksi`, `id_data_kategori`, `kategori_aksi`, `tanggal_aksi`, `pesan_aksi`, `nama_pegawai`, `nama_admin`, `status_aksi`, `status_verifikasi`) VALUES
@@ -50,7 +51,7 @@ INSERT INTO `aksi` (`id_aksi`, `id_data_kategori`, `kategori_aksi`, `tanggal_aks
 -- --------------------------------------------------------
 
 --
--- Table structure for table `anggota`
+-- Struktur dari tabel `anggota`
 --
 
 CREATE TABLE `anggota` (
@@ -68,7 +69,7 @@ CREATE TABLE `anggota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `anggota`
+-- Dumping data untuk tabel `anggota`
 --
 
 INSERT INTO `anggota` (`id_anggota`, `nama_anggota`, `alamat_anggota`, `no_telp_anggota`, `username`, `email`, `password`, `status_anggota`, `tanggal_keanggotaan`, `foto_ktp_anggota`, `foto_selfie_ktp_anggota`) VALUES
@@ -82,7 +83,7 @@ INSERT INTO `anggota` (`id_anggota`, `nama_anggota`, `alamat_anggota`, `no_telp_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `angsuran_detail`
+-- Struktur dari tabel `angsuran_detail`
 --
 
 CREATE TABLE `angsuran_detail` (
@@ -96,7 +97,7 @@ CREATE TABLE `angsuran_detail` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lupa_password`
+-- Struktur dari tabel `lupa_password`
 --
 
 CREATE TABLE `lupa_password` (
@@ -109,7 +110,7 @@ CREATE TABLE `lupa_password` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `lupa_password`
+-- Dumping data untuk tabel `lupa_password`
 --
 
 INSERT INTO `lupa_password` (`id_lupa_password`, `id_anggota`, `pertanyaankeamanan1`, `pertanyaankeamanan2`, `jawabankeamanan1`, `jawabankeamanan2`) VALUES
@@ -123,7 +124,7 @@ INSERT INTO `lupa_password` (`id_lupa_password`, `id_anggota`, `pertanyaankeaman
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pegawai`
+-- Struktur dari tabel `pegawai`
 --
 
 CREATE TABLE `pegawai` (
@@ -134,11 +135,11 @@ CREATE TABLE `pegawai` (
   `username` varchar(60) NOT NULL,
   `email` varchar(200) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `kategori` int(1) NOT NULL DEFAULT 2
+  `kategori` int(1) NOT NULL DEFAULT '2'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `pegawai`
+-- Dumping data untuk tabel `pegawai`
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `alamat_pegawai`, `no_telp_pegawai`, `username`, `email`, `password`, `kategori`) VALUES
@@ -150,7 +151,7 @@ INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `alamat_pegawai`, `no_telp_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penarikan_simpanan`
+-- Struktur dari tabel `penarikan_simpanan`
 --
 
 CREATE TABLE `penarikan_simpanan` (
@@ -164,7 +165,7 @@ CREATE TABLE `penarikan_simpanan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengajuan_pinjaman`
+-- Struktur dari tabel `pengajuan_pinjaman`
 --
 
 CREATE TABLE `pengajuan_pinjaman` (
@@ -190,7 +191,7 @@ INSERT INTO `pengajuan_pinjaman` (`id_pengajuan`, `id_anggota`, `total_pengajuan
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengumuman`
+-- Struktur dari tabel `pengumuman`
 --
 
 CREATE TABLE `pengumuman` (
@@ -213,7 +214,7 @@ INSERT INTO `pengumuman` (`id_pengumuman`, `id_pegawai`, `judul`, `header_gambar
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pinjaman`
+-- Struktur dari tabel `pinjaman`
 --
 
 CREATE TABLE `pinjaman` (
@@ -230,7 +231,7 @@ CREATE TABLE `pinjaman` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `simpanan`
+-- Struktur dari tabel `simpanan`
 --
 
 CREATE TABLE `simpanan` (
@@ -242,7 +243,7 @@ CREATE TABLE `simpanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `simpanan`
+-- Dumping data untuk tabel `simpanan`
 --
 
 INSERT INTO `simpanan` (`id_simpanan`, `id_anggota`, `jumlah_simpanan_pokok`, `jumlah_simpanan_wajib`, `status_simpanan`) VALUES
@@ -251,7 +252,7 @@ INSERT INTO `simpanan` (`id_simpanan`, `id_anggota`, `jumlah_simpanan_pokok`, `j
 -- --------------------------------------------------------
 
 --
--- Table structure for table `simpanan_detail`
+-- Struktur dari tabel `simpanan_detail`
 --
 
 CREATE TABLE `simpanan_detail` (
@@ -263,7 +264,7 @@ CREATE TABLE `simpanan_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `simpanan_detail`
+-- Dumping data untuk tabel `simpanan_detail`
 --
 
 INSERT INTO `simpanan_detail` (`id_simpanan_detail`, `id_simpanan`, `id_pegawai`, `jumlah_setor_tunai`, `tanggal_setor_tunai`) VALUES
@@ -274,19 +275,19 @@ INSERT INTO `simpanan_detail` (`id_simpanan_detail`, `id_simpanan`, `id_pegawai`
 --
 
 --
--- Indexes for table `aksi`
+-- Indeks untuk tabel `aksi`
 --
 ALTER TABLE `aksi`
   ADD PRIMARY KEY (`id_aksi`);
 
 --
--- Indexes for table `anggota`
+-- Indeks untuk tabel `anggota`
 --
 ALTER TABLE `anggota`
   ADD PRIMARY KEY (`id_anggota`);
 
 --
--- Indexes for table `angsuran_detail`
+-- Indeks untuk tabel `angsuran_detail`
 --
 ALTER TABLE `angsuran_detail`
   ADD PRIMARY KEY (`id_angsuran_detail`),
@@ -294,41 +295,41 @@ ALTER TABLE `angsuran_detail`
   ADD KEY `id_pegawai` (`id_pegawai`);
 
 --
--- Indexes for table `lupa_password`
+-- Indeks untuk tabel `lupa_password`
 --
 ALTER TABLE `lupa_password`
   ADD PRIMARY KEY (`id_lupa_password`),
   ADD KEY `id_anggota` (`id_anggota`);
 
 --
--- Indexes for table `pegawai`
+-- Indeks untuk tabel `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`id_pegawai`);
 
 --
--- Indexes for table `penarikan_simpanan`
+-- Indeks untuk tabel `penarikan_simpanan`
 --
 ALTER TABLE `penarikan_simpanan`
   ADD PRIMARY KEY (`id_penarikan`),
   ADD KEY `id_simpanan` (`id_simpanan`);
 
 --
--- Indexes for table `pengajuan_pinjaman`
+-- Indeks untuk tabel `pengajuan_pinjaman`
 --
 ALTER TABLE `pengajuan_pinjaman`
   ADD PRIMARY KEY (`id_pengajuan`),
   ADD KEY `id_anggota` (`id_anggota`);
 
 --
--- Indexes for table `pengumuman`
+-- Indeks untuk tabel `pengumuman`
 --
 ALTER TABLE `pengumuman`
   ADD PRIMARY KEY (`id_pengumuman`),
   ADD KEY `id_pegawai` (`id_pegawai`);
 
 --
--- Indexes for table `pinjaman`
+-- Indeks untuk tabel `pinjaman`
 --
 ALTER TABLE `pinjaman`
   ADD PRIMARY KEY (`id_pinjaman`),
@@ -336,14 +337,14 @@ ALTER TABLE `pinjaman`
   ADD KEY `id_pengajuan` (`id_pengajuan`);
 
 --
--- Indexes for table `simpanan`
+-- Indeks untuk tabel `simpanan`
 --
 ALTER TABLE `simpanan`
   ADD PRIMARY KEY (`id_simpanan`),
   ADD KEY `id_anggota` (`id_anggota`);
 
 --
--- Indexes for table `simpanan_detail`
+-- Indeks untuk tabel `simpanan_detail`
 --
 ALTER TABLE `simpanan_detail`
   ADD PRIMARY KEY (`id_simpanan_detail`),
@@ -351,77 +352,77 @@ ALTER TABLE `simpanan_detail`
   ADD KEY `id_pegawai` (`id_pegawai`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `aksi`
+-- AUTO_INCREMENT untuk tabel `aksi`
 --
 ALTER TABLE `aksi`
   MODIFY `id_aksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `anggota`
+-- AUTO_INCREMENT untuk tabel `anggota`
 --
 ALTER TABLE `anggota`
   MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `angsuran_detail`
+-- AUTO_INCREMENT untuk tabel `angsuran_detail`
 --
 ALTER TABLE `angsuran_detail`
   MODIFY `id_angsuran_detail` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `lupa_password`
+-- AUTO_INCREMENT untuk tabel `lupa_password`
 --
 ALTER TABLE `lupa_password`
   MODIFY `id_lupa_password` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `pegawai`
+-- AUTO_INCREMENT untuk tabel `pegawai`
 --
 ALTER TABLE `pegawai`
   MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `penarikan_simpanan`
+-- AUTO_INCREMENT untuk tabel `penarikan_simpanan`
 --
 ALTER TABLE `penarikan_simpanan`
   MODIFY `id_penarikan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `pengajuan_pinjaman`
+-- AUTO_INCREMENT untuk tabel `pengajuan_pinjaman`
 --
 ALTER TABLE `pengajuan_pinjaman`
   MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `pengumuman`
+-- AUTO_INCREMENT untuk tabel `pengumuman`
 --
 ALTER TABLE `pengumuman`
   MODIFY `id_pengumuman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `pinjaman`
+-- AUTO_INCREMENT untuk tabel `pinjaman`
 --
 ALTER TABLE `pinjaman`
   MODIFY `id_pinjaman` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `simpanan`
+-- AUTO_INCREMENT untuk tabel `simpanan`
 --
 ALTER TABLE `simpanan`
   MODIFY `id_simpanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `simpanan_detail`
+-- AUTO_INCREMENT untuk tabel `simpanan_detail`
 --
 ALTER TABLE `simpanan_detail`
   MODIFY `id_simpanan_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
@@ -432,44 +433,44 @@ ALTER TABLE `angsuran_detail`
   ADD CONSTRAINT `angsuran_detail_ibfk_2` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `lupa_password`
+-- Ketidakleluasaan untuk tabel `lupa_password`
 --
 ALTER TABLE `lupa_password`
   ADD CONSTRAINT `lupa_password_ibfk_1` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id_anggota`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `penarikan_simpanan`
+-- Ketidakleluasaan untuk tabel `penarikan_simpanan`
 --
 ALTER TABLE `penarikan_simpanan`
   ADD CONSTRAINT `penarikan_simpanan_ibfk_2` FOREIGN KEY (`id_simpanan`) REFERENCES `simpanan` (`id_simpanan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `pengajuan_pinjaman`
+-- Ketidakleluasaan untuk tabel `pengajuan_pinjaman`
 --
 ALTER TABLE `pengajuan_pinjaman`
   ADD CONSTRAINT `pengajuan_pinjaman_ibfk_1` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id_anggota`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `pengumuman`
+-- Ketidakleluasaan untuk tabel `pengumuman`
 --
 ALTER TABLE `pengumuman`
   ADD CONSTRAINT `pengumuman_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `pinjaman`
+-- Ketidakleluasaan untuk tabel `pinjaman`
 --
 ALTER TABLE `pinjaman`
   ADD CONSTRAINT `pinjaman_ibfk_1` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id_anggota`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pinjaman_ibfk_2` FOREIGN KEY (`id_pengajuan`) REFERENCES `pengajuan_pinjaman` (`id_pengajuan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `simpanan`
+-- Ketidakleluasaan untuk tabel `simpanan`
 --
 ALTER TABLE `simpanan`
   ADD CONSTRAINT `simpanan_ibfk_1` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id_anggota`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `simpanan_detail`
+-- Ketidakleluasaan untuk tabel `simpanan_detail`
 --
 ALTER TABLE `simpanan_detail`
   ADD CONSTRAINT `simpanan_detail_ibfk_1` FOREIGN KEY (`id_simpanan`) REFERENCES `simpanan` (`id_simpanan`) ON DELETE CASCADE ON UPDATE CASCADE,

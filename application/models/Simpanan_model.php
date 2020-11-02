@@ -34,7 +34,13 @@ class Simpanan_model extends CI_Model
 
     public function getSetoranById($id)
     {
-        $query = $this->db->query("SELECT * FROM simpanan_detail sd JOIN simpanan s ON sd.id_simpanan = s.id_simpanan WHERE sd.id_simpanan=$id");
+        $query = $this->db->query("SELECT * FROM simpanan_detail sd JOIN simpanan s ON sd.id_simpanan = s.id_simpanan JOIN anggota a ON s.id_anggota = a.id_anggota JOIN pegawai p on sd.id_pegawai = p.id_pegawai WHERE sd.id_simpanan=$id");
+        return $query->result_array();
+    }
+
+    public function getDetailSetoranById($id)
+    {
+        $query = $this->db->query("SELECT * FROM simpanan_detail sd JOIN simpanan s ON sd.id_simpanan = s.id_simpanan JOIN anggota a ON s.id_anggota = a.id_anggota JOIN pegawai p on sd.id_pegawai = p.id_pegawai WHERE sd.id_simpanan_detail=$id");
         return $query->result_array();
     }
 
@@ -61,5 +67,11 @@ class Simpanan_model extends CI_Model
         ];
         $this->db->where('id_simpanan', $id_simpanan);
         $this->db->update('simpanan', $data);
+    }
+
+    public function cetakPdf($id)
+    {
+        $query = $this->db->query("SELECT * FROM simpanan_detail sd JOIN simpanan s ON sd.id_simpanan = s.id_simpanan JOIN anggota a ON s.id_anggota = a.id_anggota JOIN pegawai p on sd.id_pegawai = p.id_pegawai WHERE sd.id_simpanan_detail=$id");
+        return $query->result_array();
     }
 }
