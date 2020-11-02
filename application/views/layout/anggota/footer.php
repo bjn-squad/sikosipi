@@ -20,6 +20,7 @@
 <script src="<?= base_url() ?>assets/dashboard/assets/js/init-scripts/data-table/datatables-init.js"></script>
 
 
+
 </body>
 
 </html>
