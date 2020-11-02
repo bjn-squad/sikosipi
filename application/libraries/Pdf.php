@@ -1,6 +1,7 @@
 <?php defined('BASEPATH') or exit('No direct script allowed');
+require_once 'vendor/autoload.php';
 
-use Dompdf\Dompdf;
+use Dompdf\Dompdf as Dompdf;
 
 class Pdf extends Dompdf
 {

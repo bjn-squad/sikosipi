@@ -1,60 +1,56 @@
-<!DOCTYPE html>
 <html>
 
 <head>
     <title>Nota Transaksi</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
 </head>
 
 <body>
-    <img src="<?= base_url() ?>assets/home/img/kop.jpg" style="position: absolute; width: 60px; height: auto;">
-    <table style="width: 100%;">
-        <tr>
-            <td align="center">
-                <span style="line-height: 1.6; font-weight: bold;">
-                    KOPERASI SIMPAN PINJAM MITRA ARTHA
-                    <br> Jl. Gajah Mada No.114, Sukorejo Lor, Sukorejo
-                    <br>BOJONEGORO
-                </span>
-            </td>
-        </tr>
-    </table>
-    <hr align=”center” size=“2”>
-
-    <table class="table table-bordered">
-    </table>
+    <center>
+        <span style="line-height: 1.6; font-weight: bold;">
+            KOPERASI SIMPAN PINJAM MITRA ARTHA
+            <br> Jl. Gajah Mada No.114, Sukorejo Lor, Sukorejo
+            <br>BOJONEGORO
+        </span>
+    </center>
+    <hr>
+    <p align="center">
+        NOTA SETORAN SIMPANAN
+    </p>
     <table>
-        <div class="row">
-            <div class="col-lg-12">
-                <p align="center">
-                    NOTA SETORAN SIMPANAN
-                </p>
-                <div class="card">
-                    <?php
-                    foreach ($simpanan_detail as $item) {
-                    ?>
-                        <div class="card-body card-block">
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Nama Penyetor</label></div>
-                                <div class="col-12 col-md-9"><label><?= $item['nama_anggota'] ?></label></div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="file-input" class=" form-control-label">Nama Teller</label></div>
-                                <div class="col-12 col-md-9"><label><?= $item['nama_pegawai'] ?></label></div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="file-input" class=" form-control-label">Jumlah Setor Tunai</label></div>
-                                <div class="col-12 col-md-9"><label><?= $item['jumlah_setor_tunai'] ?></label></div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="file-input" class=" form-control-label">Tanggal Setor</label></div>
-                                <div class="col-12 col-md-9"><label><?= $item['tanggal_setor_tunai'] ?></label></div>
-                            </div>
-
-                        <?php } ?>
-                        </div>
-                </div>
-            </div>
-        </div>
+        <tr>
+            <th>Nama Penyetor</th>
+            <th>Nama Teller</th>
+            <th>Jumlah Setor Tunai</th>
+            <th>Tanggal Setor Tunai</th>
+        </tr>
+        <tr>
+            <?php
+            foreach ($simpanan_detail as $item) {
+            ?>
+                <td><?= $item['nama_anggota'] ?></td>
+                <td><?= $item['nama_pegawai'] ?></td>
+                <td>Rp. <?= number_format($item['jumlah_setor_tunai'], 0, ',', '.') ?></td>
+                <td><?= $item['tanggal_setor_tunai'] ?></td>
+            <?php } ?>
+        </tr>
     </table>
 </body>
 
