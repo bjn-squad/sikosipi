@@ -89,12 +89,27 @@ class Pinjaman_model extends CI_Model
     }
     public function getPinjamanById($id)
     {
-        $query = $this->db->query("SELECT * FROM pinjaman WHERE id_anggota = $id");
+        $query = $this->db->query("SELECT * FROM pinjaman as pin 
+        JOIN pengajuan_pinjaman as pen ON pin.id_pengajuan = pen.id_pengajuan
+        JOIN anggota as a ON pen.id_anggota = a.id_anggota
+        WHERE pen.id_anggota=$id");
         return $query->result_array();
     }
     public function getAllAngsuran()
     {
-        $query = $this->db->query("SELECT * FROM angsuran_detail");
+        $query = $this->db->query("SELECT * FROM angsuran_detail as ad 
+                                    JOIN pinjaman as pin ON ad.id_pinjaman = pin.id_pinjaman
+                                    JOIN pegawai as peg ON ad.id_pegawai = peg.id_pegawai
+                                    JOIN anggota as a ON pin.id_anggota = a.id_anggota");
+        return $query->result_array();
+    }
+    public function getAngsuranById($id)
+    {
+        $query = $this->db->query("SELECT * FROM angsuran_detail as ad 
+                                    JOIN pinjaman as pin ON ad.id_pinjaman = pin.id_pinjaman
+                                    JOIN pegawai as peg ON ad.id_pegawai = peg.id_pegawai
+                                    JOIN anggota as a ON pin.id_anggota = a.id_anggota
+                                    WHERE ad.id_pinjaman = $id");
         return $query->result_array();
     }
     public function insertPinjaman()
@@ -107,5 +122,15 @@ class Pinjaman_model extends CI_Model
             'angsuran_bulanan' => $this->input->post('angsuran_bulanan', true)
         ];
         $this->db->insert('pinjaman', $data);
+    }
+    public function insertAngsuran()
+    {
+        $data = [
+            "id_pinjaman" => $this->input->post('id_pinjaman', true),
+            "id_pegawai" => $this->session->userdata('id_pegawai'),
+            'tanggal_angsuran' => date("d-m-Y"),
+            'angsuran_pembayaran' => $this->input->post('angsuran_pembayaran', true)
+        ];
+        $this->db->insert('angsuran_detail', $data);
     }
 }
