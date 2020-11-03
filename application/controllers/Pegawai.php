@@ -83,11 +83,96 @@ class Pegawai extends CI_Controller
     public function daftarPinjaman()
     {
         $data['title'] = 'Daftar Pinjaman';
-        $data['pinjaman'] = $this->pinjaman_model->getAllAnggota();
+        $data['pinjaman'] = $this->pinjaman_model->getAllPinjaman();
         $this->load->view('layout/pegawai/header', $data);
         $this->load->view('layout/pegawai/sidebar');
         $this->load->view('layout/pegawai/top');
         $this->load->view('pegawai/daftarPinjaman');
+        $this->load->view('layout/pegawai/footer');
+    }
+    public function tambahPinjaman($id)
+    {
+        $data['title'] = 'Tambah Pinjaman';
+        $data['pinjaman'] = $this->pinjaman_model->getAllPengajuanById($id);
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('pegawai/accPinjaman');
+        $this->load->view('layout/pegawai/footer');
+    }
+    public function prosesTambahPinjaman()
+    {
+        $this->form_validation->set_rules('id_pengajuan', 'id_pengajuan', 'trim|required');
+        $this->form_validation->set_rules('id_anggota', 'id_anggota', 'trim|required');
+        $this->form_validation->set_rules('tanggal_meminjam', 'tanggal_meminjam', 'required');
+        $this->form_validation->set_rules('total_pinjaman', 'total_pinjaman', 'required');
+        $this->form_validation->set_rules('angsuran_bulanan', 'angsuran_bulanan', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            redirect('pegawai/daftarPengajuanPinjaman');
+        } else {
+            $data = $this->pinjaman_model->insertPinjaman();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Sukses Tambah Pinjaman
+          </div>');
+            redirect('pegawai/daftarPinjaman');
+        }
+    }
+    public function ubahPinjaman($id)
+    {
+        $data['title'] = 'Verifikasi Pengajuan Pinjaman';
+        $data['pinjaman'] = $this->pinjaman_model->getPinjamanById($id);
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('pegawai/ubahPinjaman');
+        $this->load->view('layout/pegawai/footer');
+    }
+    public function prosesUbahPinjaman()
+    {
+        $this->form_validation->set_rules('status_pinjaman', 'status_pinjaman', 'trim|required');
+        if ($this->form_validation->run() == FALSE) {
+            redirect('pegawai/ubahPinjaman');
+        } else {
+            $data = $this->pinjaman_model->ubahPinjaman();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Sukses Ubah Status Pinjaman
+          </div>');
+            redirect('pegawai/daftarPinjaman');
+        }
+    }
+
+    public function tambahAngsuran($id)
+    {
+        $data['title'] = 'Tambah Pinjaman';
+        $data['pinjaman'] = $this->pinjaman_model->getPinjamanById($id);
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('pegawai/tambahAngsuranPinjaman');
+        $this->load->view('layout/pegawai/footer');
+    }
+    public function prosesTambahAngsuran()
+    {
+        $this->form_validation->set_rules('id_pinjaman', 'id_pinjaman', 'trim|required');
+        $this->form_validation->set_rules('angsuran_pembayaran', 'angsuran_pembayaran', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            redirect('pegawai/daftarPinjaman');
+        } else {
+            $data = $this->pinjaman_model->insertAngsuran();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Sukses Tambah Angsuran Pinjaman
+          </div>');
+            redirect('pegawai/daftarPinjaman');
+        }
+    }
+    public function riwayatAngsuran($id)
+    {
+        $data['title'] = 'Data Setoran';
+        $data['pinjaman'] = $this->pinjaman_model->getAngsuranById($id);
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('pegawai/riwayatAngsuran');
         $this->load->view('layout/pegawai/footer');
     }
     public function verifikasiPengajuanPinjaman($id)
