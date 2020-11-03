@@ -48,7 +48,7 @@ class Simpanan_model extends CI_Model
     {
         $id_simpanan = $this->input->post('id_simpanan');
         $jumlah_setor_tunai = $this->input->post('jumlah_setor_tunai');
-        $date = date('d-m-Y');
+        $date = date('Y-m-d');
         $data = [
             'id_simpanan' => $id_simpanan,
             'id_pegawai' => $this->session->userdata('id_pegawai'),
