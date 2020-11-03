@@ -7,6 +7,10 @@
                         <strong class="card-title">Daftar Pengajuan Pinjaman</strong>
                     </div>
                     <div class="card-body">
+                        <?php
+                        if ($this->session->flashdata('message')) {
+                            echo $this->session->flashdata('message');
+                        } ?>
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered table-responsive-lg">
                             <thead>
                                 <tr>
@@ -35,16 +39,14 @@
                                                 <a href="<?= base_url() ?>pegawai/verifikasiPengajuanPinjaman/<?= $item['id_pengajuan'] ?>" class="badge badge-success"><i class="fa fa-check"></i> Verifikasi Pengajuan Pinjaman</a>
                                             <?php
                                             }
-                                            if ($item['status_pengajuan'] == "Diterima") {
+                                            if ($item['status_pengajuan'] == "Diterima" && $item['pesan'] != "Pinjaman anda telah terdaftar") {
                                             ?>
                                                 <a href="<?= base_url() ?>pegawai/tambahPinjaman/<?= $item['id_pengajuan'] ?>" class="badge badge-success"><i class="fa fa-plus"></i> Tambahkan ke daftar pinjaman</a>
                                             <?php
                                             }
-
-                                            // TODO Lanjut Verif pengajuan
                                             if ($item['verifikasi_admin'] == "Sedang Diverifikasi" && $item['status_pengajuan'] == "Sedang Diverifikasi" && $this->session->userdata('kategori') == "1" && $item['verifikasi_pegawai'] == "Verifikasi Diterima") {
                                             ?>
-                                                <a href="<?= base_url() ?>pegawai/verifikasiPengajuanPinjaman/<?= $item['id_pengajuan'] ?>" class="badge badge-success"><i class="fa fa-check"></i> Verifikasi Pengajuan</a>
+                                                <a href="<?= base_url() ?>pegawai/verifikasiPengajuanPinjamanByAdmin/<?= $item['id_pengajuan'] ?>" class="badge badge-success"><i class="fa fa-check"></i> Verifikasi Pengajuan</a>
                                             <?php
                                             }
                                             ?>

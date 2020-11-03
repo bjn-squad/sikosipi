@@ -32,7 +32,7 @@
                                                 <input class="form-control" type="number" value="<?= $item['angsuran_bulanan'] ?>" readonly name="angsuran_pembayaran" required>
                                             </div>
                                         </div>
-                                        <a href="<?= base_url() ?>pegawai/daftarPengajuanPinjaman" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
+                                        <a href="<?= base_url() ?>pegawai/daftarPinjaman" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
                                         <button type="submit" name="submit" onclick="return confirm('Apakah anda yakin ingin Menambahkan Angsuran Pinjaman Ini?')" class="btn btn-primary btn-sm">Submit</button>
                                 </form>
                         </div>

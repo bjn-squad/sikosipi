@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2020 at 02:32 AM
+-- Generation Time: Nov 03, 2020 at 06:37 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -45,7 +45,8 @@ CREATE TABLE `aksi` (
 
 INSERT INTO `aksi` (`id_aksi`, `id_data_kategori`, `kategori_aksi`, `tanggal_aksi`, `pesan_aksi`, `nama_pegawai`, `nama_admin`, `status_aksi`, `status_verifikasi`) VALUES
 (3, 3, 'Nonaktifkan Anggota', '25-10-2020', 'Jito pernah bermasalah di berbagai koperasi soal hutangnya yang tidak lunas. Berikut koperasi yang pernah jadi korban jito\r\n\r\n1. Koperasi Karep\r\n2. Koperasi Bahagia\r\n\r\nTolong blacklist saja untuk nama jito hartati', 'Muh Riza Zulfahnur', 'Ardan Anjung Kusuma', 'Penonaktifan Ditolak', 'Diterima Admin'),
-(4, 3, 'Nonaktifkan Anggota', '27-10-2020', 'Tolong review lagi pak, jito orangnya tidak bertanggung jawab dalam melunasi hutangnya. Biar lebih enak silahkan kontak CP dibawah ini, humas koperasi yang pernah menjadi korban jito : \r\n\r\n1. Koperasi Karep (0812496023954)\r\n2. Koperasi Bahagia (085823232445)\r\n\r\nDia sudah diblacklist di berbagai koperasi bojonegoro', 'Dina Lisuardi', 'Ardan Anjung Kusuma', 'Penonaktifan Diterima', 'Diterima Admin');
+(4, 3, 'Nonaktifkan Anggota', '27-10-2020', 'Tolong review lagi pak, jito orangnya tidak bertanggung jawab dalam melunasi hutangnya. Biar lebih enak silahkan kontak CP dibawah ini, humas koperasi yang pernah menjadi korban jito : \r\n\r\n1. Koperasi Karep (0812496023954)\r\n2. Koperasi Bahagia (085823232445)\r\n\r\nDia sudah diblacklist di berbagai koperasi bojonegoro', 'Dina Lisuardi', 'Ardan Anjung Kusuma', 'Penonaktifan Diterima', 'Diterima Admin'),
+(7, 6, 'Nonaktifkan Anggota', '03-11-2020', 'Ahmad Kholil terlibat dalam kasus penipuan pada koperasi ABC', 'Dina Lisuardi', 'Ardan Anjung Kusuma', 'Penonaktifan Ditolak', 'Diterima Admin');
 
 -- --------------------------------------------------------
 
@@ -90,9 +91,16 @@ CREATE TABLE `angsuran_detail` (
   `id_angsuran_detail` int(11) NOT NULL,
   `id_pinjaman` int(11) NOT NULL,
   `id_pegawai` int(11) NOT NULL,
-  `tanggal_angsuran` varchar(50) NOT NULL,
+  `tanggal_angsuran` date NOT NULL,
   `angsuran_pembayaran` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `angsuran_detail`
+--
+
+INSERT INTO `angsuran_detail` (`id_angsuran_detail`, `id_pinjaman`, `id_pegawai`, `tanggal_angsuran`, `angsuran_pembayaran`) VALUES
+(4, 3, 1, '2020-11-03', 525000);
 
 -- --------------------------------------------------------
 
@@ -144,7 +152,7 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `alamat_pegawai`, `no_telp_pegawai`, `username`, `email`, `password`, `kategori`) VALUES
-(1, 'Ardan Anjung Kusuma', 'Banjarejo', '085212342321', 'ardan', 'ardan@gmail.com', '8ef98f4c28f8d8577e14860e56fde5ab', 1),
+(1, 'Ardan Anjung Kusuma', 'Banjarejo', '085212342321', 'ardan', 'ardan@gmail.com', 'd2219d75098abd01493908d2f7f4d13d', 1),
 (2, 'Dina Lisuardi', 'Banjarejo', '081235896824', 'dina', 'dina@gmail.com', 'f093c0fed979519fbc43d772b76f5c86', 2),
 (3, 'Muh Riza Zulfahnur', 'Kalitidu', '085212396501', 'riza', 'riza@gmail.com', '41a44352a6f3cd3b45282acbce50927c', 2),
 (4, 'Yuni Kurnia Taramita', 'Sugihwaras', '085729801234', 'yuni', 'yuni@gmail.com', 'b7dfe9096cebb53152aa5ce78a1a61c9', 1);
@@ -160,7 +168,7 @@ CREATE TABLE `penarikan_simpanan` (
   `id_simpanan` int(11) NOT NULL,
   `status_penarikan` varchar(20) NOT NULL,
   `nominal_total_penarikan` int(25) NOT NULL,
-  `tanggal_permintaan_penarikan` varchar(50) NOT NULL
+  `tanggal_permintaan_penarikan` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -175,7 +183,7 @@ CREATE TABLE `pengajuan_pinjaman` (
   `total_pengajuan_pinjaman` int(20) NOT NULL,
   `alasan_pinjaman` text NOT NULL,
   `lampiran_pendukung` varchar(256) NOT NULL,
-  `tanggal_pengajuan` varchar(250) NOT NULL,
+  `tanggal_pengajuan` date NOT NULL,
   `status_pengajuan` varchar(50) NOT NULL DEFAULT 'Belum Terverifikasi',
   `verifikasi_pegawai` varchar(100) NOT NULL DEFAULT 'Belum Terverifikasi',
   `verifikasi_admin` varchar(100) NOT NULL DEFAULT 'Belum Terverifikasi',
@@ -187,8 +195,8 @@ CREATE TABLE `pengajuan_pinjaman` (
 --
 
 INSERT INTO `pengajuan_pinjaman` (`id_pengajuan`, `id_anggota`, `total_pengajuan_pinjaman`, `alasan_pinjaman`, `lampiran_pendukung`, `tanggal_pengajuan`, `status_pengajuan`, `verifikasi_pegawai`, `verifikasi_admin`, `pesan`) VALUES
-(1, 1, 5000000, 'Ingin membuka usaha sayur tapi gaada dana', '29102020162913Proposalusahasayurbudi.pdf', '29-10-20', 'Sedang Diverifikasi', 'Verifikasi Diterima', 'Sedang Diverifikasi', 'Verifikasi Diterima Pegawai, Menunggu Verifikasi Admin'),
-(2, 7, 3500000, 'Untuk membuka usaha dagang Cilok', '03112020011025Proposalusahasayurjohn.pdf', '03-11-20', 'Sedang Diverifikasi', 'Verifikasi Diterima', 'Sedang Diverifikasi', 'Verifikasi Diterima Pegawai, Menunggu Verifikasi Admin');
+(1, 1, 5000000, 'Ingin membuka usaha sayur tapi gaada dana', '29102020162913Proposalusahasayurbudi.pdf', '2020-10-29', 'Diterima', 'Verifikasi Diterima', 'Verifikasi Diterima', 'Pinjaman anda telah terdaftar'),
+(2, 7, 3500000, 'Untuk membuka usaha dagang Cilok', '03112020011025Proposalusahasayurjohn.pdf', '2020-11-03', 'Diterima', 'Verifikasi Diterima', 'Verifikasi Diterima', 'Pengajuan telah diverifikasi dan diterima, anda bisa mengambil uang pinjaman di koperasi');
 
 -- --------------------------------------------------------
 
@@ -211,7 +219,8 @@ CREATE TABLE `pengumuman` (
 
 INSERT INTO `pengumuman` (`id_pengumuman`, `id_pegawai`, `judul`, `header_gambar`, `isi`, `tanggal_post`) VALUES
 (7, 4, 'Aturan dan Kebijakan KSP Mitra Artha', '28102020160637aturan-kebijakan-1024x397.jpg', 'Berikut adalah aturan dan kebijakan KSP Mitra Artha : \r\n\r\n1. Pinjaman Maksimal Angsur 10 Bulan.\r\n2. Bunga Pinjaman Perbulan 5%, dibayar 10x tiap bulannya\r\n3. Simpanan Pokok nominal bebas sesuai kesepakatan di awal dan dibayarkan di awal transaksi Pinjaman.\r\n4. Simpanan Pokok dapat ditarik jika sudah keluar dari keanggotaan koperasi.\r\n5. Simpanan Pokok tidak mendapatkan bunga.\r\n6. Simpanan Wajib nominal bebas sesuai kesepakatan di awal.\r\n7. Simpanan Wajib, wajib dibayarkan 1 bulan sekali dengan nominal bebas minimal 5 ribu rupiah. \r\n8. Simpanan Wajib akan mendapatkan bunga sebanyak 2% per tahun.\r\n9. Simpanan Wajib dapat ditarik jika sudah keluar dari keanggotaan koperasi.\r\n10. Jika anggota sewaktu waktu keluar dalam jangka kurang dari 1 tahun maka tidak mendapat bunga simpanan wajib.\r\n', '28-10-2020'),
-(8, 1, 'Kategori Member KSP Mitra Artha', '28102020161609categori.jpg', 'Berikut merupakan penjelasan status member :\r\n\r\n1. Aktif  : Member aktif yang bisa mengakses semua fitur website member\r\n2. Tidak Aktif : Member yang belum verifikasi data diri, harus melakukan upload file KTP dan Foto Diri Bersama KTP.\r\n3. Dinonaktifkan : Member tidak valid (Ditolak menjadi anggota koperasi)\r\n4. Sedang Diverifikasi : Member sudah mengupload data diri dan tinggal menunggu verifikasi dari pegawai.\r\n5. Verifikasi Ulang : Member diminta untuk memverifikasi ulang data diri yang telah diajukan sebelumnya. (Kemungkinan file ada yang blur dll sehingga pegawai kesusahan untuk melakukan verifikasi)', '28-10-2020');
+(8, 1, 'Kategori Member KSP Mitra Artha', '28102020161609categori.jpg', 'Berikut merupakan penjelasan status member :\r\n\r\n1. Aktif  : Member aktif yang bisa mengakses semua fitur website member\r\n2. Tidak Aktif : Member yang belum verifikasi data diri, harus melakukan upload file KTP dan Foto Diri Bersama KTP.\r\n3. Dinonaktifkan : Member tidak valid (Ditolak menjadi anggota koperasi)\r\n4. Sedang Diverifikasi : Member sudah mengupload data diri dan tinggal menunggu verifikasi dari pegawai.\r\n5. Verifikasi Ulang : Member diminta untuk memverifikasi ulang data diri yang telah diajukan sebelumnya. (Kemungkinan file ada yang blur dll sehingga pegawai kesusahan untuk melakukan verifikasi)', '28-10-2020'),
+(12, 1, 'Tentang KSP Mitra Artha', '03112020051350Screenshot_2.jpg', 'Alamat : Jl. Gajah Mada No.114, Sukorejo Lor, Sukorejo, Kec. Bojonegoro, Kabupaten Bojonegoro, Jawa Timur 62115\r\nNo Telp : +62353882673\r\n<a href=\"https://goo.gl/maps/WBPu2YR3yiyHNuW87\">Klik disini untuk Google Maps</a>\r\n\r\nJam Operasional : \r\n<ul>\r\n<li>Senin (08.00–16.00)</li>\r\n<li>Selasa (08.00–16.00)</li>\r\n<li>Rabu (08.00–16.00)</li>\r\n<li>Kamis (08.00–16.00)</li>\r\n<li>Jumat (08.00–16.00)</li>\r\n<li>Sabtu (08.00–16.00)</li>\r\n<li>Minggu (Tutup)</li>\r\n</ul>', '03-11-2020');
 
 -- --------------------------------------------------------
 
@@ -224,11 +233,18 @@ CREATE TABLE `pinjaman` (
   `id_anggota` int(11) NOT NULL,
   `id_pengajuan` int(11) NOT NULL,
   `status_pinjaman` varchar(50) NOT NULL DEFAULT 'Belum Lunas',
-  `tanggal_pelunasan` varchar(50) NOT NULL DEFAULT 'Belum Lunas',
-  `tanggal_meminjam` varchar(50) NOT NULL,
+  `tanggal_pelunasan` date DEFAULT NULL,
+  `tanggal_meminjam` date NOT NULL,
   `total_pinjaman` int(20) NOT NULL,
   `angsuran_bulanan` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pinjaman`
+--
+
+INSERT INTO `pinjaman` (`id_pinjaman`, `id_anggota`, `id_pengajuan`, `status_pinjaman`, `tanggal_pelunasan`, `tanggal_meminjam`, `total_pinjaman`, `angsuran_bulanan`) VALUES
+(3, 1, 1, 'Belum Lunas', NULL, '2020-11-03', 5000000, 525000);
 
 -- --------------------------------------------------------
 
@@ -250,7 +266,7 @@ CREATE TABLE `simpanan` (
 
 INSERT INTO `simpanan` (`id_simpanan`, `id_anggota`, `jumlah_simpanan_pokok`, `jumlah_simpanan_wajib`, `status_simpanan`) VALUES
 (1, 1, 5000000, 50000, 'Belum Ditarik'),
-(2, 7, 6000000, 0, 'Belum Ditarik');
+(2, 7, 6000000, 30000, 'Belum Ditarik');
 
 -- --------------------------------------------------------
 
@@ -263,7 +279,7 @@ CREATE TABLE `simpanan_detail` (
   `id_simpanan` int(11) NOT NULL,
   `id_pegawai` int(11) NOT NULL,
   `jumlah_setor_tunai` int(20) NOT NULL,
-  `tanggal_setor_tunai` varchar(50) NOT NULL
+  `tanggal_setor_tunai` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -271,7 +287,8 @@ CREATE TABLE `simpanan_detail` (
 --
 
 INSERT INTO `simpanan_detail` (`id_simpanan_detail`, `id_simpanan`, `id_pegawai`, `jumlah_setor_tunai`, `tanggal_setor_tunai`) VALUES
-(1, 1, 2, 50000, '27-10-2020');
+(1, 1, 2, 50000, '2020-10-27'),
+(4, 2, 3, 30000, '2020-11-03');
 
 --
 -- Indexes for dumped tables
@@ -362,7 +379,7 @@ ALTER TABLE `simpanan_detail`
 -- AUTO_INCREMENT for table `aksi`
 --
 ALTER TABLE `aksi`
-  MODIFY `id_aksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_aksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `anggota`
@@ -374,7 +391,7 @@ ALTER TABLE `anggota`
 -- AUTO_INCREMENT for table `angsuran_detail`
 --
 ALTER TABLE `angsuran_detail`
-  MODIFY `id_angsuran_detail` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_angsuran_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `lupa_password`
@@ -404,13 +421,13 @@ ALTER TABLE `pengajuan_pinjaman`
 -- AUTO_INCREMENT for table `pengumuman`
 --
 ALTER TABLE `pengumuman`
-  MODIFY `id_pengumuman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_pengumuman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `pinjaman`
 --
 ALTER TABLE `pinjaman`
-  MODIFY `id_pinjaman` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pinjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `simpanan`
@@ -422,7 +439,7 @@ ALTER TABLE `simpanan`
 -- AUTO_INCREMENT for table `simpanan_detail`
 --
 ALTER TABLE `simpanan_detail`
-  MODIFY `id_simpanan_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_simpanan_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

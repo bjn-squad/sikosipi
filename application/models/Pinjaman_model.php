@@ -43,7 +43,7 @@ class Pinjaman_model extends CI_Model
                 'id_anggota' => $id,
                 'total_pengajuan_pinjaman' => $this->input->post('total_pengajuan_pinjaman', true),
                 'alasan_pinjaman' => $this->input->post('alasan_pinjaman', true),
-                'tanggal_pengajuan' => date("d-m-y"),
+                'tanggal_pengajuan' => date("y-m-d"),
                 'verifikasi_pegawai' => "Sedang Diverifikasi",
                 'verifikasi_admin' => "Sedang Diverifikasi",
                 'pesan' => "Belum terdapat pesan"
@@ -80,6 +80,28 @@ class Pinjaman_model extends CI_Model
         $this->db->where('id_pengajuan', $this->input->post('id_pengajuan'));
         $this->db->update('pengajuan_pinjaman', $data);
     }
+
+    public function verifikasiPengajuanByAdmin()
+    {
+        $status = $this->input->post('verifikasi_admin');
+        if ($status == "Verifikasi Diterima") {
+            $data = [
+                "verifikasi_admin" => $status,
+                "status_pengajuan" => "Diterima",
+                "pesan" => 'Pengajuan telah diverifikasi dan diterima, anda bisa mengambil uang pinjaman di koperasi'
+            ];
+        } else if ($status == "Verifikasi Ditolak") {
+            $data = [
+                "verifikasi_admin" => $status,
+                "status_pengajuan" => "Verifikasi Ditolak",
+                "pesan" => $this->input->post('pesan')
+            ];
+        }
+
+        $this->db->where('id_pengajuan', $this->input->post('id_pengajuan'));
+        $this->db->update('pengajuan_pinjaman', $data);
+    }
+
     public function getAllPinjaman()
     {
         $query = $this->db->query("SELECT * FROM pinjaman as pin 
@@ -87,7 +109,7 @@ class Pinjaman_model extends CI_Model
                                     JOIN anggota as a ON pen.id_anggota = a.id_anggota");
         return $query->result_array();
     }
-    public function getPinjamanById($id)
+    public function getPinjamanByIdAnggota($id)
     {
         $query = $this->db->query("SELECT * FROM pinjaman as pin 
         JOIN pengajuan_pinjaman as pen ON pin.id_pengajuan = pen.id_pengajuan
@@ -95,6 +117,16 @@ class Pinjaman_model extends CI_Model
         WHERE pen.id_anggota=$id");
         return $query->result_array();
     }
+
+    public function getPinjamanByIdPinjaman($id)
+    {
+        $query = $this->db->query("SELECT * FROM pinjaman as pin 
+        JOIN pengajuan_pinjaman as pen ON pin.id_pengajuan = pen.id_pengajuan
+        JOIN anggota as a ON pen.id_anggota = a.id_anggota
+        WHERE pin.id_pinjaman=$id");
+        return $query->result_array();
+    }
+
     public function getAllAngsuran()
     {
         $query = $this->db->query("SELECT * FROM angsuran_detail as ad 
@@ -122,13 +154,20 @@ class Pinjaman_model extends CI_Model
             'angsuran_bulanan' => $this->input->post('angsuran_bulanan', true)
         ];
         $this->db->insert('pinjaman', $data);
+
+        $data = [
+            "pesan" => "Pinjaman anda telah terdaftar"
+        ];
+
+        $this->db->where('id_pengajuan', $this->input->post('id_pengajuan'));
+        $this->db->update('pengajuan_pinjaman', $data);
     }
     public function insertAngsuran()
     {
         $data = [
             "id_pinjaman" => $this->input->post('id_pinjaman', true),
             "id_pegawai" => $this->session->userdata('id_pegawai'),
-            'tanggal_angsuran' => date("d-m-Y"),
+            'tanggal_angsuran' => date("y-m-d"),
             'angsuran_pembayaran' => $this->input->post('angsuran_pembayaran', true)
         ];
         $this->db->insert('angsuran_detail', $data);
@@ -137,7 +176,7 @@ class Pinjaman_model extends CI_Model
     {
         $data = [
             "status_pinjaman" => $this->input->post('status_pinjaman', true),
-            "tanggal_pelunasan" => date('d-m-Y')
+            "tanggal_pelunasan" => date('Y-m-d')
         ];
         $this->db->where('id_pinjaman', $this->input->post('id_pinjaman'));
         $this->db->update('pinjaman', $data);
