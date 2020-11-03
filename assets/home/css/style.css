@@ -3153,6 +3153,10 @@ p #amount {
 	background-image: url(../img/banner/bradcam2.png);
 }
 
+.bradcam_bg_4 {
+	background-image: url(../img/banner/bradcammitra.png);
+}
+
 /* line 7, ../../Arafath/CL/December/234. Finance/HTML/scss/_bradcam.scss */
 .bradcam_bg_3 {
 	background-image: url(../img/banner/bradcam3.png);
@@ -3573,6 +3577,64 @@ p #amount {
 
 /* line 35, ../../Arafath/CL/December/234. Finance/HTML/scss/_works.scss */
 .works_area .single_works p {
+	color: #7a838b;
+}
+
+/* line 1, ../../Arafath/CL/December/234. Finance/HTML/scss/_works.scss */
+.pengumuman_area {
+	padding-top: 150px;
+	padding-bottom: 120px;
+	background: #fff;
+}
+
+@media (max-width: 767px) {
+	/* line 1, ../../Arafath/CL/December/234. Finance/HTML/scss/_works.scss */
+	.pengumuman_area {
+		padding-top: 60px;
+		padding-bottom: 30px;
+	}
+}
+
+/* line 9, ../../Arafath/CL/December/234. Finance/HTML/scss/_works.scss */
+.pengumuman_area .single_works {
+	padding-bottom: 20px;
+	margin-bottom: 30px;
+}
+
+@media (min-width: 991px) {
+	/* line 9, ../../Arafath/CL/December/234. Finance/HTML/scss/_works.scss */
+	.pengumuman_area .single_works {
+		padding-right: 25px;
+	}
+}
+
+/* line 16, ../../Arafath/CL/December/234. Finance/HTML/scss/_works.scss */
+.pengumuman_area .single_works span {
+	display: inline-block;
+	width: 72px;
+	height: 72px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	background: #fff;
+	color: #0a8cff;
+	text-align: center;
+	line-height: 72px;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+/* line 28, ../../Arafath/CL/December/234. Finance/HTML/scss/_works.scss */
+.pengumuman_area .single_works h3 {
+	font-size: 24px;
+	color: #040e27;
+	font-weight: 400;
+	margin-top: 20px;
+	margin-bottom: 15px;
+}
+
+/* line 35, ../../Arafath/CL/December/234. Finance/HTML/scss/_works.scss */
+.pengumuman_area .single_works p {
 	color: #7a838b;
 }
 

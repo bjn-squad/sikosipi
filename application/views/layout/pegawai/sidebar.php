@@ -25,6 +25,8 @@
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="menu-icon fa fa-list"></i><a href="<?= base_url() ?>simpanan/dataSimpanan">Data Simpanan</a></li>
                         <li><i class="menu-icon fa fa-file-text-o"></i><a href="font-themify.html">Laporan</a></li>
+                        <li><i class="menu-icon ti-announcement"></i><a href="<?= base_url() ?>">Aksi Hapus Setoran</a></li>
+                        <li><i class="menu-icon ti-announcement"></i><a href="<?= base_url() ?>">Aksi Penarikan Simpanan</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
@@ -33,17 +35,36 @@
                         <li><i class="menu-icon fa fa-map-o"></i><a href="<?= base_url() ?>pegawai/daftarPinjaman">Daftar Pinjaman</a></li>
                         <li><i class="menu-icon fa fa-list"></i><a href="<?= base_url() ?>pegawai/daftarPengajuanPinjaman">Daftar Pengajuan Pinjaman</a></li>
                         <li><i class="menu-icon fa fa-file-text-o"></i><a href="font-themify.html">Laporan</a></li>
+                        <li><i class="menu-icon ti-announcement"></i><a href="<?= base_url() ?>">Aksi Hapus Angsuran</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon ti-layout-cta-center"></i>Pengumuman</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon ti-view-list-alt"></i><a href="<?= base_url() ?>pengumuman">Daftar Pengumuman</a></li>
+                        <li><i class="menu-icon ti-plus"></i><a href="<?= base_url() ?>pengumuman/add">Tambah Pengumuman</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Keanggotaan</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="menu-icon fa fa-list"></i><a href="<?= base_url() ?>pegawai/daftarAnggota">Daftar Anggota</a></li>
+                        <li><i class="menu-icon ti-announcement"></i><a href="<?= base_url() ?>pegawai/daftarAksiPenonaktifanAnggota">Aksi Penonaktifan Anggota</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="<?= base_url() ?>pegawai/daftarAksi"> <i class="menu-icon ti-announcement"></i> Aksi</a>
-                </li>
+                <?php
+                if ($this->session->userdata('kategori') == "1") {
+                ?>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon ti-user"></i>Pegawai</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon ti-layout-list-thumb-alt"></i><a href="<?= base_url() ?>pegawai/daftarPegawai">Daftar Pegawai</a></li>
+                            <li><i class="menu-icon ti-plus"></i><a href="<?= base_url() ?>pegawai/tambahPegawaiBaru">Tambah Pegawai Baru</a></li>
+                        </ul>
+                    </li>
+                <?php
+                }
+                ?>
             </ul>
         </div><!-- /.navbar-collapse -->
     </nav>

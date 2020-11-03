@@ -29,8 +29,7 @@
                             } else if ($data['status_anggota'] == "Verifikasi Ulang") {
                             ?>
                                 <div class="alert alert-info" role="alert">
-                                    <b></b><br>
-                                    <b><i>Mohon perhatikan aturan dibawah agar verifikasi dapat berjalan dengan lancar.</i></b>
+                                    <b>Anda diminta untuk <u>verifikasi ulang.</u></b><br>
                                     <b><i class="fa fa-info-circle"></i> Aturan Gambar/Foto :</b><br>
                                     1. Data Identitas Yang Dapat Diterima : KTP<br>
                                     2. Data Identitas Wajib Jelas (<b>Tidak Blur, Terpotong Dsb</b>)<br>
@@ -52,6 +51,12 @@
                             <label class="font-weight-bold">Email :</label> <?= $data['email'] ?><br>
                             <label class="font-weight-bold">Tanggal Keanggotaan :</label> <?= $data['tanggal_keanggotaan'] ?><br>
                             <label class="font-weight-bold">Status Keanggotaan :</label> <?= $data['status_anggota'] ?><br>
+                            <?php if ($data['status_anggota'] == "Verifikasi Ulang") {
+                            ?>
+                                <a href="<?= base_url() ?>anggota/verifikasi" class="btn btn-success btn-sm"><i class="fa fa-cloud-upload"> Verifikasi Ulang</i></a> <br>
+                            <?php
+                            }
+                            ?>
                             <label class="font-weight-bold">Foto KTP :</label><br>
                             <?php
                             if ($data['foto_ktp_anggota'] == 'Belum Diupload') {
