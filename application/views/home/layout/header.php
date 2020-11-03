@@ -44,7 +44,7 @@
                                         <ul id="navigation">
                                             <li><a href="<?= base_url() ?>">Home</a></li>
                                             <li><a href="<?= base_url() ?>home/pengumuman">Pengumuman & Informasi</a></li>
-                                            <li><a href="Loan.html">Tentang Kami</a></li>
+                                            <li><a href="<?= base_url() ?>home/detail/12">Tentang Kami</a></li>
                                             <li><a href="#">Anggota <i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
                                                     <li><a href="<?= base_url() ?>auth/registerAnggota">Register</a></li>
