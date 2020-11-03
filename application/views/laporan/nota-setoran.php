@@ -8,14 +8,14 @@
         <th>Jumlah Setor Tunai</th>
         <th>Tanggal Setor Tunai</th>
     </tr>
-    <tr>
-        <?php
-        foreach ($simpanan_detail as $item) {
-        ?>
+    <?php
+    foreach ($simpanan_detail as $item) {
+    ?>
+        <tr>
             <td><?= $item['nama_anggota'] ?></td>
             <td><?= $item['nama_pegawai'] ?></td>
             <td>Rp. <?= number_format($item['jumlah_setor_tunai'], 0, ',', '.') ?></td>
             <td><?= $item['tanggal_setor_tunai'] ?></td>
-        <?php } ?>
-    </tr>
+        </tr>
+    <?php } ?>
 </table>
