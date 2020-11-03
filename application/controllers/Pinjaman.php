@@ -97,7 +97,7 @@ class Pinjaman extends CI_Controller
         foreach ($data->result_array() as $result) {
             $status = $result['status_anggota'];
         }
-        $dataStatus = $this->db->select('status_pengajuan')->order_by('id_pengajuan', "desc")->limit(1)->get('pengajuan_pinjaman')->row();
+        $dataStatus = $this->db->select('*')->order_by('id_pengajuan', "desc")->where('id_anggota', $idAnggota)->limit(1)->get('pengajuan_pinjaman')->row();
 
         if (!empty($dataStatus->status_pengajuan)) {
             if ($dataStatus->status_pengajuan != "Sedang Diverifikasi" && $status == "Aktif") {
@@ -114,6 +114,9 @@ class Pinjaman extends CI_Controller
                     redirect('anggota');
                 }
             } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                Maaf proses pengajuan anda masih dalam tahap verifikasi, harap bersabar.
+              </div>');
                 redirect('anggota');
             }
         } else {
