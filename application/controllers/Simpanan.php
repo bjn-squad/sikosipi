@@ -98,10 +98,29 @@ class Simpanan extends CI_Controller
         }
     }
 
+    public function cetakRiwayatSetoran($id)
+    {
+        $data['simpanan_detail'] = $this->simpanan_model->cetakPdf($id);
+        $this->load->view('laporan/layout/header', $data);
+        $this->load->view('laporan/nota-setoran');
+        $this->load->view('laporan/layout/footer');
+    }
+
+    public function cetakTransaksiSimpanan()
+    {
+        $data['simpanan_detail'] = $this->simpanan_model->getAllSetoran();
+        $this->load->view('laporan/layout/header', $data);
+        $this->load->view('laporan/nota-setoran');
+        $this->load->view('laporan/layout/footer');
+    }
+
     public function laporan()
     {
+        if ($this->session->userdata('level') != "pegawai") {
+            redirect('auth/loginPegawai', 'refresh');
+        }
         $data['title'] = 'Simpanan';
-
+        $data['data_setoran'] = $this->simpanan_model->getAllSetoranDetail();
         $this->load->view('layout/pegawai/header', $data);
         $this->load->view('layout/pegawai/sidebar');
         $this->load->view('layout/pegawai/top');
@@ -109,9 +128,35 @@ class Simpanan extends CI_Controller
         $this->load->view('layout/pegawai/footer');
     }
 
-    public function cetakRiwayatSetoran($id)
+    public function filterLaporanSetoran()
     {
-        $data['simpanan_detail'] = $this->simpanan_model->cetakPdf($id);
+        if ($this->session->userdata('level') != "pegawai") {
+
+            redirect('auth/loginPegawai', 'refresh');
+        }
+        $startDate = $this->input->post('startDate');
+        $endDate = $this->input->post('endDate');
+
+        $data['title'] = 'Simpanan';
+        $data['startDate'] = $startDate;
+        $data['endDate'] = $endDate;
+        $data['data_setoran'] = $this->simpanan_model->getSetoranByDate($startDate, $endDate);
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('simpanan/laporan');
+        $this->load->view('layout/pegawai/footer');
+    }
+
+
+    public function filterCetakSimpanan()
+    {
+        if ($this->session->userdata('level') != "pegawai") {
+            redirect('auth/loginPegawai', 'refresh');
+        }
+        $startDate = $this->input->post('startDate');
+        $endDate = $this->input->post('endDate');
+        $data['simpanan_detail'] = $this->simpanan_model->getSetoranByDate($startDate, $endDate);
         $this->load->view('laporan/layout/header', $data);
         $this->load->view('laporan/nota-setoran');
         $this->load->view('laporan/layout/footer');
