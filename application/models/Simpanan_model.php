@@ -18,7 +18,7 @@ class Simpanan_model extends CI_Model
 
     public function getAllSetoran()
     {
-        $query = $this->db->query("SELECT * FROM simpanan_detail");
+        $query = $this->db->query("SELECT * FROM simpanan_detail sd  JOIN pegawai p ON sd.id_pegawai = p.id_pegawai JOIN simpanan s ON s.id_simpanan = sd.id_simpanan JOIN anggota a ON s.id_anggota = a.id_anggota");
         return $query->result_array();
     }
 
@@ -34,7 +34,7 @@ class Simpanan_model extends CI_Model
 
     public function getSetoranById($id)
     {
-        $query = $this->db->query("SELECT * FROM simpanan_detail sd JOIN simpanan s ON sd.id_simpanan = s.id_simpanan WHERE sd.id_simpanan=$id");
+        $query = $this->db->query("SELECT * FROM simpanan_detail sd JOIN simpanan s ON sd.id_simpanan = s.id_simpanan JOIN anggota a ON s.id_anggota = a.id_anggota JOIN pegawai p on sd.id_pegawai = p.id_pegawai WHERE sd.id_simpanan=$id");
         return $query->result_array();
     }
 
@@ -42,7 +42,7 @@ class Simpanan_model extends CI_Model
     {
         $id_simpanan = $this->input->post('id_simpanan');
         $jumlah_setor_tunai = $this->input->post('jumlah_setor_tunai');
-        $date = date('d-m-Y');
+        $date = date('Y-m-d');
         $data = [
             'id_simpanan' => $id_simpanan,
             'id_pegawai' => $this->session->userdata('id_pegawai'),
@@ -61,5 +61,23 @@ class Simpanan_model extends CI_Model
         ];
         $this->db->where('id_simpanan', $id_simpanan);
         $this->db->update('simpanan', $data);
+    }
+
+    public function cetakPdf($id)
+    {
+        $query = $this->db->query("SELECT * FROM simpanan_detail sd JOIN simpanan s ON sd.id_simpanan = s.id_simpanan JOIN anggota a ON s.id_anggota = a.id_anggota JOIN pegawai p on sd.id_pegawai = p.id_pegawai WHERE sd.id_simpanan_detail=$id");
+        return $query->result_array();
+    }
+
+    public function getAllSetoranDetail()
+    {
+        $query = $this->db->query("SELECT * FROM simpanan_detail sd JOIN simpanan s ON sd.id_simpanan = s.id_simpanan JOIN anggota a ON s.id_anggota = a.id_anggota JOIN pegawai p on sd.id_pegawai = p.id_pegawai");
+        return $query->result_array();
+    }
+
+    public function getSetoranByDate($startDate, $endDate)
+    {
+        $query = $this->db->query("SELECT * FROM simpanan_detail sd JOIN simpanan s ON sd.id_simpanan = s.id_simpanan JOIN anggota a ON s.id_anggota = a.id_anggota JOIN pegawai p on sd.id_pegawai = p.id_pegawai WHERE sd.tanggal_setor_tunai BETWEEN '$startDate' AND '$endDate'");
+        return $query->result_array();
     }
 }

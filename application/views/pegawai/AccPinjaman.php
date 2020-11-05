@@ -30,7 +30,7 @@
                                             <label class=" form-control-label">Tanggal Meminjam</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                                <input class="form-control" type="text" value="<?= date('d-m-Y') ?>" readonly name="tanggal_meminjam" id="tanggal_meminjam" required>
+                                                <input class="form-control" type="text" value="<?= date('Y-m-d'); ?>" readonly name="tanggal_meminjam" id="tanggal_meminjam" required>
                                             </div>
                                             <small class="form-text text-muted">ex. 18-10-2020</small>
                                         </div>

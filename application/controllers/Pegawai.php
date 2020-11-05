@@ -92,6 +92,16 @@ class Pegawai extends CI_Controller
     }
     public function tambahPinjaman($id)
     {
+        $check = $this->db->query("SELECT * FROM pengajuan_pinjaman WHERE id_pengajuan = $id");
+        foreach ($check->result_array() as $result) {
+            $pesan = $result['pesan'];
+        }
+        if ($pesan == "Pinjaman anda telah terdaftar") {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            Maaf anda tidak dapat menambahkan pinjaman karena sudah terdaftar.
+           </div>');
+            redirect('pegawai/daftarPengajuanPinjaman');
+        }
         $data['title'] = 'Tambah Pinjaman';
         $data['pinjaman'] = $this->pinjaman_model->getAllPengajuanById($id);
         $this->load->view('layout/pegawai/header', $data);
@@ -119,8 +129,8 @@ class Pegawai extends CI_Controller
     }
     public function ubahPinjaman($id)
     {
-        $data['title'] = 'Verifikasi Pengajuan Pinjaman';
-        $data['pinjaman'] = $this->pinjaman_model->getPinjamanById($id);
+        $data['title'] = 'Ubah Status Pinjaman';
+        $data['pinjaman'] = $this->pinjaman_model->getPinjamanByIdPinjaman($id);
         $this->load->view('layout/pegawai/header', $data);
         $this->load->view('layout/pegawai/sidebar');
         $this->load->view('layout/pegawai/top');
@@ -144,7 +154,7 @@ class Pegawai extends CI_Controller
     public function tambahAngsuran($id)
     {
         $data['title'] = 'Tambah Pinjaman';
-        $data['pinjaman'] = $this->pinjaman_model->getPinjamanById($id);
+        $data['pinjaman'] = $this->pinjaman_model->getPinjamanByIdPinjaman($id);
         $this->load->view('layout/pegawai/header', $data);
         $this->load->view('layout/pegawai/sidebar');
         $this->load->view('layout/pegawai/top');
@@ -193,6 +203,38 @@ class Pegawai extends CI_Controller
             redirect('pegawai/daftarPengajuanPinjaman');
         } else {
             $data = $this->pinjaman_model->verifikasiPengajuan();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Sukses Verifikasi Pinjaman
+          </div>');
+            redirect('pegawai/daftarPengajuanPinjaman');
+        }
+    }
+
+    public function verifikasiPengajuanPinjamanByAdmin($id)
+    {
+        if ($this->session->userdata('kategori') != "1") {
+            redirect('pegawai', 'refresh');
+        }
+        $data['title'] = 'Verifikasi Pengajuan Pinjaman By Admin';
+        $data['pinjaman'] = $this->pinjaman_model->getAllPengajuanById($id);
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('pegawai/verifikasiPengajuanPinjamanAdmin');
+        $this->load->view('layout/pegawai/footer');
+    }
+
+    public function prosesVerifikasiPengajuanPinjamanByAdmin()
+    {
+        if ($this->session->userdata('kategori') != "1") {
+            redirect('pegawai', 'refresh');
+        }
+        $this->form_validation->set_rules('id_pengajuan', 'id_pengajuan', 'trim|required');
+        $this->form_validation->set_rules('verifikasi_admin', 'verifikasi_admin', 'trim|required');
+        if ($this->form_validation->run() == FALSE) {
+            redirect('pegawai/daftarPengajuanPinjaman');
+        } else {
+            $data = $this->pinjaman_model->verifikasiPengajuanByAdmin();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
            Sukses Verifikasi Pinjaman
           </div>');
@@ -396,9 +438,6 @@ class Pegawai extends CI_Controller
 
     public function ubahPassword()
     {
-        if ($this->session->userdata('kategori') != "1") {
-            redirect('pegawai');
-        }
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[5]', [
             'min_length' => 'Password minimum 5 character'
         ]);

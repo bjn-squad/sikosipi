@@ -21,8 +21,11 @@ class Pinjaman extends CI_Controller
 
     public function laporan()
     {
+        if ($this->session->userdata('level') != "pegawai") {
+            redirect('auth/loginPegawai', 'refresh');
+        }
         $data['title'] = 'Pinjaman';
-
+        $data['angsuran_detail'] = $this->pinjaman_model->getAllAngsuran();
         $this->load->view('layout/pegawai/header', $data);
         $this->load->view('layout/pegawai/sidebar');
         $this->load->view('layout/pegawai/top');
@@ -97,7 +100,7 @@ class Pinjaman extends CI_Controller
         foreach ($data->result_array() as $result) {
             $status = $result['status_anggota'];
         }
-        $dataStatus = $this->db->select('status_pengajuan')->order_by('id_pengajuan', "desc")->limit(1)->get('pengajuan_pinjaman')->row();
+        $dataStatus = $this->db->select('*')->order_by('id_pengajuan', "desc")->where('id_anggota', $idAnggota)->limit(1)->get('pengajuan_pinjaman')->row();
 
         if (!empty($dataStatus->status_pengajuan)) {
             if ($dataStatus->status_pengajuan != "Sedang Diverifikasi" && $status == "Aktif") {
@@ -114,6 +117,9 @@ class Pinjaman extends CI_Controller
                     redirect('anggota');
                 }
             } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                Maaf proses pengajuan anda masih dalam tahap verifikasi, harap bersabar.
+              </div>');
                 redirect('anggota');
             }
         } else {
@@ -150,5 +156,54 @@ class Pinjaman extends CI_Controller
         $this->load->view('layout/anggota/top');
         $this->load->view('pinjaman/pinjamanSaya');
         $this->load->view('layout/anggota/footer');
+    }
+
+    public function cetakAngsuran($id)
+    {
+        $data['angsuran_detail'] = $this->pinjaman_model->cetakPdf($id);
+        $this->load->view('laporan/layout/header', $data);
+        $this->load->view('laporan/nota-angsuran');
+        $this->load->view('laporan/layout/footer');
+    }
+
+    public function cetakTransaksiPinjaman()
+    {
+        $data['angsuran_detail'] = $this->pinjaman_model->getAllAngsuran();
+        $this->load->view('laporan/layout/header', $data);
+        $this->load->view('laporan/nota-angsuran');
+        $this->load->view('laporan/layout/footer');
+    }
+
+    public function filterLaporanAngsuran()
+    {
+        if ($this->session->userdata('level') != "pegawai") {
+
+            redirect('auth/loginPegawai', 'refresh');
+        }
+        $startDate = $this->input->post('startDate');
+        $endDate = $this->input->post('endDate');
+
+        $data['title'] = 'Angsuran';
+        $data['startDate'] = $startDate;
+        $data['endDate'] = $endDate;
+        $data['angsuran_detail'] = $this->pinjaman_model->getAngsuranByDate($startDate, $endDate);
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('pinjaman/laporan');
+        $this->load->view('layout/pegawai/footer');
+    }
+
+    public function filterCetakPinjaman()
+    {
+        if ($this->session->userdata('level') != "pegawai") {
+            redirect('auth/loginPegawai', 'refresh');
+        }
+        $startDate = $this->input->post('startDate');
+        $endDate = $this->input->post('endDate');
+        $data['angsuran_detail'] = $this->pinjaman_model->getAngsuranByDate($startDate, $endDate);
+        $this->load->view('laporan/layout/header', $data);
+        $this->load->view('laporan/nota-angsuran');
+        $this->load->view('laporan/layout/footer');
     }
 }

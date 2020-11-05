@@ -7,13 +7,17 @@
                         <strong class="card-title">Daftar Pinjaman</strong>
                     </div>
                     <div class="card-body">
+                        <?php
+                        if ($this->session->flashdata('message')) {
+                            echo $this->session->flashdata('message');
+                        } ?>
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered table-responsive-lg">
                             <thead>
                                 <tr>
                                     <th>Nama Anggota</th>
                                     <th>Status pinjaman</th>
-                                    <th>Tanggal_meminjam</th>
-                                    <th>Tanggal_pelunasan</th>
+                                    <th>Tanggal Peminjaman</th>
+                                    <th>Tanggal Pelunasan</th>
                                     <th>Total Pinjaman</th>
                                     <th>Aksi</th>
                                 </tr>

@@ -29,8 +29,8 @@
                                 <?= $i['isi'] ?>
                             </p>
                             <hr>
-                            <i class="fa fa-user"></i> <?= $i['nama_pegawai'] ?></a><br>
-                            <i class="fa fa-calendar"></i> <?= $i['tanggal_post'] ?></a>
+                            <i class="fa fa-calendar"></i> <?= $i['tanggal_post'] ?></a> |
+                            <i class="fa fa-user"></i> <?= $i['nama_pegawai'] ?></a>
                         </div>
                     <?php } ?>
                 </div>
