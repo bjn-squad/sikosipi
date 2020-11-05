@@ -30,7 +30,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Pinjaman</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="menu-icon fa fa-line-chart"></i><a href="<?= base_url() ?>pinjaman/ajukanPinjaman">Ajukan Pinjaman</a></li>
-                        <li><i class="menu-icon fa fa-area-chart"></i><a href="<?= base_url() ?>pinjaman/pinjamanSaya">Lihat Pinjaman Saya</a></li>
+                        <li><i class="menu-icon fa fa-address-book"></i><a href="<?= base_url() ?>pinjaman/pinjamanSaya">Lihat Pinjaman Saya</a></li>
+                        <li><i class="menu-icon fa fa-area-chart"></i><a href="<?= base_url() ?>pinjaman/riwayatPengajuan">Riwayat Pengajuan Pinjaman</a></li>
                     </ul>
                 </li>
                 <li>
