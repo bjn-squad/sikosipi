@@ -150,11 +150,24 @@ class Pinjaman extends CI_Controller
             redirect('auth/loginAnggota', 'refresh');
         }
         $data['title'] = 'Pinjaman';
-        $data['pinjaman'] = $this->pinjaman_model->getPinjamanById($this->session->userdata('id_anggota'));
+        $data['pinjaman'] = $this->pinjaman_model->getPinjamanByIdAnggota($this->session->userdata('id_anggota'));
         $this->load->view('layout/anggota/header', $data);
         $this->load->view('layout/anggota/sidebar');
         $this->load->view('layout/anggota/top');
         $this->load->view('pinjaman/pinjamanSaya');
+        $this->load->view('layout/anggota/footer');
+    }
+    public function AngsuranSaya($id)
+    {
+        if ($this->session->userdata('level') != "anggota") {
+            redirect('auth/loginAnggota', 'refresh');
+        }
+        $data['title'] = 'Pinjaman';
+        $data['pinjaman'] = $this->pinjaman_model->getAngsuranById($id);
+        $this->load->view('layout/anggota/header', $data);
+        $this->load->view('layout/anggota/sidebar');
+        $this->load->view('layout/anggota/top');
+        $this->load->view('pinjaman/angsuranSaya');
         $this->load->view('layout/anggota/footer');
     }
 
