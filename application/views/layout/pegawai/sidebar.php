@@ -25,7 +25,7 @@
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="menu-icon fa fa-list"></i><a href="<?= base_url() ?>simpanan/dataSimpanan">Data Simpanan</a></li>
                         <li><i class="menu-icon fa fa-file-text-o"></i><a href="<?= base_url() ?>simpanan/laporan">Laporan</a></li>
-                        <li><i class="menu-icon ti-announcement"></i><a href="<?= base_url() ?>">Aksi Hapus Setoran</a></li>
+                        <li><i class="menu-icon ti-announcement"></i><a href="<?= base_url() ?>simpanan/daftarAksiPenghapusanSetoran">Aksi Hapus Setoran</a></li>
                         <li><i class="menu-icon ti-announcement"></i><a href="<?= base_url() ?>">Aksi Penarikan Simpanan</a></li>
                     </ul>
                 </li>
