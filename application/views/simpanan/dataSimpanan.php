@@ -7,6 +7,10 @@
                         <strong class="card-title">Simpanan</strong>
                     </div>
                     <div class="card-body">
+                        <?php
+                        if ($this->session->flashdata('message')) {
+                            echo $this->session->flashdata('message');
+                        } ?>
                         <a href="<?= base_url() ?>simpanan/tambah_simpanan" class="btn btn-success btn-sm">Tambah Transaksi Simpanan</a><br><br>
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered table-responsive-lg">
                             <thead>
