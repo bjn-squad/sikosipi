@@ -34,7 +34,7 @@ class Simpanan_model extends CI_Model
 
     public function getSetoranById($id)
     {
-        $query = $this->db->query("SELECT * FROM simpanan_detail sd JOIN simpanan s ON sd.id_simpanan = s.id_simpanan JOIN anggota a ON s.id_anggota = a.id_anggota JOIN pegawai p on sd.id_pegawai = p.id_pegawai WHERE sd.id_simpanan=$id");
+        $query = $this->db->query("SELECT * FROM simpanan_detail sd JOIN simpanan s ON sd.id_simpanan = s.id_simpanan JOIN anggota a ON s.id_anggota = a.id_anggota JOIN pegawai p on sd.id_pegawai = p.id_pegawai WHERE sd.id_simpanan=$id ORDER BY sd.tanggal_setor_tunai ASC");
         return $query->result_array();
     }
 
