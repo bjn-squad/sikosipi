@@ -141,7 +141,8 @@ class Pinjaman_model extends CI_Model
                                     JOIN pinjaman as pin ON ad.id_pinjaman = pin.id_pinjaman
                                     JOIN pegawai as peg ON ad.id_pegawai = peg.id_pegawai
                                     JOIN anggota as a ON pin.id_anggota = a.id_anggota
-                                    WHERE ad.id_pinjaman = $id");
+                                    WHERE ad.id_pinjaman = $id
+                                    ORDER BY ad.tanggal_angsuran ASC");
         return $query->result_array();
     }
     public function insertPinjaman()
