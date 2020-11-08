@@ -38,6 +38,12 @@ class Simpanan_model extends CI_Model
         return $query->result_array();
     }
 
+    public function getSetoranByIdsetoran($id)
+    {
+        $query = $this->db->query("SELECT * FROM simpanan_detail sd JOIN simpanan s ON sd.id_simpanan = s.id_simpanan JOIN anggota a ON s.id_anggota = a.id_anggota JOIN pegawai p on sd.id_pegawai = p.id_pegawai WHERE sd.id_simpanan_detail=$id");
+        return $query->result_array();
+    }
+
     public function tambahSetoranSimpananWajib()
     {
         $id_simpanan = $this->input->post('id_simpanan');
@@ -63,6 +69,39 @@ class Simpanan_model extends CI_Model
         $this->db->update('simpanan', $data);
     }
 
+    public function terimaAksiPenghapusanSetoran($id)
+    {
+        $getIdSimpanandetail = $this->db->query("SELECT * FROM aksi a JOIN simpanan_detail sd ON a.id_data_kategori = sd.id_simpanan_detail where a.id_aksi = $id");
+        foreach ($getIdSimpanandetail->result_array() as $result) {
+            $id_simpanan_detail = $result['id_data_kategori'];
+            $jumlah_setoran = $result['jumlah_setor_tunai'];
+        }
+
+        $getJumlahSimpananWajib = $this->db->query("SELECT * FROM simpanan_detail sd JOIN simpanan s ON sd.id_simpanan = s.id_simpanan WHERE sd.id_simpanan_detail=$id_simpanan_detail");
+        foreach ($getJumlahSimpananWajib->result_array() as $result) {
+            $jumlah_simpanan_wajib = $result['jumlah_simpanan_wajib'];
+            $id_simpanan = $result['id_simpanan'];
+        }
+        $hasilAkhirSimpananWajib = $jumlah_simpanan_wajib - $jumlah_setoran;
+        $data2 = [
+            'jumlah_simpanan_wajib' => $hasilAkhirSimpananWajib
+        ];
+        $this->db->where('id_simpanan', $id_simpanan);
+        $this->db->update('simpanan', $data2);
+
+        $this->db->where('id_simpanan_detail', $id_simpanan_detail);
+        $this->db->delete('simpanan_detail');
+
+        $this->db->where('id_aksi', $id);
+        $this->db->delete('aksi');
+    }
+
+    public function tolakAksiPenghapusanSetoran($id)
+    {
+        $this->db->where('id_aksi', $id);
+        $this->db->delete('aksi');
+    }
+
     public function cetakPdf($id)
     {
         $query = $this->db->query("SELECT * FROM simpanan_detail sd JOIN simpanan s ON sd.id_simpanan = s.id_simpanan JOIN anggota a ON s.id_anggota = a.id_anggota JOIN pegawai p on sd.id_pegawai = p.id_pegawai WHERE sd.id_simpanan_detail=$id");
@@ -79,5 +118,17 @@ class Simpanan_model extends CI_Model
     {
         $query = $this->db->query("SELECT * FROM simpanan_detail sd JOIN simpanan s ON sd.id_simpanan = s.id_simpanan JOIN anggota a ON s.id_anggota = a.id_anggota JOIN pegawai p on sd.id_pegawai = p.id_pegawai WHERE sd.tanggal_setor_tunai BETWEEN '$startDate' AND '$endDate'");
         return $query->result_array();
+    }
+
+    public function hapusSetoran()
+    {
+        $data = [
+            'id_data_kategori' => $this->input->post('id_simpanan_detail'),
+            'tanggal_aksi' => date('d-m-Y'),
+            'pesan_aksi' => $this->input->post('pesan_aksi'),
+            'nama_pegawai' => $this->session->userdata('nama_pegawai'),
+            'kategori_aksi' => 'Hapus Setoran'
+        ];
+        $this->db->insert('aksi', $data);
     }
 }
