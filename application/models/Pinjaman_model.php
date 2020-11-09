@@ -145,6 +145,16 @@ class Pinjaman_model extends CI_Model
                                     ORDER BY ad.tanggal_angsuran ASC");
         return $query->result_array();
     }
+    public function getAngsuranByIdAngsuran($id)
+    {
+        $query = $this->db->query("SELECT * FROM angsuran_detail as ad 
+                                    JOIN pinjaman as pin ON ad.id_pinjaman = pin.id_pinjaman
+                                    JOIN pegawai as peg ON ad.id_pegawai = peg.id_pegawai
+                                    JOIN anggota as a ON pin.id_anggota = a.id_anggota
+                                    WHERE ad.id_angsuran_detail = $id
+                                    ORDER BY ad.tanggal_angsuran ASC");
+        return $query->result_array();
+    }
     public function insertPinjaman()
     {
         $data = [
@@ -193,5 +203,35 @@ class Pinjaman_model extends CI_Model
     {
         $query = $this->db->query("SELECT * FROM angsuran_detail ag JOIN pinjaman p ON ag.id_pinjaman = p.id_pinjaman JOIN anggota a ON p.id_anggota = a.id_anggota JOIN pegawai pg on ag.id_pegawai = pg.id_pegawai WHERE ag.tanggal_angsuran BETWEEN '$startDate' AND '$endDate'");
         return $query->result_array();
+    }
+    public function terimaAksiPenghapusanAngsuran($id)
+    {
+        $getIdAngsuranDetail = $this->db->query("SELECT * FROM aksi where id_aksi = $id");
+        foreach ($getIdAngsuranDetail->result_array() as $result) {
+            $id_angsuran_detail = $result['id_data_kategori'];
+        }
+
+        $this->db->where('id_angsuran_detail', $id_angsuran_detail);
+        $this->db->delete('angsuran_detail');
+
+        $this->db->where('id_aksi', $id);
+        $this->db->delete('aksi');
+    }
+
+    public function tolakAksiPenghapusanAngsuran($id)
+    {
+        $this->db->where('id_aksi', $id);
+        $this->db->delete('aksi');
+    }
+    public function hapusAngsuran()
+    {
+        $data = [
+            'id_data_kategori' => $this->input->post('id_angsuran_detail'),
+            'tanggal_aksi' => date('d-m-Y'),
+            'pesan_aksi' => $this->input->post('pesan_aksi'),
+            'nama_pegawai' => $this->session->userdata('nama_pegawai'),
+            'kategori_aksi' => 'Hapus Angsuran'
+        ];
+        $this->db->insert('aksi', $data);
     }
 }

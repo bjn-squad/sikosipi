@@ -29,6 +29,7 @@
                                         <td><?= $item['tanggal_angsuran'] ?></td>
                                         <td><?= $item['angsuran_pembayaran'] ?></td>
                                         <td>
+                                            <a href="<?= base_url() ?>pinjaman/hapusAngsuran/<?= $item['id_angsuran_detail'] ?>" target="_blank" class="badge badge-danger"><i class="fa fa-print"></i>Hapus</a>
                                             <a href="<?= base_url() ?>pinjaman/cetakAngsuran/<?= $item['id_angsuran_detail'] ?>" target="_blank" class="badge badge-warning"><i class="fa fa-print"></i>Cetak</a>
                                         </td>
                                     </tr>
