@@ -29,7 +29,7 @@
                                         <td><?= $item['jumlah_setor_tunai'] ?></td>
                                         <td><?= $item['nama_pegawai'] ?></td>
                                         <td>
-                                            <a href="<?= base_url() ?>simpanan/cetakRiwayatSetoran/<?= $item['id_simpanan_detail'] ?>" target="_blank" class="badge badge-warning"><i class="fa fa-print"></i>Cetak</a>
+                                            <a href="<?= base_url() ?>anggota/cetakSetoranSaya/<?= $item['id_simpanan_detail'] ?>" target="_blank" class="badge badge-warning"><i class="fa fa-print"></i>Cetak</a>
                                         </td>
                                     </tr>
                                 <?php
