@@ -235,6 +235,16 @@ class Simpanan extends CI_Controller
             redirect('simpanan/daftarAksiPenghapusanSetoran');
         }
     }
+    public function detailPenarikanSimpanan($id)
+    {
+        $data['title'] = 'Detail Penarikan Simpanan';
+        $data['simpanan'] = $this->simpanan_model->getPenarikanSimpananById($id);
+        $this->load->view('layout/anggota/header', $data);
+        $this->load->view('layout/anggota/sidebar');
+        $this->load->view('layout/anggota/top');
+        $this->load->view('simpanan/detailPenarikanSimpanan');
+        $this->load->view('layout/anggota/footer');
+    }
 
     public function cetakRiwayatSetoran($id)
     {
@@ -298,5 +308,43 @@ class Simpanan extends CI_Controller
         $this->load->view('laporan/layout/header', $data);
         $this->load->view('laporan/nota-setoran');
         $this->load->view('laporan/layout/footer');
+    }
+    public function dataAksiPenarikan()
+    {
+        if ($this->session->userdata('level') != "pegawai") {
+            redirect('auth/loginPegawai', 'refresh');
+        }
+        $data['title'] = 'Daftar Pengajuan simpanan';
+        $data['simpanan'] = $this->simpanan_model->getAllPenarikan();
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('simpanan/daftarPengajuanPenarikan');
+        $this->load->view('layout/pegawai/footer');
+    }
+    public function verifikasiPenarikanByPegawai($id)
+    {
+        $data['title'] = 'Verifikasi Penarikan Simpanan';
+        $data['simpanan'] = $this->simpanan_model->getPenarikanSimpananById($id);
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('simpanan/verifikasiPenarikan');
+        $this->load->view('layout/pegawai/footer');
+    }
+    public function prosesVerifikasiPenarikanByPegawai()
+    {
+        $this->form_validation->set_rules('id_penarikan', 'id_penarikan', 'trim|required');
+        $this->form_validation->set_rules('verifikasi_pegawai', 'verifikasi_pegawai', 'trim|required');
+        $this->form_validation->set_rules('total_akhir_simpanan', 'total_akhir_simpanan', 'trim|required');
+        if ($this->form_validation->run() == FALSE) {
+            redirect('simpanan/dataAksiPenarikan');
+        } else {
+            $data = $this->simpanan_model->verifikasiPenarikan();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Sukses Verifikasi Penarikan
+          </div>');
+            redirect('simpanan/dataAksiPenarikan');
+        }
     }
 }

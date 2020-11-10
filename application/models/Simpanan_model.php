@@ -131,4 +131,60 @@ class Simpanan_model extends CI_Model
         ];
         $this->db->insert('aksi', $data);
     }
+
+    public function getSimpananByIdAnggota($id)
+    {
+        $query = $this->db->query("SELECT * FROM simpanan s 
+                                JOIN anggota a ON s.id_anggota = a.id_anggota 
+                                WHERE s.id_anggota = $id");
+        return $query->result_array();
+    }
+
+    public function requestPenarikan()
+    {
+        $data = [
+            'id_simpanan' => $this->input->post('id_simpanan'),
+            'tanggal_permintaan_penarikan' => date('Y-m-d'),
+            'nominal_total_penarikan' => $this->input->post('nominal_total_penarikan'),
+            'pesan' => 'Belum terdapat pesan'
+        ];
+        $this->db->insert('penarikan_simpanan', $data);
+    }
+
+    public function verifikasiPenarikan()
+    {
+        $status = $this->input->post('verifikasi_pegawai');
+        if ($status == "Verifikasi Diterima") {
+            $data = [
+                "verifikasi_pegawai" => $status,
+                "total_akhir_simpanan" => $this->input->post('total_akhir_simpanan'),
+                "pesan" => 'Verifikasi Diterima Pegawai, Menunggu Verifikasi Admin'
+            ];
+        } else if ($status == "Verifikasi Ditolak") {
+            $data = [
+                "verifikasi_pegawai" => $status,
+                "verifikasi_admin" => "Verifikasi Ditolak",
+                "status_penarikan" => "Verifikasi Ditolak",
+                "pesan" => $this->input->post('pesan')
+            ];
+        }
+
+        $this->db->where('id_penarikan', $this->input->post('id_penarikan'));
+        $this->db->update('penarikan_simpanan', $data);
+    }
+    public function getAllPenarikan()
+    {
+        $query = $this->db->query("SELECT * FROM penarikan_simpanan ps 
+                                JOIN simpanan s ON ps.id_simpanan = s.id_simpanan
+                                JOIN anggota a ON a.id_anggota = s.id_anggota");
+        return $query->result_array();
+    }
+    public function getPenarikanSimpananById($id)
+    {
+        $query = $this->db->query("SELECT * FROM penarikan_simpanan ps 
+                                JOIN simpanan s ON ps.id_simpanan = s.id_simpanan
+                                JOIN anggota a ON a.id_anggota = s.id_anggota
+                                WHERE ps.id_penarikan = $id");
+        return $query->result_array();
+    }
 }

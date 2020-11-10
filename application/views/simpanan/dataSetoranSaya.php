@@ -4,33 +4,32 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">Riwayat Angsuran Anggota</strong>
+                        <strong class="card-title">Riwayat Setoran</strong>
                     </div>
                     <div class="card-body">
-                        <a href="<?= base_url() ?>pegawai/daftarPinjaman" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"></i> Back</a><br><br>
+                        <a href="<?= base_url() ?>anggota/simpananSaya" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"></i> Back</a><br><br>
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered table-responsive-lg">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Anggota</th>
-                                    <th>Nama Pegawai</th>
-                                    <th>Tanggal Angsuran</th>
-                                    <th>Jumlah Angsuran</th>
+                                    <th>Nama Penyetor</th>
+                                    <th>Tanggal Setor Tunai</th>
+                                    <th>Jumlah Setoran Tunai</th>
+                                    <th>Nama Teller</th>
                                     <th>Aksi</th>
                             </thead>
                             <tbody>
                                 <?php
                                 $no = 1;
-                                foreach ($pinjaman as $item) { ?>
+                                foreach ($data_setoran as $item) { ?>
                                     <tr>
                                         <td><?= $no ?></td>
                                         <td><?= $item['nama_anggota'] ?></td>
+                                        <td><?= $item['tanggal_setor_tunai'] ?></td>
+                                        <td><?= $item['jumlah_setor_tunai'] ?></td>
                                         <td><?= $item['nama_pegawai'] ?></td>
-                                        <td><?= $item['tanggal_angsuran'] ?></td>
-                                        <td><?= $item['angsuran_pembayaran'] ?></td>
                                         <td>
-                                            <a href="<?= base_url() ?>pinjaman/hapusAngsuran/<?= $item['id_angsuran_detail'] ?>" target="_blank" class="badge badge-danger"><i class="fa fa-print"></i>Hapus</a>
-                                            <a href="<?= base_url() ?>pinjaman/cetakAngsuran/<?= $item['id_angsuran_detail'] ?>" target="_blank" class="badge badge-warning"><i class="fa fa-print"></i>Cetak</a>
+                                            <a href="<?= base_url() ?>simpanan/cetakRiwayatSetoran/<?= $item['id_simpanan_detail'] ?>" target="_blank" class="badge badge-warning"><i class="fa fa-print"></i>Cetak</a>
                                         </td>
                                     </tr>
                                 <?php

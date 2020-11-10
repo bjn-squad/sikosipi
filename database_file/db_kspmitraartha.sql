@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Nov 2020 pada 16.47
--- Versi server: 10.1.32-MariaDB
--- Versi PHP: 7.2.5
+-- Generation Time: Nov 09, 2020 at 06:44 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `aksi`
+-- Table structure for table `aksi`
 --
 
 CREATE TABLE `aksi` (
@@ -41,7 +41,7 @@ CREATE TABLE `aksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `aksi`
+-- Dumping data for table `aksi`
 --
 
 INSERT INTO `aksi` (`id_aksi`, `id_data_kategori`, `kategori_aksi`, `tanggal_aksi`, `pesan_aksi`, `nama_pegawai`, `nama_admin`, `status_aksi`, `status_verifikasi`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `aksi` (`id_aksi`, `id_data_kategori`, `kategori_aksi`, `tanggal_aks
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `anggota`
+-- Table structure for table `anggota`
 --
 
 CREATE TABLE `anggota` (
@@ -70,12 +70,12 @@ CREATE TABLE `anggota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `anggota`
+-- Dumping data for table `anggota`
 --
 
 INSERT INTO `anggota` (`id_anggota`, `nama_anggota`, `alamat_anggota`, `no_telp_anggota`, `username`, `email`, `password`, `status_anggota`, `tanggal_keanggotaan`, `foto_ktp_anggota`, `foto_selfie_ktp_anggota`) VALUES
 (1, 'Budi Surya', 'Jl. Mawar Merah 21 Bojonegoro', '085687921256', 'budi', 'budianto@gmail.com', '9c5fa085ce256c7c598f6710584ab25d', 'Aktif', '27-10-2020', '17102020163046example-ktp-1.jpg', '17102020163046img-kyc-sample-2.png'),
-(2, 'Jasmin Putri', 'Jl. Melati 105 Kalitidu, Bojonegoro', '085125891250', 'jasmin', 'jasmin@gmail.com', 'c677901e8baa1f96025f0938a4cd0423', 'Sedang Diverifikasi (Menunggu Pembayaran Simpanan Pokok)', 'Belum Menjadi Anggota', 'example-ktp-1.jpg', 'example-with-ktp-1.jpg'),
+(2, 'Jasmin Putri', 'Jl. Melati 105 Kalitidu, Bojonegoro', '085125891250', 'jasmin', 'jasmin@gmail.com', 'c677901e8baa1f96025f0938a4cd0423', 'Aktif', '05-11-2020', 'example-ktp-1.jpg', 'example-with-ktp-1.jpg'),
 (3, 'Jito Hartati', 'Jl. Grogol 21 Bojonegoro', '0812385794223', 'jito', 'jito@gmail.com', '28d8024451d991a899aaf3a4875c8cfa', 'Dinonaktifkan', 'Belum Menjadi Anggota', '17102020132043example-ktp-1.jpg', '17102020132043img-kyc-sample-2.png'),
 (4, 'Siti Aisyah', 'Jl. Mawar 15 Malang', '081254219520', 'siti', 'siti@gmail.com', '8230f9cb6dd627a92fdd0c6f282affd2', 'Sedang Diverifikasi', 'Belum Menjadi Anggota', '01112020165639example-ktp-1.jpg', '01112020165639example-with-ktp-1.jpg'),
 (5, 'Andi Muhibin', 'Jl. Anggrek 12 Kapas, Bojonegoro', '081289742951', 'andi', 'andi@gmail.com', '03339dc0dff443f15c254baccde9bece', 'Tidak Aktif', 'Belum Menjadi Anggota', 'Belum Diupload', 'Belum Diupload'),
@@ -85,7 +85,7 @@ INSERT INTO `anggota` (`id_anggota`, `nama_anggota`, `alamat_anggota`, `no_telp_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `angsuran_detail`
+-- Table structure for table `angsuran_detail`
 --
 
 CREATE TABLE `angsuran_detail` (
@@ -97,18 +97,19 @@ CREATE TABLE `angsuran_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `angsuran_detail`
+-- Dumping data for table `angsuran_detail`
 --
 
 INSERT INTO `angsuran_detail` (`id_angsuran_detail`, `id_pinjaman`, `id_pegawai`, `tanggal_angsuran`, `angsuran_pembayaran`) VALUES
 (4, 3, 1, '2020-10-31', 525000),
 (5, 3, 4, '2020-11-03', 525000),
-(6, 4, 4, '2020-11-03', 367500);
+(6, 4, 4, '2020-11-03', 367500),
+(7, 3, 3, '2020-11-05', 525000);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `lupa_password`
+-- Table structure for table `lupa_password`
 --
 
 CREATE TABLE `lupa_password` (
@@ -121,7 +122,7 @@ CREATE TABLE `lupa_password` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `lupa_password`
+-- Dumping data for table `lupa_password`
 --
 
 INSERT INTO `lupa_password` (`id_lupa_password`, `id_anggota`, `pertanyaankeamanan1`, `pertanyaankeamanan2`, `jawabankeamanan1`, `jawabankeamanan2`) VALUES
@@ -136,7 +137,7 @@ INSERT INTO `lupa_password` (`id_lupa_password`, `id_anggota`, `pertanyaankeaman
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pegawai`
+-- Table structure for table `pegawai`
 --
 
 CREATE TABLE `pegawai` (
@@ -151,7 +152,7 @@ CREATE TABLE `pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pegawai`
+-- Dumping data for table `pegawai`
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `alamat_pegawai`, `no_telp_pegawai`, `username`, `email`, `password`, `kategori`) VALUES
@@ -163,21 +164,33 @@ INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `alamat_pegawai`, `no_telp_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penarikan_simpanan`
+-- Table structure for table `penarikan_simpanan`
 --
 
 CREATE TABLE `penarikan_simpanan` (
   `id_penarikan` int(11) NOT NULL,
   `id_simpanan` int(11) NOT NULL,
-  `status_penarikan` varchar(20) NOT NULL,
   `nominal_total_penarikan` int(25) NOT NULL,
-  `tanggal_permintaan_penarikan` date NOT NULL
+  `total_akhir_simpanan` int(25) NOT NULL DEFAULT '0',
+  `tanggal_permintaan_penarikan` date NOT NULL,
+  `status_penarikan` varchar(20) NOT NULL DEFAULT 'Belum Diverifikasi',
+  `verifikasi_pegawai` varchar(50) NOT NULL DEFAULT 'Belum Diverifikasi',
+  `verifikasi_admin` varchar(50) NOT NULL DEFAULT 'Belum Diverifikasi',
+  `pesan` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `penarikan_simpanan`
+--
+
+INSERT INTO `penarikan_simpanan` (`id_penarikan`, `id_simpanan`, `nominal_total_penarikan`, `total_akhir_simpanan`, `tanggal_permintaan_penarikan`, `status_penarikan`, `verifikasi_pegawai`, `verifikasi_admin`, `pesan`) VALUES
+(1, 1, 5650000, 0, '2020-11-09', 'Belum Diverifikasi', 'Belum Diverifikasi', 'Belum Diverifikasi', 'Belum terdapat pesan'),
+(2, 3, 5000000, 0, '2020-11-09', 'Belum Diverifikasi', 'Belum Diverifikasi', 'Belum Diverifikasi', 'Belum terdapat pesan');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengajuan_pinjaman`
+-- Table structure for table `pengajuan_pinjaman`
 --
 
 CREATE TABLE `pengajuan_pinjaman` (
@@ -194,17 +207,18 @@ CREATE TABLE `pengajuan_pinjaman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pengajuan_pinjaman`
+-- Dumping data for table `pengajuan_pinjaman`
 --
 
 INSERT INTO `pengajuan_pinjaman` (`id_pengajuan`, `id_anggota`, `total_pengajuan_pinjaman`, `alasan_pinjaman`, `lampiran_pendukung`, `tanggal_pengajuan`, `status_pengajuan`, `verifikasi_pegawai`, `verifikasi_admin`, `pesan`) VALUES
-(1, 1, 5000000, 'Ingin membuka usaha sayur tapi gaada dana', '29102020162913Proposalusahasayurbudi.pdf', '2020-10-29', 'Diterima', 'Verifikasi Diterima', 'Verifikasi Diterima', 'Pinjaman anda telah terdaftar'),
-(2, 7, 3500000, 'Untuk membuka usaha dagang Cilok', '03112020011025Proposalusahasayurjohn.pdf', '2020-11-03', 'Diterima', 'Verifikasi Diterima', 'Verifikasi Diterima', 'Pinjaman anda telah terdaftar');
+(1, 1, 5000000, 'Ingin membuka usaha sayur tapi gaada dana', '29102020162913Proposalusahasayurbudi.pdf', '2020-10-29', 'Sedang Diverifikasi', 'Verifikasi Diterima', 'Verifikasi Diterima', 'Pinjaman anda telah terdaftar'),
+(2, 7, 3500000, 'Untuk membuka usaha dagang Cilok', '03112020011025Proposalusahasayurjohn.pdf', '2020-11-03', 'Diterima', 'Verifikasi Diterima', 'Verifikasi Diterima', 'Pinjaman anda telah terdaftar'),
+(3, 2, 5000000, 'Butuh keperluan', '051120200808241841720005_MohRizaZulfahnur_AnalisisDesainJaringan.pdf', '2020-11-05', 'Verifikasi Ditolak', 'Verifikasi Ditolak', 'Verifikasi Ditolak', 'Dokumen kurang lengkap');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengumuman`
+-- Table structure for table `pengumuman`
 --
 
 CREATE TABLE `pengumuman` (
@@ -217,7 +231,7 @@ CREATE TABLE `pengumuman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pengumuman`
+-- Dumping data for table `pengumuman`
 --
 
 INSERT INTO `pengumuman` (`id_pengumuman`, `id_pegawai`, `judul`, `header_gambar`, `isi`, `tanggal_post`) VALUES
@@ -228,7 +242,7 @@ INSERT INTO `pengumuman` (`id_pengumuman`, `id_pegawai`, `judul`, `header_gambar
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pinjaman`
+-- Table structure for table `pinjaman`
 --
 
 CREATE TABLE `pinjaman` (
@@ -243,7 +257,7 @@ CREATE TABLE `pinjaman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pinjaman`
+-- Dumping data for table `pinjaman`
 --
 
 INSERT INTO `pinjaman` (`id_pinjaman`, `id_anggota`, `id_pengajuan`, `status_pinjaman`, `tanggal_pelunasan`, `tanggal_meminjam`, `total_pinjaman`, `angsuran_bulanan`) VALUES
@@ -253,7 +267,7 @@ INSERT INTO `pinjaman` (`id_pinjaman`, `id_anggota`, `id_pengajuan`, `status_pin
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `simpanan`
+-- Table structure for table `simpanan`
 --
 
 CREATE TABLE `simpanan` (
@@ -265,17 +279,18 @@ CREATE TABLE `simpanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `simpanan`
+-- Dumping data for table `simpanan`
 --
 
 INSERT INTO `simpanan` (`id_simpanan`, `id_anggota`, `jumlah_simpanan_pokok`, `jumlah_simpanan_wajib`, `status_simpanan`) VALUES
-(1, 1, 5000000, 150000, 'Belum Ditarik'),
-(2, 7, 6000000, 30000, 'Belum Ditarik');
+(1, 1, 5000000, 650000, 'Belum Ditarik'),
+(2, 7, 6000000, 30000, 'Belum Ditarik'),
+(3, 2, 5000000, 0, 'Belum Ditarik');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `simpanan_detail`
+-- Table structure for table `simpanan_detail`
 --
 
 CREATE TABLE `simpanan_detail` (
@@ -287,32 +302,33 @@ CREATE TABLE `simpanan_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `simpanan_detail`
+-- Dumping data for table `simpanan_detail`
 --
 
 INSERT INTO `simpanan_detail` (`id_simpanan_detail`, `id_simpanan`, `id_pegawai`, `jumlah_setor_tunai`, `tanggal_setor_tunai`) VALUES
 (1, 1, 2, 50000, '2020-10-27'),
 (4, 2, 3, 30000, '2020-11-03'),
-(5, 1, 4, 100000, '2020-11-03');
+(5, 1, 4, 100000, '2020-11-03'),
+(7, 1, 3, 500000, '2020-11-08');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `aksi`
+-- Indexes for table `aksi`
 --
 ALTER TABLE `aksi`
   ADD PRIMARY KEY (`id_aksi`);
 
 --
--- Indeks untuk tabel `anggota`
+-- Indexes for table `anggota`
 --
 ALTER TABLE `anggota`
   ADD PRIMARY KEY (`id_anggota`);
 
 --
--- Indeks untuk tabel `angsuran_detail`
+-- Indexes for table `angsuran_detail`
 --
 ALTER TABLE `angsuran_detail`
   ADD PRIMARY KEY (`id_angsuran_detail`),
@@ -320,41 +336,41 @@ ALTER TABLE `angsuran_detail`
   ADD KEY `id_pegawai` (`id_pegawai`);
 
 --
--- Indeks untuk tabel `lupa_password`
+-- Indexes for table `lupa_password`
 --
 ALTER TABLE `lupa_password`
   ADD PRIMARY KEY (`id_lupa_password`),
   ADD KEY `id_anggota` (`id_anggota`);
 
 --
--- Indeks untuk tabel `pegawai`
+-- Indexes for table `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`id_pegawai`);
 
 --
--- Indeks untuk tabel `penarikan_simpanan`
+-- Indexes for table `penarikan_simpanan`
 --
 ALTER TABLE `penarikan_simpanan`
   ADD PRIMARY KEY (`id_penarikan`),
   ADD KEY `id_simpanan` (`id_simpanan`);
 
 --
--- Indeks untuk tabel `pengajuan_pinjaman`
+-- Indexes for table `pengajuan_pinjaman`
 --
 ALTER TABLE `pengajuan_pinjaman`
   ADD PRIMARY KEY (`id_pengajuan`),
   ADD KEY `id_anggota` (`id_anggota`);
 
 --
--- Indeks untuk tabel `pengumuman`
+-- Indexes for table `pengumuman`
 --
 ALTER TABLE `pengumuman`
   ADD PRIMARY KEY (`id_pengumuman`),
   ADD KEY `id_pegawai` (`id_pegawai`);
 
 --
--- Indeks untuk tabel `pinjaman`
+-- Indexes for table `pinjaman`
 --
 ALTER TABLE `pinjaman`
   ADD PRIMARY KEY (`id_pinjaman`),
@@ -362,14 +378,14 @@ ALTER TABLE `pinjaman`
   ADD KEY `id_pengajuan` (`id_pengajuan`);
 
 --
--- Indeks untuk tabel `simpanan`
+-- Indexes for table `simpanan`
 --
 ALTER TABLE `simpanan`
   ADD PRIMARY KEY (`id_simpanan`),
   ADD KEY `id_anggota` (`id_anggota`);
 
 --
--- Indeks untuk tabel `simpanan_detail`
+-- Indexes for table `simpanan_detail`
 --
 ALTER TABLE `simpanan_detail`
   ADD PRIMARY KEY (`id_simpanan_detail`),
@@ -377,125 +393,125 @@ ALTER TABLE `simpanan_detail`
   ADD KEY `id_pegawai` (`id_pegawai`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `aksi`
+-- AUTO_INCREMENT for table `aksi`
 --
 ALTER TABLE `aksi`
-  MODIFY `id_aksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_aksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `anggota`
+-- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
   MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `angsuran_detail`
+-- AUTO_INCREMENT for table `angsuran_detail`
 --
 ALTER TABLE `angsuran_detail`
-  MODIFY `id_angsuran_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_angsuran_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `lupa_password`
+-- AUTO_INCREMENT for table `lupa_password`
 --
 ALTER TABLE `lupa_password`
   MODIFY `id_lupa_password` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `pegawai`
+-- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
   MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `penarikan_simpanan`
+-- AUTO_INCREMENT for table `penarikan_simpanan`
 --
 ALTER TABLE `penarikan_simpanan`
-  MODIFY `id_penarikan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_penarikan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `pengajuan_pinjaman`
+-- AUTO_INCREMENT for table `pengajuan_pinjaman`
 --
 ALTER TABLE `pengajuan_pinjaman`
-  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `pengumuman`
+-- AUTO_INCREMENT for table `pengumuman`
 --
 ALTER TABLE `pengumuman`
   MODIFY `id_pengumuman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `pinjaman`
+-- AUTO_INCREMENT for table `pinjaman`
 --
 ALTER TABLE `pinjaman`
   MODIFY `id_pinjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `simpanan`
+-- AUTO_INCREMENT for table `simpanan`
 --
 ALTER TABLE `simpanan`
-  MODIFY `id_simpanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_simpanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `simpanan_detail`
+-- AUTO_INCREMENT for table `simpanan_detail`
 --
 ALTER TABLE `simpanan_detail`
-  MODIFY `id_simpanan_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_simpanan_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `angsuran_detail`
+-- Constraints for table `angsuran_detail`
 --
 ALTER TABLE `angsuran_detail`
   ADD CONSTRAINT `angsuran_detail_ibfk_1` FOREIGN KEY (`id_pinjaman`) REFERENCES `pinjaman` (`id_pinjaman`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `angsuran_detail_ibfk_2` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `lupa_password`
+-- Constraints for table `lupa_password`
 --
 ALTER TABLE `lupa_password`
   ADD CONSTRAINT `lupa_password_ibfk_1` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id_anggota`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `penarikan_simpanan`
+-- Constraints for table `penarikan_simpanan`
 --
 ALTER TABLE `penarikan_simpanan`
   ADD CONSTRAINT `penarikan_simpanan_ibfk_2` FOREIGN KEY (`id_simpanan`) REFERENCES `simpanan` (`id_simpanan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `pengajuan_pinjaman`
+-- Constraints for table `pengajuan_pinjaman`
 --
 ALTER TABLE `pengajuan_pinjaman`
   ADD CONSTRAINT `pengajuan_pinjaman_ibfk_1` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id_anggota`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `pengumuman`
+-- Constraints for table `pengumuman`
 --
 ALTER TABLE `pengumuman`
   ADD CONSTRAINT `pengumuman_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `pinjaman`
+-- Constraints for table `pinjaman`
 --
 ALTER TABLE `pinjaman`
   ADD CONSTRAINT `pinjaman_ibfk_1` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id_anggota`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pinjaman_ibfk_2` FOREIGN KEY (`id_pengajuan`) REFERENCES `pengajuan_pinjaman` (`id_pengajuan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `simpanan`
+-- Constraints for table `simpanan`
 --
 ALTER TABLE `simpanan`
   ADD CONSTRAINT `simpanan_ibfk_1` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id_anggota`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `simpanan_detail`
+-- Constraints for table `simpanan_detail`
 --
 ALTER TABLE `simpanan_detail`
   ADD CONSTRAINT `simpanan_detail_ibfk_1` FOREIGN KEY (`id_simpanan`) REFERENCES `simpanan` (`id_simpanan`) ON DELETE CASCADE ON UPDATE CASCADE,

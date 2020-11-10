@@ -17,6 +17,7 @@ class Pinjaman extends CI_Controller
             }
         }
         $this->load->model('pinjaman_model');
+        $this->load->model('aksi_model');
     }
 
     public function laporan()
@@ -169,6 +170,142 @@ class Pinjaman extends CI_Controller
         $this->load->view('layout/anggota/top');
         $this->load->view('pinjaman/angsuranSaya');
         $this->load->view('layout/anggota/footer');
+    }
+    public function hapusAngsuran($id)
+    {
+        if ($this->session->userdata('level') != "pegawai") {
+            redirect('auth/loginPegawai', 'refresh');
+        }
+        $data['title'] = 'Hapus Pinjaman';
+        $data['pinjaman'] = $this->pinjaman_model->getAngsuranByIdAngsuran($id);
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('pinjaman/hapusAngsuran');
+        $this->load->view('layout/pegawai/footer');
+    }
+
+    public function prosesHapusAngsuran()
+    {
+        $kategori = 'Hapus Angsuran';
+        $id_data_kategori = $this->input->post('id_angsuran_detail');
+        $data = $this->db->query("SELECT * FROM aksi WHERE id_data_kategori = $id_data_kategori AND kategori_aksi LIKE '$kategori'");
+        foreach ($data->result_array() as $result) {
+            $status = $result['status_verifikasi'];
+        }
+        if (!empty($status)) {
+            if ($status != "Diterima Admin") {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+           Aksi hapus transaksi angsuran masih pending. Harap bersabar menunggu verifikasi admin.
+          </div>');
+                redirect('pegawai/daftarPinjaman');
+            } else {
+                $this->form_validation->set_rules('id_angsuran_detail', 'id_angsuran_detail', 'trim|required');
+                if ($this->form_validation->run() == FALSE) {
+                    redirect('pegawai/daftarPinjaman');
+                } else {
+                    $data = $this->pinjaman_model->hapusAngsuran();
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                    Request hapus transaksi angsuran sukses, tunggu admin review aksi anda.
+          </div>');
+                    redirect('pegawai/daftarPinjaman');
+                }
+            }
+        } else {
+            $this->form_validation->set_rules('id_angsuran_detail', 'id_angsuran_detail', 'trim|required');
+            $this->form_validation->set_rules('pesan_aksi', 'pesan_aksi', 'required');
+            if ($this->form_validation->run() == FALSE) {
+                redirect('pegawai/daftarPinjaman');
+            } else {
+                $data = $this->pinjaman_model->hapusAngsuran();
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                Request hapus transaksi angsuran sukses, tunggu admin review aksi anda.
+          </div>');
+                redirect('pegawai/daftarPinjaman');
+            }
+        }
+    }
+
+    public function daftarAksiPenghapusanAngsuran()
+    {
+        $data['title'] = 'Daftar Aksi';
+        $data['aksi'] = $this->aksi_model->getAksiPenghapusanAngsuran();
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('pinjaman/daftarAksiPenghapusanAngsuran');
+        $this->load->view('layout/pegawai/footer');
+    }
+
+    public function reviewPenghapusanAngsuran($id)
+    {
+        if ($this->session->userdata('kategori') != "1") {
+            redirect('pegawai', 'refresh');
+        }
+        $getStatus = $this->db->query("SELECT * FROM aksi where id_aksi = $id");
+        foreach ($getStatus->result_array() as $result) {
+            $status_verifikasi = $result['status_verifikasi'];
+        }
+        if ($status_verifikasi == "Pending") {
+            $data['title'] = 'Review Penghapusan Angsuran';
+            $data['aksi'] = $this->aksi_model->getAksiPenghapusanAngsuran($id);
+            $this->load->view('layout/pegawai/header', $data);
+            $this->load->view('layout/pegawai/sidebar');
+            $this->load->view('layout/pegawai/top');
+            $this->load->view('pinjaman/reviewPenghapusanAngsuran');
+            $this->load->view('layout/pegawai/footer');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+           Aksi yang telah direview tidak dapat diubah kembali.
+          </div>');
+            redirect('pegawai/daftarAksiPenonaktifanAnggota');
+        }
+    }
+
+    public function terimaAksiPenghapusanAngsuran($id)
+    {
+        if ($this->session->userdata('kategori') != "1") {
+            redirect('pinjaman', 'refresh');
+        }
+        $getStatus = $this->db->query("SELECT * FROM aksi where id_aksi = $id");
+        foreach ($getStatus->result_array() as $result) {
+            $status_verifikasi = $result['status_verifikasi'];
+        }
+        if ($status_verifikasi == "Pending") {
+            $this->pinjaman_model->terimaAksiPenghapusanAngsuran($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Request Penghapusan Angsuran Diterima
+            </div>');
+            redirect('pinjaman/daftarAksiPenghapusanAngsuran');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+           Aksi yang telah direview tidak dapat diubah kembali.
+          </div>');
+            redirect('pinjaman/daftarAksiPenghapusanAngsuran');
+        }
+    }
+
+    public function tolakAksiPenghapusanAngsuran($id)
+    {
+        if ($this->session->userdata('kategori') != "1") {
+            redirect('pinjaman', 'refresh');
+        }
+        $getStatus = $this->db->query("SELECT * FROM aksi where id_aksi = $id");
+        foreach ($getStatus->result_array() as $result) {
+            $status_verifikasi = $result['status_verifikasi'];
+        }
+        if ($status_verifikasi == "Pending") {
+            $this->pinjaman_model->tolakAksiPenghapusanAngsuran($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Request Penghapusan Angsuran Ditolak
+          </div>');
+            redirect('pinjaman/daftarAksiPenghapusanAngsuran');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+       Aksi yang telah direview tidak dapat diubah kembali.
+      </div>');
+            redirect('pinjaman/daftarAksiPenghapusanAngsuran');
+        }
     }
 
     public function cetakAngsuran($id)

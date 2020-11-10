@@ -16,6 +16,7 @@ class Anggota extends CI_Controller
             redirect('lupapassword/tambahPertanyaanKeamanan');
         }
         $this->load->model('anggota_model');
+        $this->load->model('simpanan_model');
     }
 
     public function index()
@@ -72,6 +73,74 @@ class Anggota extends CI_Controller
             Password Berhasil Diganti!
            </div>');
             redirect('anggota');
+        }
+    }
+
+    public function simpananSaya()
+    {
+        $data['title'] = 'Simpanan';
+        $data['simpanan'] = $this->simpanan_model->getSimpananByIdAnggota($this->session->userdata('id_anggota'));
+        $this->load->view('layout/anggota/header', $data);
+        $this->load->view('layout/anggota/sidebar');
+        $this->load->view('layout/anggota/top');
+        $this->load->view('simpanan/simpananSaya');
+        $this->load->view('layout/anggota/footer');
+    }
+
+    public function dataSetoranSaya($id)
+    {
+        $data['title'] = 'Data Setoran';
+        $data['data_setoran'] = $this->simpanan_model->getSetoranById($id);
+        $this->load->view('layout/anggota/header', $data);
+        $this->load->view('layout/anggota/sidebar');
+        $this->load->view('layout/anggota/top');
+        $this->load->view('simpanan/dataSetoranSaya');
+        $this->load->view('layout/anggota/footer');
+    }
+    public function requestTarikSimpanan($id)
+    {
+        $dataStatus = $this->db->select('*')->order_by('id_penarikan', "desc")->where('id_simpanan', $id)->limit(1)->get('penarikan_simpanan')->row();
+        if (!empty($dataStatus->status_penarikan)) {
+            if ($dataStatus->status_penarikan != "Ditolak") {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+           Maaf Transaksi Penarikan Anda Masih Pending.
+          </div>');
+                redirect('anggota/simpananSaya');
+            } else {
+                $data['title'] = 'Penarikan Simpanan';
+                $data['simpanan'] = $this->simpanan_model->getSimpananById($id);
+                $this->load->view('layout/anggota/header', $data);
+                $this->load->view('layout/anggota/sidebar');
+                $this->load->view('layout/anggota/top');
+                $this->load->view('simpanan/requestPenarikan');
+                $this->load->view('layout/anggota/footer');
+            }
+        } else {
+            $data['title'] = 'Penarikan Simpanan';
+            $data['simpanan'] = $this->simpanan_model->getSimpananById($id);
+            $this->load->view('layout/anggota/header', $data);
+            $this->load->view('layout/anggota/sidebar');
+            $this->load->view('layout/anggota/top');
+            $this->load->view('simpanan/requestPenarikan');
+            $this->load->view('layout/anggota/footer');
+        }
+    }
+
+    public function prosesRequestPenarikan()
+    {
+        $this->form_validation->set_rules('id_simpanan', 'id_simpanan', 'trim|required');
+        $this->form_validation->set_rules('nominal_total_penarikan', 'nominal_total_penarikan', 'required');
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">
+           Request Ditolak
+          </div>');
+            redirect('anggota/simpananSaya');
+        } else {
+            $data = $this->simpanan_model->requestPenarikan();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Request Penarikan Telah Ditambah
+          </div>');
+            redirect('anggota/simpananSaya');
         }
     }
 }

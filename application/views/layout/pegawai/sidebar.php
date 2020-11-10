@@ -5,7 +5,7 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars"></i>
             </button>
-            <h4 class="navbar-brand">SIKOSIPI</h4>
+            <h4 class="navbar-brand"><a class="none" href="<?= base_url() ?>" target="_blank">SIKOSIPI</a></h4>
             <h4 class="navbar-brand hidden">S</h4>
         </div>
 
@@ -26,7 +26,7 @@
                         <li><i class="menu-icon fa fa-list"></i><a href="<?= base_url() ?>simpanan/dataSimpanan">Data Simpanan</a></li>
                         <li><i class="menu-icon fa fa-file-text-o"></i><a href="<?= base_url() ?>simpanan/laporan">Laporan</a></li>
                         <li><i class="menu-icon ti-announcement"></i><a href="<?= base_url() ?>simpanan/daftarAksiPenghapusanSetoran">Aksi Hapus Setoran</a></li>
-                        <li><i class="menu-icon ti-announcement"></i><a href="<?= base_url() ?>">Aksi Penarikan Simpanan</a></li>
+                        <li><i class="menu-icon ti-announcement"></i><a href="<?= base_url() ?>simpanan/dataAksiPenarikan">Aksi Penarikan Simpanan</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
@@ -35,7 +35,7 @@
                         <li><i class="menu-icon fa fa-map-o"></i><a href="<?= base_url() ?>pegawai/daftarPinjaman">Daftar Pinjaman</a></li>
                         <li><i class="menu-icon fa fa-list"></i><a href="<?= base_url() ?>pegawai/daftarPengajuanPinjaman">Daftar Pengajuan Pinjaman</a></li>
                         <li><i class="menu-icon fa fa-file-text-o"></i><a href="<?= base_url() ?>pinjaman/laporan">Laporan</a></li>
-                        <li><i class="menu-icon ti-announcement"></i><a href="<?= base_url() ?>">Aksi Hapus Angsuran</a></li>
+                        <li><i class="menu-icon ti-announcement"></i><a href="<?= base_url() ?>pinjaman/daftarAksiPenghapusanAngsuran">Aksi Hapus Angsuran</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
