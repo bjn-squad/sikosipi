@@ -35,7 +35,7 @@
                                             if ($item['status_pinjaman'] == "Belum Lunas") {
                                             ?>
                                                 <a href="<?= base_url() ?>pegawai/ubahPinjaman/<?= $item['id_pinjaman'] ?>" class="badge badge-warning"><i class="fa fa-book"></i> Ubah Status Pinjaman</a>
-                                                <a href="<?= base_url() ?>pegawai/tambahAngsuran/<?= $item['id_pinjaman'] ?>" class="badge badge-success"><i class="fa fa-check"></i> Tambah Angsuran</a>
+                                                <a href="<?= base_url() ?>pegawai/tambahAngsuran/<?= $item['id_pinjaman'] ?>" class="badge badge-success"><i class="fa fa-plus"></i> Tambah Angsuran</a>
                                             <?php
                                             }
                                             ?>

@@ -33,8 +33,9 @@
                                         <td><?= $item['jumlah_simpanan_wajib'] ?></td>
                                         <td><?= $item['status_simpanan'] ?></td>
                                         <td>
+                                            <a href="<?= base_url() ?>simpanan/ubahStatusSimpanan/<?= $item['id_simpanan'] ?>" class="badge badge-warning"><i class="fa fa-book"></i> Ubah Status Simpanan</a>
                                             <a href="<?= base_url() ?>simpanan/tambah_setoran/<?= $item['id_simpanan'] ?>" class="badge badge-success"><i class="fa fa-plus"></i> Setor Simpanan Wajib</a>
-                                            <a href="<?= base_url() ?>simpanan/dataSetoran/<?= $item['id_simpanan'] ?>" class="badge badge-warning"><i class="fa fa-list"></i> Riwayat Setoran</a>
+                                            <a href="<?= base_url() ?>simpanan/dataSetoran/<?= $item['id_simpanan'] ?>" class="badge badge-info"><i class="fa fa-eye"></i> Riwayat Setoran</a>
                                         </td>
                                     </tr>
                                 <?php

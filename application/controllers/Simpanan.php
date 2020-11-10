@@ -347,4 +347,31 @@ class Simpanan extends CI_Controller
             redirect('simpanan/dataAksiPenarikan');
         }
     }
+
+    public function ubahStatusSimpanan($id)
+    {
+        $data['title'] = 'Ubah Status Simpanan';
+        $data['simpanan'] = $this->simpanan_model->getSimpananById($id);
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('simpanan/ubahStatusSimpanan');
+        $this->load->view('layout/pegawai/footer');
+    }
+
+    public function prosesUbahStatusSimpanan()
+    {
+        $this->form_validation->set_rules('id_simpanan', 'id_simpanan', 'trim|required');
+        $this->form_validation->set_rules('id_anggota', 'id_anggota', 'trim|required');
+        $this->form_validation->set_rules('status_simpanan', 'status_simpanan', 'trim|required');
+        if ($this->form_validation->run() == FALSE) {
+            redirect('simpanan/dataSimpanan');
+        } else {
+            $data = $this->simpanan_model->ubahStatusSimpanan();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Sukses Ubah Status Simpanan
+          </div>');
+            redirect('simpanan/dataSimpanan');
+        }
+    }
 }
