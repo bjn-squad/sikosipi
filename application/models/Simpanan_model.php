@@ -231,6 +231,7 @@ class Simpanan_model extends CI_Model
         $this->db->where('id_penarikan', $this->input->post('id_penarikan'));
         $this->db->update('penarikan_simpanan', $data);
     }
+  
     public function getRiwayatPenarikanByAnggota($id)
     {
         $query = $this->db->query("SELECT * FROM penarikan_simpanan ps 
