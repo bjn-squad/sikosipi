@@ -15,6 +15,7 @@
                                     <th>Nama Pegawai</th>
                                     <th>Tanggal Angsuran</th>
                                     <th>Jumlah Angsuran</th>
+                                    <th>Aksi</th>
                             </thead>
                             <tbody>
                                 <?php
@@ -25,6 +26,7 @@
                                         <td><?= $item['nama_pegawai'] ?></td>
                                         <td><?= $item['tanggal_angsuran'] ?></td>
                                         <td><?= $item['angsuran_pembayaran'] ?></td>
+                                        <td><a href="<?= base_url() ?>pinjaman/cetakAngsuranSaya/<?= $item['id_angsuran_detail'] ?>" target="_blank" class="badge badge-warning"><i class="fa fa-print"></i>Cetak</a></td>
                                     </tr>
                                 <?php
                                     $no++;
