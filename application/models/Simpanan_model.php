@@ -211,4 +211,24 @@ class Simpanan_model extends CI_Model
         $this->db->where('id_simpanan', $this->input->post('id_simpanan'));
         $this->db->update('simpanan', $data);
     }
+    public function verifikasiPenarikanByAdmin()
+    {
+        $status = $this->input->post('verifikasi_admin');
+        if ($status == "Verifikasi Diterima") {
+            $data = [
+                "verifikasi_admin" => $status,
+                "status_penarikan" => "Diterima",
+                "pesan" => 'Pengajuan telah diverifikasi dan diterima, anda bisa mengambil uang simpanan di koperasi'
+            ];
+        } else if ($status == "Verifikasi Ditolak") {
+            $data = [
+                "verifikasi_admin" => $status,
+                "status_penarikan" => "Verifikasi Ditolak",
+                "pesan" => $this->input->post('pesan')
+            ];
+        }
+
+        $this->db->where('id_penarikan', $this->input->post('id_penarikan'));
+        $this->db->update('penarikan_simpanan', $data);
+    }
 }

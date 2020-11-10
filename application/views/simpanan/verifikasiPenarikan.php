@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Detail Pengajuan Pinjaman</strong>
+                        <strong>Verifikasi Penarikan oleh Pegawai</strong>
                     </div>
                     <?php
                     foreach ($simpanan as $item) {
@@ -49,8 +49,8 @@
                                             <option value="<?= $i['verifikasi_pegawai'] ?>" disabled selected><?= $i['verifikasi_pegawai'] ?></option>
                                         <?php }
                                         ?>
-                                        <option value="Verifikasi Diterima">Terima Verifikasi Pengajuan</option>
-                                        <option value="Verifikasi Ditolak"><b style="color:red">Tolak Verifikasi Pengajuan</b> </option>
+                                        <option value="Verifikasi Diterima">Terima Verifikasi Penarikan</option>
+                                        <option value="Verifikasi Ditolak"><b style="color:red">Tolak Verifikasi Penarikan</b> </option>
                                         </select>
                             </div>
                         </div>

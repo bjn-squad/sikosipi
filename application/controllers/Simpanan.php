@@ -348,6 +348,38 @@ class Simpanan extends CI_Controller
         }
     }
 
+    public function verifikasiPenarikanByAdmin($id)
+    {
+        if ($this->session->userdata('kategori') != "1") {
+            redirect('pegawai', 'refresh');
+        }
+        $data['title'] = 'Verifikasi Pengajuan simpanan By Admin';
+        $data['simpanan'] = $this->simpanan_model->getPenarikanSimpananById($id);
+        $this->load->view('layout/pegawai/header', $data);
+        $this->load->view('layout/pegawai/sidebar');
+        $this->load->view('layout/pegawai/top');
+        $this->load->view('simpanan/verifikasiPenarikanAdmin');
+        $this->load->view('layout/pegawai/footer');
+    }
+
+    public function prosesVerifikasiPenarikanByAdmin()
+    {
+        if ($this->session->userdata('kategori') != "1") {
+            redirect('pegawai', 'refresh');
+        }
+        $this->form_validation->set_rules('id_penarikan', 'id_penarikan', 'trim|required');
+        $this->form_validation->set_rules('verifikasi_admin', 'verifikasi_admin', 'trim|required');
+        if ($this->form_validation->run() == FALSE) {
+            redirect('simpanan/dataAksiPenarikan');
+        } else {
+            $data = $this->simpanan_model->verifikasiPenarikanByAdmin();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+           Sukses Verifikasi simpanan
+          </div>');
+            redirect('simpanan/dataAksiPenarikan');
+        }
+    }
+
     public function ubahStatusSimpanan($id)
     {
         $data['title'] = 'Ubah Status Simpanan';

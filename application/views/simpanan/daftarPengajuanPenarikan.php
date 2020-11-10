@@ -38,17 +38,16 @@
                                             <?php
                                             if ($item['verifikasi_pegawai'] == "Belum Diverifikasi") {
                                             ?>
-                                                <a href="<?= base_url() ?>simpanan/verifikasiPenarikanByPegawai/<?= $item['id_penarikan'] ?>" class="badge badge-success"><i class="fa fa-check"></i> Verifikasi Pengajuan Pinjaman</a>
+                                                <a href="<?= base_url() ?>simpanan/verifikasiPenarikanByPegawai/<?= $item['id_penarikan'] ?>" class="badge badge-success"><i class="fa fa-check"></i> Verifikasi Penarikan Simpanan</a>
                                             <?php
                                             }
 
-                                            if ($item['verifikasi_admin'] == "Sedang Diverifikasi" && $item['status_penarikan'] == "Sedang Diverifikasi" && $this->session->userdata('kategori') == "1" && $item['verifikasi_pegawai'] == "Verifikasi Diterima") {
+                                            if ($item['verifikasi_admin'] == "Belum Diverifikasi" && $item['status_penarikan'] == "Belum Diverifikasi" && $this->session->userdata('kategori') == "1" && $item['verifikasi_pegawai'] == "Verifikasi Diterima") {
                                             ?>
-                                                <a href="<?= base_url() ?>simpanan/verifikasiPenarikanByAdmin/<?= $item['id_penarikan'] ?>" class="badge badge-success"><i class="fa fa-check"></i> Verifikasi Pengajuan</a>
+                                                <a href="<?= base_url() ?>simpanan/verifikasiPenarikanByAdmin/<?= $item['id_penarikan'] ?>" class="badge badge-success"><i class="fa fa-check"></i> Verifikasi Penarikan</a>
                                             <?php
                                             }
                                             ?>
-
                                             <a href="<?= base_url() ?>simpanan/detailPenarikanSimpanan/<?= $item['id_penarikan'] ?>" class="badge badge-info"><i class="fa fa-eye"></i> Detail</a>
                                         </td>
                                     </tr>
