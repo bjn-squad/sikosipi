@@ -187,4 +187,28 @@ class Simpanan_model extends CI_Model
                                 WHERE ps.id_penarikan = $id");
         return $query->result_array();
     }
+
+    public function ubahStatusSimpanan()
+    {
+        $status = $this->input->post('status_simpanan');
+        $id_anggota = $this->input->post('id_anggota');
+
+        if ($status != "Sudah Ditarik") {
+            $data = [
+                "status_simpanan" => $status
+            ];
+        } else {
+            $data = [
+                "status_simpanan" => $status
+            ];
+
+            $data2 = [
+                "status_anggota" => "Dinonaktifkan"
+            ];
+            $this->db->where('id_anggota', $id_anggota);
+            $this->db->update('anggota', $data2);
+        }
+        $this->db->where('id_simpanan', $this->input->post('id_simpanan'));
+        $this->db->update('simpanan', $data);
+    }
 }

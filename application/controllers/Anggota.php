@@ -143,4 +143,16 @@ class Anggota extends CI_Controller
             redirect('anggota/simpananSaya');
         }
     }
+
+    public function cetakSetoranSaya($id)
+    {
+        if ($this->session->userdata('level') != "anggota") {
+            redirect('auth/loginAnggota', 'refresh');
+        }
+        $data['title'] = 'Simpanan';
+        $data['simpanan_detail'] = $this->simpanan_model->cetakPdf($id);
+        $this->load->view('laporan/layout/header', $data);
+        $this->load->view('laporan/nota-setoran');
+        $this->load->view('laporan/layout/footer');
+    }
 }
