@@ -20,7 +20,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Simpanan</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="menu-icon fa fa-bank"></i><a href="<?= base_url() ?>anggota/simpananSaya">Lihat Simpanan Saya</a></li>
-                        <li><i class="menu-icon fa fa-address-book"></i><a href="<?= base_url() ?>simpanan/daftarPinjaman">Riwayat Penarikan Simpanan </a></li>
+                        <li><i class="menu-icon fa fa-address-book"></i><a href="<?= base_url() ?>anggota/riwayatPenarikan">Riwayat Penarikan Simpanan </a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">

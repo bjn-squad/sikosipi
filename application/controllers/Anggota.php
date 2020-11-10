@@ -155,4 +155,14 @@ class Anggota extends CI_Controller
         $this->load->view('laporan/nota-setoran');
         $this->load->view('laporan/layout/footer');
     }
+    public function riwayatPenarikan()
+    {
+        $data['title'] = 'Riwayat Penarikan Simpanan';
+        $data['simpanan'] = $this->simpanan_model->getRiwayatPenarikanByAnggota($this->session->userdata('id_anggota'));
+        $this->load->view('layout/anggota/header', $data);
+        $this->load->view('layout/anggota/sidebar');
+        $this->load->view('layout/anggota/top');
+        $this->load->view('simpanan/riwayatPenarikan');
+        $this->load->view('layout/anggota/footer');
+    }
 }
