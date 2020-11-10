@@ -231,4 +231,13 @@ class Simpanan_model extends CI_Model
         $this->db->where('id_penarikan', $this->input->post('id_penarikan'));
         $this->db->update('penarikan_simpanan', $data);
     }
+  
+    public function getRiwayatPenarikanByAnggota($id)
+    {
+        $query = $this->db->query("SELECT * FROM penarikan_simpanan ps 
+                                JOIN simpanan s ON ps.id_simpanan = s.id_simpanan
+                                JOIN anggota a ON a.id_anggota = s.id_anggota
+                                WHERE s.id_anggota = $id");
+        return $query->result_array();
+    }
 }

@@ -32,7 +32,7 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="file-input" class=" form-control-label">Nominal Penarikan</label></div>
-                                <div class="col-12 col-md-9"><label><?= $item['nominal_total_penarikan'] ?></label></div>
+                                <div class="col-12 col-md-9"><label><?= $item['total_akhir_penarikan'] ?></label></div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="file-input" class=" form-control-label">Verifikasi Pegawai</label></div>
