@@ -7,7 +7,7 @@
                         <strong class="card-title"> Angsuran Saya </strong>
                     </div>
                     <div class="card-body">
-                        <a href="<?= base_url() ?>pegawai/daftarPinjaman" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"></i> Back</a><br><br>
+                        <a href="<?= base_url() ?>pinjaman/pinjamanSaya" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-left"></i> Back</a><br><br>
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered table-responsive-lg">
                             <thead>
                                 <tr>
