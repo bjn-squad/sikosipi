@@ -19,7 +19,7 @@
                                 <div class="col-12 col-md-9"><label><?= $item['tanggal_keanggotaan'] ?></label></div>
                             </div>
                             <div class="row form-group">
-                                <div class="col col-md-3"><label for="file-input" class=" form-control-label">Total Dana Yang Ditarik</label></div>
+                                <div class="col col-md-3"><label for="file-input" class=" form-control-label">Total Dana Yang Ingin Ditarik</label></div>
                                 <div class="col-12 col-md-9"><label><?= $item['nominal_total_penarikan'] ?></label></div>
                             </div>
                             <div class="row form-group">
@@ -31,8 +31,8 @@
                                 <div class="col-12 col-md-9"><label><?= $item['status_penarikan'] ?></label></div>
                             </div>
                             <div class="row form-group">
-                                <div class="col col-md-3"><label for="file-input" class=" form-control-label">Nominal Penarikan</label></div>
-                                <div class="col-12 col-md-9"><label><?= $item['total_akhir_penarikan'] ?></label></div>
+                                <div class="col col-md-3"><label for="file-input" class=" form-control-label">Total Akhir Penarikan (Ditambah Bunga)</label></div>
+                                <div class="col-12 col-md-9"><label><?= $item['total_akhir_simpanan'] ?></label></div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="file-input" class=" form-control-label">Verifikasi Pegawai</label></div>

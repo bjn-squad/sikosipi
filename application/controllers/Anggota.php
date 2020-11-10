@@ -101,7 +101,7 @@ class Anggota extends CI_Controller
     {
         $dataStatus = $this->db->select('*')->order_by('id_penarikan', "desc")->where('id_simpanan', $id)->limit(1)->get('penarikan_simpanan')->row();
         if (!empty($dataStatus->status_penarikan)) {
-            if ($dataStatus->status_penarikan != "Ditolak") {
+            if ($dataStatus->status_penarikan != "Verifikasi Ditolak") {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
            Maaf Transaksi Penarikan Anda Masih Pending.
           </div>');
