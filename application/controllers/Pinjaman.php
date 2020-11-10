@@ -356,4 +356,16 @@ class Pinjaman extends CI_Controller
         $this->load->view('laporan/nota-angsuran');
         $this->load->view('laporan/layout/footer');
     }
+
+    public function cetakAngsuranSaya($id)
+    {
+        if ($this->session->userdata('level') != "anggota") {
+            redirect('auth/loginAnggota', 'refresh');
+        }
+        $data['title'] = 'Pinjaman';
+        $data['angsuran_detail'] = $this->pinjaman_model->cetakPdf($id);
+        $this->load->view('laporan/layout/header', $data);
+        $this->load->view('laporan/nota-angsuran');
+        $this->load->view('laporan/layout/footer');
+    }
 }

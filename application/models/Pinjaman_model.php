@@ -195,15 +195,20 @@ class Pinjaman_model extends CI_Model
 
     public function cetakPdf($id)
     {
-        $query = $this->db->query("SELECT * FROM angsuran_detail ag JOIN pinjaman p ON ag.id_pinjaman = p.id_pinjaman JOIN anggota a ON p.id_anggota = a.id_anggota JOIN pegawai pg on ag.id_pegawai = pg.id_pegawai WHERE ag.id_angsuran_detail=$id");
+        $query = $this->db->query("SELECT * FROM angsuran_detail ag JOIN pinjaman p ON ag.id_pinjaman = p.id_pinjaman 
+        JOIN anggota a ON p.id_anggota = a.id_anggota
+        JOIN pegawai pg on ag.id_pegawai = pg.id_pegawai WHERE ag.id_angsuran_detail=$id");
         return $query->result_array();
     }
 
     public function getAngsuranByDate($startDate, $endDate)
     {
-        $query = $this->db->query("SELECT * FROM angsuran_detail ag JOIN pinjaman p ON ag.id_pinjaman = p.id_pinjaman JOIN anggota a ON p.id_anggota = a.id_anggota JOIN pegawai pg on ag.id_pegawai = pg.id_pegawai WHERE ag.tanggal_angsuran BETWEEN '$startDate' AND '$endDate'");
+        $query = $this->db->query("SELECT * FROM angsuran_detail ag JOIN pinjaman p ON ag.id_pinjaman = p.id_pinjaman
+        JOIN anggota a ON p.id_anggota = a.id_anggota
+        JOIN pegawai pg on ag.id_pegawai = pg.id_pegawai WHERE ag.tanggal_angsuran BETWEEN '$startDate' AND '$endDate'");
         return $query->result_array();
     }
+
     public function terimaAksiPenghapusanAngsuran($id)
     {
         $getIdAngsuranDetail = $this->db->query("SELECT * FROM aksi where id_aksi = $id");
