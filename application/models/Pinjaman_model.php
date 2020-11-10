@@ -208,7 +208,6 @@ class Pinjaman_model extends CI_Model
         JOIN pegawai pg on ag.id_pegawai = pg.id_pegawai WHERE ag.tanggal_angsuran BETWEEN '$startDate' AND '$endDate'");
         return $query->result_array();
     }
-
     public function terimaAksiPenghapusanAngsuran($id)
     {
         $getIdAngsuranDetail = $this->db->query("SELECT * FROM aksi where id_aksi = $id");

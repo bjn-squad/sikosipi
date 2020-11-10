@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Detail Pengajuan Pinjaman</strong>
+                        <strong>Detail Penarikan Simpanan</strong>
                     </div>
                     <?php
                     foreach ($simpanan as $item) {
