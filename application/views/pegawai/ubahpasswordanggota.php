@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong>Verifikasi Anggota</strong>
+                        <strong>Ubah Password Anggota</strong>
                     </div>
                     <?php
                     foreach ($anggota as $item) {

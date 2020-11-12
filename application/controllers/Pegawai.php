@@ -270,7 +270,7 @@ class Pegawai extends CI_Controller
         $this->load->view('layout/pegawai/header', $data);
         $this->load->view('layout/pegawai/sidebar');
         $this->load->view('layout/pegawai/top');
-        $this->load->view('pegawai/ubahpassword');
+        $this->load->view('pegawai/ubahpasswordanggota');
         $this->load->view('layout/pegawai/footer');
     }
 
