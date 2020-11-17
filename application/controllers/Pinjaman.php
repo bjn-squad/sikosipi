@@ -59,8 +59,9 @@ class Pinjaman extends CI_Controller
             $status = $result['status_anggota'];
         }
         $dataStatus = $this->db->select('*')->order_by('id_pengajuan', "desc")->where('id_anggota', $idAnggota)->limit(1)->get('pengajuan_pinjaman')->row();
+        $dataStatusPinjaman = $this->db->select('*')->order_by('id_pinjaman', "desc")->where('id_anggota', $idAnggota)->limit(1)->get('pinjaman')->row();
 
-        if (!empty($dataStatus->status_pengajuan)) {
+        if (!empty($dataStatus->status_pengajuan) && empty($dataStatusPinjaman)) {
             if ($dataStatus->status_pengajuan != "Sedang Diverifikasi" && $status == "Aktif") {
                 $data1['title'] = 'Ayo Ajukan Pinjaman';
                 $this->load->view('layout/anggota/header', $data1);
@@ -71,6 +72,20 @@ class Pinjaman extends CI_Controller
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">
             <i class="fa fa-warning"></i> Maaf anda belum bisa mengajukan pinjaman karena status pengajuan sebelumya masih dalam tahap verifikasi.
+          </div>');
+                redirect('anggota');
+            }
+        } else if (!empty($dataStatus->status_pengajuan) && !empty($dataStatusPinjaman)) {
+            if ($dataStatus->status_pengajuan != "Sedang Diverifikasi" && $status == "Aktif" && $dataStatusPinjaman->status_pinjaman == "Sudah Lunas") {
+                $data1['title'] = 'Ayo Ajukan Pinjaman';
+                $this->load->view('layout/anggota/header', $data1);
+                $this->load->view('layout/anggota/sidebar');
+                $this->load->view('layout/anggota/top');
+                $this->load->view('pinjaman/ajukan_pinjaman');
+                $this->load->view('layout/anggota/footer');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">
+            <i class="fa fa-warning"></i> Maaf anda belum bisa mengajukan pinjaman karena status pengajuan sebelumya masih dalam tahap verifikasi atau anda masih memiliki pinjaman yang belum lunas.
           </div>');
                 redirect('anggota');
             }
