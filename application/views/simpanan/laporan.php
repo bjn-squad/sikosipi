@@ -62,7 +62,7 @@
                                 <tr>
                                     <td><?= $no ?></td>
                                     <td><?= $item['nama_anggota'] ?></td>
-                                    <td><?= $item['tanggal_setor_tunai'] ?></td>
+                                    <td><?= date("d-m-Y", strtotime($item['tanggal_setor_tunai'])) ?></td>
                                     <td><?= $item['jumlah_setor_tunai'] ?></td>
                                     <td><?= $item['nama_pegawai'] ?></td>
                                 </tr>

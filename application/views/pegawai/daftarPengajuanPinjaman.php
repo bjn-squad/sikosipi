@@ -27,7 +27,7 @@
                                 <?php foreach ($pinjaman as $item) { ?>
                                     <tr>
                                         <td><?= $item['nama_anggota'] ?></td>
-                                        <td><?= $item['tanggal_pengajuan'] ?></td>
+                                        <td><?= date("d-m-Y", strtotime($item['tanggal_pengajuan'])) ?></td>
                                         <td><?= $item['total_pengajuan_pinjaman'] ?></td>
                                         <td><?= $item['status_pengajuan'] ?></td>
                                         <td><?= $item['verifikasi_pegawai'] ?></td>

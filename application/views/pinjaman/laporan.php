@@ -62,7 +62,7 @@
                                     <tr>
                                         <td><?= $no ?></td>
                                         <td><?= $item['nama_anggota'] ?></td>
-                                        <td><?= $item['tanggal_angsuran'] ?></td>
+                                        <td><?= date("d-m-Y", strtotime($item['tanggal_angsuran'])) ?></td>
                                         <td><?= $item['angsuran_pembayaran'] ?></td>
                                         <td><?= $item['nama_pegawai'] ?></td>
                                     </tr>

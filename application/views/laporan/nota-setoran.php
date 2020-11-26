@@ -15,7 +15,7 @@
             <td><?= $item['nama_anggota'] ?></td>
             <td><?= $item['nama_pegawai'] ?></td>
             <td>Rp. <?= number_format($item['jumlah_setor_tunai'], 0, ',', '.') ?></td>
-            <td><?= $item['tanggal_setor_tunai'] ?></td>
+            <td><?= date("d-m-Y", strtotime($item['tanggal_setor_tunai'])) ?></td>
         </tr>
     <?php } ?>
 </table>

@@ -26,7 +26,7 @@
                                         <td><?= $no ?></td>
                                         <td><?= $item['nama_anggota'] ?></td>
                                         <td><?= $item['nama_pegawai'] ?></td>
-                                        <td><?= $item['tanggal_angsuran'] ?></td>
+                                        <td><?= date("d-m-Y", strtotime($item['tanggal_angsuran'])) ?></td>
                                         <td><?= $item['angsuran_pembayaran'] ?></td>
                                         <td>
                                             <a href="<?= base_url() ?>pinjaman/hapusAngsuran/<?= $item['id_angsuran_detail'] ?>" target="_blank" class="badge badge-danger"><i class="fa fa-print"></i>Hapus</a>

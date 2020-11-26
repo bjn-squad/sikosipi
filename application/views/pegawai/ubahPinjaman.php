@@ -16,7 +16,7 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="file-input" class=" form-control-label">Tanggal Meminjam</label></div>
-                                <div class="col-12 col-md-9"><label><?= $item['tanggal_meminjam'] ?></label></div>
+                                <div class="col-12 col-md-9"><label><?= date("d-m-Y", strtotime($item['tanggal_meminjam'])) ?></label></div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="file-input" class=" form-control-label">Tanggal Pelunasan</label></div>

@@ -29,7 +29,7 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Tanggal Transaksi : </label></div>
-                                <div class="col-12 col-md-9"><label><?= $item['tanggal_setor_tunai'] ?></label></div>
+                                <div class="col-12 col-md-9"><label><?= date("d-m-Y", strtotime($item['tanggal_setor_tunai'])) ?></label></div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Pegawai Request Penghapusan : </label></div>

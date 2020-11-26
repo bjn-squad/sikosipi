@@ -24,7 +24,7 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="file-input" class=" form-control-label">Tanggal Pinjaman Diajukan</label></div>
-                                <div class="col-12 col-md-9"><label><?= $item['tanggal_pengajuan'] ?></label></div>
+                                <div class="col-12 col-md-9"><label><?= date("d-m-Y", strtotime($item['tanggal_pengajuan'])) ?></label></div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="file-input" class=" form-control-label">Status Pengajuan</label></div>

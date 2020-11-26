@@ -25,7 +25,7 @@
                                 <?php foreach ($pinjaman as $item) { ?>
                                     <tr>
                                         <td><?= $item['status_pinjaman'] ?></td>
-                                        <td><?= $item['tanggal_meminjam'] ?></td>
+                                        <td><?= date("d-m-Y", strtotime($item['tanggal_meminjam'])) ?></td>
                                         <td><?= $item['tanggal_pelunasan'] ?></td>
                                         <td><?= $item['total_pinjaman'] ?></td>
                                         <td>

@@ -33,7 +33,7 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Tanggal Transaksi : </label></div>
-                                <div class="col-12 col-md-9"><label><?= $item['tanggal_angsuran'] ?></label></div>
+                                <div class="col-12 col-md-9"><label><?= date("d-m-Y", strtotime($item['tanggal_angsuran'])) ?></label></div>
                             </div>
                             <form action="<?= base_url() ?>pinjaman/prosesHapusAngsuran" method="POST">
                                 <input type="hidden" name="id_angsuran_detail" value="<?= $item['id_angsuran_detail'] ?>">

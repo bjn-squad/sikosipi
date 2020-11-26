@@ -27,8 +27,15 @@
                                     <tr>
                                         <td><?= $item['nama_anggota'] ?></td>
                                         <td><?= $item['status_pinjaman'] ?></td>
-                                        <td><?= $item['tanggal_meminjam'] ?></td>
-                                        <td><?= $item['tanggal_pelunasan'] ?></td>
+                                        <td><?= date("d-m-Y", strtotime($item['tanggal_meminjam'])) ?></td>
+                                        <td>
+                                            <?php
+                                            if ($item['tanggal_pelunasan'] == "") {
+                                                echo $item['tanggal_pelunasan'];
+                                            } else {
+                                                echo date("d-m-Y", strtotime($item['tanggal_pelunasan']));
+                                            } ?>
+                                        </td>
                                         <td><?= $item['total_pinjaman'] ?></td>
                                         <td>
                                             <?php

@@ -36,7 +36,7 @@
                             </ul>
                         </div>
                         <div class="about_btn wow fadeInRight" data-wow-duration="1.3s" data-wow-delay=".5s">
-                            <a class="boxed-btn3" href="#">Ajukan Pinjaman Sekarang</a>
+                            <a class="boxed-btn3" href="<?= base_url() ?>auth/loginAnggota">Ajukan Pinjaman Sekarang</a>
                         </div>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                 </div>
                 <div class="col-lg-4 col-md-5">
                     <div class="loan_btn wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".4s">
-                        <a class="boxed-btn3" href="#">Ajukan Sekarang</a>
+                        <a class="boxed-btn3" href="<?= base_url() ?>auth/loginAnggota">Ajukan Sekarang</a>
                     </div>
                 </div>
             </div>

@@ -16,7 +16,7 @@
             <td><?= $item['nama_anggota'] ?></td>
             <td><?= $item['nama_pegawai'] ?></td>
             <td>Rp. <?= number_format($item['angsuran_pembayaran'], 0, ',', '.') ?></td>
-            <td><?= $item['tanggal_angsuran'] ?></td>
+            <td><?= date("d-m-Y", strtotime($item['tanggal_angsuran'])) ?></td>
 
         </tr>
     <?php } ?>

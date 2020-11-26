@@ -28,7 +28,7 @@
                                 <?php foreach ($simpanan as $item) { ?>
                                     <tr>
                                         <td><?= $item['nama_anggota'] ?></td>
-                                        <td><?= $item['tanggal_permintaan_penarikan'] ?></td>
+                                        <td><?= date("d-m-Y", strtotime($item['tanggal_permintaan_penarikan'])) ?></td>
                                         <td><?= $item['nominal_total_penarikan'] ?></td>
                                         <td><?= $item['status_penarikan'] ?></td>
                                         <td><?= $item['verifikasi_pegawai'] ?></td>

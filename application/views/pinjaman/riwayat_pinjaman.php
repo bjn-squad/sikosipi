@@ -22,7 +22,7 @@
                                     <tr>
                                         <td><?= $item['total_pengajuan_pinjaman'] ?></td>
                                         <td><?= $item['alasan_pinjaman'] ?></td>
-                                        <td><?= $item['tanggal_pengajuan'] ?></td>
+                                        <td><?= date("d-m-Y", strtotime($item['tanggal_pengajuan'])) ?></td>
                                         <td><?= $item['status_pengajuan'] ?></td>
                                         <td><?= $item['pesan'] ?></td>
                                     </tr>
