@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2020 at 06:44 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Generation Time: Jan 10, 2021 at 10:46 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -47,7 +46,8 @@ CREATE TABLE `aksi` (
 INSERT INTO `aksi` (`id_aksi`, `id_data_kategori`, `kategori_aksi`, `tanggal_aksi`, `pesan_aksi`, `nama_pegawai`, `nama_admin`, `status_aksi`, `status_verifikasi`) VALUES
 (3, 3, 'Nonaktifkan Anggota', '25-10-2020', 'Jito pernah bermasalah di berbagai koperasi soal hutangnya yang tidak lunas. Berikut koperasi yang pernah jadi korban jito\r\n\r\n1. Koperasi Karep\r\n2. Koperasi Bahagia\r\n\r\nTolong blacklist saja untuk nama jito hartati', 'Muh Riza Zulfahnur', 'Ardan Anjung Kusuma', 'Penonaktifan Ditolak', 'Diterima Admin'),
 (4, 3, 'Nonaktifkan Anggota', '27-10-2020', 'Tolong review lagi pak, jito orangnya tidak bertanggung jawab dalam melunasi hutangnya. Biar lebih enak silahkan kontak CP dibawah ini, humas koperasi yang pernah menjadi korban jito : \r\n\r\n1. Koperasi Karep (0812496023954)\r\n2. Koperasi Bahagia (085823232445)\r\n\r\nDia sudah diblacklist di berbagai koperasi bojonegoro', 'Dina Lisuardi', 'Ardan Anjung Kusuma', 'Penonaktifan Diterima', 'Diterima Admin'),
-(7, 6, 'Nonaktifkan Anggota', '03-11-2020', 'Ahmad Kholil terlibat dalam kasus penipuan pada koperasi ABC', 'Dina Lisuardi', 'Ardan Anjung Kusuma', 'Penonaktifan Ditolak', 'Diterima Admin');
+(7, 6, 'Nonaktifkan Anggota', '03-11-2020', 'Ahmad Kholil terlibat dalam kasus penipuan pada koperasi ABC', 'Dina Lisuardi', 'Ardan Anjung Kusuma', 'Penonaktifan Ditolak', 'Diterima Admin'),
+(10, 4, 'Nonaktifkan Anggota', '01-12-2020', 'Siti pernah kasus pada beberapa koperasi ', 'Ardan Anjung Kusuma', 'Belum Diverifikasi', 'Belum Diverifikasi', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -80,7 +80,8 @@ INSERT INTO `anggota` (`id_anggota`, `nama_anggota`, `alamat_anggota`, `no_telp_
 (4, 'Siti Aisyah', 'Jl. Mawar 15 Malang', '081254219520', 'siti', 'siti@gmail.com', '8230f9cb6dd627a92fdd0c6f282affd2', 'Sedang Diverifikasi', 'Belum Menjadi Anggota', '01112020165639example-ktp-1.jpg', '01112020165639example-with-ktp-1.jpg'),
 (5, 'Andi Muhibin', 'Jl. Anggrek 12 Kapas, Bojonegoro', '081289742951', 'andi', 'andi@gmail.com', '03339dc0dff443f15c254baccde9bece', 'Tidak Aktif', 'Belum Menjadi Anggota', 'Belum Diupload', 'Belum Diupload'),
 (6, 'Ahmad Kholil', 'Jl. Bambu Hijau 65 Bojonegoro', '085212345681', 'kholil', 'kholil@gmail.com', '9b5c59c7139392bdd6134e0d063df564', 'Sedang Diverifikasi', 'Belum Menjadi Anggota', '29102020163957ktp_examplektp-00.jpg', '29102020163957imgkyc_sample-kyc21.png'),
-(7, 'John Doe', 'Jl. Anggrek 12 Bojonegoro', '085212495829', 'john', 'johndoe@gmail.com', '6e0b7076126a29d5dfcbd54835387b7b', 'Aktif', '03-11-2020', '03112020010050example-ktp-1.jpg', '03112020010050img-kyc-sample-2.png');
+(7, 'John Doe', 'Jl. Anggrek 12 Bojonegoro', '085212495829', 'john', 'johndoe@gmail.com', '6e0b7076126a29d5dfcbd54835387b7b', 'Aktif', '03-11-2020', '03112020010050example-ktp-1.jpg', '03112020010050img-kyc-sample-2.png'),
+(8, 'Satine Zaneta', 'Jl. Merak 25 Bojonegoro', '08521232187', 'satine', 'satine@gmail.com', '985eb4a6046ae395a6450393f1db8c09', 'Sedang Diverifikasi', 'Belum Menjadi Anggota', '01122020031955example-ktp-1.jpg', '01122020031955example-with-ktp-1.jpg');
 
 -- --------------------------------------------------------
 
@@ -132,7 +133,8 @@ INSERT INTO `lupa_password` (`id_lupa_password`, `id_anggota`, `pertanyaankeaman
 (6, 5, 'Siapakah teman masa kecil anda?', 'Apa hobby anda?', 'Handrik', 'Bermain Gitar'),
 (7, 4, 'Apa nama belakang ibu anda?', 'Apa hobby anda?', 'Aisyah', 'Membaca'),
 (8, 6, 'Apa angka favorit anda?(Contoh: 29)', 'Siapakah guru terfavorit anda?', '10', 'Sujak'),
-(9, 7, 'Apa nama belakang ibu anda?', 'Apa hobby anda?', 'Doe', 'Bersepeda');
+(9, 7, 'Apa nama belakang ibu anda?', 'Apa hobby anda?', 'Doe', 'Bersepeda'),
+(10, 8, 'Apa angka favorit anda?(Contoh: 29)', 'Siapakah nama hewan peliharaan anda?', '29', 'Poki');
 
 -- --------------------------------------------------------
 
@@ -148,7 +150,7 @@ CREATE TABLE `pegawai` (
   `username` varchar(60) NOT NULL,
   `email` varchar(200) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `kategori` int(1) NOT NULL DEFAULT '2'
+  `kategori` int(1) NOT NULL DEFAULT 2
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -171,7 +173,7 @@ CREATE TABLE `penarikan_simpanan` (
   `id_penarikan` int(11) NOT NULL,
   `id_simpanan` int(11) NOT NULL,
   `nominal_total_penarikan` int(25) NOT NULL,
-  `total_akhir_simpanan` int(25) NOT NULL DEFAULT '0',
+  `total_akhir_simpanan` int(25) NOT NULL DEFAULT 0,
   `tanggal_permintaan_penarikan` date NOT NULL,
   `status_penarikan` varchar(20) NOT NULL DEFAULT 'Belum Diverifikasi',
   `verifikasi_pegawai` varchar(50) NOT NULL DEFAULT 'Belum Diverifikasi',
@@ -213,7 +215,8 @@ CREATE TABLE `pengajuan_pinjaman` (
 INSERT INTO `pengajuan_pinjaman` (`id_pengajuan`, `id_anggota`, `total_pengajuan_pinjaman`, `alasan_pinjaman`, `lampiran_pendukung`, `tanggal_pengajuan`, `status_pengajuan`, `verifikasi_pegawai`, `verifikasi_admin`, `pesan`) VALUES
 (1, 1, 5000000, 'Ingin membuka usaha sayur tapi gaada dana', '29102020162913Proposalusahasayurbudi.pdf', '2020-10-29', 'Sedang Diverifikasi', 'Verifikasi Diterima', 'Verifikasi Diterima', 'Pinjaman anda telah terdaftar'),
 (2, 7, 3500000, 'Untuk membuka usaha dagang Cilok', '03112020011025Proposalusahasayurjohn.pdf', '2020-11-03', 'Diterima', 'Verifikasi Diterima', 'Verifikasi Diterima', 'Pinjaman anda telah terdaftar'),
-(3, 2, 5000000, 'Butuh keperluan', '051120200808241841720005_MohRizaZulfahnur_AnalisisDesainJaringan.pdf', '2020-11-05', 'Verifikasi Ditolak', 'Verifikasi Ditolak', 'Verifikasi Ditolak', 'Dokumen kurang lengkap');
+(3, 2, 5000000, 'Butuh keperluan', '051120200808241841720005_MohRizaZulfahnur_AnalisisDesainJaringan.pdf', '2020-11-05', 'Verifikasi Ditolak', 'Verifikasi Ditolak', 'Verifikasi Ditolak', 'Dokumen kurang lengkap'),
+(4, 2, 1500000, 'Untuk keperluan bisnis warung kopi', '01122020023816Proposalusahakopijasmin.pdf', '2020-12-01', 'Sedang Diverifikasi', 'Sedang Diverifikasi', 'Sedang Diverifikasi', 'Belum terdapat pesan');
 
 -- --------------------------------------------------------
 
@@ -400,13 +403,13 @@ ALTER TABLE `simpanan_detail`
 -- AUTO_INCREMENT for table `aksi`
 --
 ALTER TABLE `aksi`
-  MODIFY `id_aksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_aksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `angsuran_detail`
@@ -418,7 +421,7 @@ ALTER TABLE `angsuran_detail`
 -- AUTO_INCREMENT for table `lupa_password`
 --
 ALTER TABLE `lupa_password`
-  MODIFY `id_lupa_password` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_lupa_password` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
@@ -436,7 +439,7 @@ ALTER TABLE `penarikan_simpanan`
 -- AUTO_INCREMENT for table `pengajuan_pinjaman`
 --
 ALTER TABLE `pengajuan_pinjaman`
-  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `pengumuman`
