@@ -2,7 +2,7 @@
 
 ### Tentang Website
 
-Lorem Ipsum Dolor Sit Amet
+Website Sistem Informasi Koperasi Simpan Pinjam dibangun menggunakan Framework CodeIgniter. Ditujukan untuk Pegawai dan Anggota Koperasi.
 
 - Anggota Proyek
 
